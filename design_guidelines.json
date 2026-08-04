@@ -1,0 +1,110 @@
+{
+  "theme": "dark",
+  "design_concept": "Heritage-Modern Sports Premium. A fusion of 1852 legacy with cutting-edge commercial sports appeal. Confident, bold, highly legible, cinematic.",
+  "typography": {
+    "headings": {
+      "font_family": "Cormorant Garamond, serif",
+      "weights": ["400", "600", "700"],
+      "usage": "Used for main H1s, H2s, and section titles to establish heritage and premium positioning. Never center-align."
+    },
+    "numbers_and_stats": {
+      "font_family": "Oswald, sans-serif",
+      "weights": ["500", "700"],
+      "usage": "Used for oversized numerals, stat tiles (e.g., 234+, 1852), and high-impact data points. Tight tracking."
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["300", "400", "500"],
+      "usage": "Clean, highly readable grotesque sans for all paragraph text, tables, and UI elements. Avoid Inter and Roboto."
+    }
+  },
+  "colors": {
+    "primary_yellow": "#FFCC00",
+    "primary_yellow_hover": "#E6B800",
+    "background_base": "#050505",
+    "background_surface": "#121212",
+    "background_surface_elevated": "#1A1A1A",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A3A3A3",
+    "border_subtle": "rgba(255,255,255,0.1)",
+    "rules": [
+      "Use Yellow surgically: CTAs, highlight numbers, key dividers. Do not overuse.",
+      "Backgrounds must remain deep authority black.",
+      "No purple/violet, no gradients, no AI slop styling."
+    ]
+  },
+  "visual_enhancers": {
+    "texture": "Subtle noise overlay (opacity 2-3%) across the entire background to give an editorial print feel.",
+    "borders": "1px solid rgba(255,255,255,0.1) for structure, avoiding generic drop shadows.",
+    "glassmorphism": "Used for the sticky nav. backdrop-blur-xl bg-black/60 border-b border-white/10"
+  },
+  "layouts": {
+    "scroll_narrative": "Default view. Continuous scroll with py-24 to py-32 section padding. Asymmetric bento grids and text/image overlaps.",
+    "presenter_mode": "Toggled state. Each of the 16 sections becomes a 100vh slide. Uses Framer Motion AnimatePresence for smooth slide transitions. Includes keyboard navigation (left/right arrows) and a slide counter (e.g., '04 / 16').",
+    "spacing": "Tailwind's generous spacing: p-8, p-12, p-16. Never cramp elements.",
+    "grid": "Use 12-column layouts. Mix col-span-4 and col-span-8 to avoid perfect symmetry."
+  },
+  "components": {
+    "sticky_nav": "Fixed at top. Deep black glassmorphism. Contains section jump links and a Presenter Mode toggle switch.",
+    "stat_tiles": "Flat surface (no card shadow), 1px border. Oversized yellow Oswald font for the number, Manrope for the label.",
+    "ecosystem_map": "Visual mapping of Youth/Competitive/Social/Ladies/Senior. Use a bespoke CSS grid layout connected with subtle SVG lines or border boundaries.",
+    "pathway_diagram": "Youth-to-Senior timeline. Vertical or horizontal stepper using Yellow dots and white connecting lines.",
+    "sponsorship_table": "Tier comparison (Title/Gold/Silver/Community/In-Kind). Clean rows, 1px bottom borders, checkmarks in Yellow. Investment column says 'On Request'.",
+    "inventory_grid": "Bento-style grid detailing assets (Kit branding, digital, events).",
+    "presenter_toggle": "Prominent but elegant UI switch. Can use an icon (Play/Slideshow) + text 'Presenter Mode'."
+  },
+  "motion": {
+    "scroll_reveals": "Sections fade in and translate slightly up (y: 20 -> 0) on scroll using Framer Motion whileInView.",
+    "slide_transitions": "For presenter mode: subtle fade and x-axis translation (x: 50 -> 0).",
+    "micro_interactions": "Yellow elements scale up slightly on hover. Nav links get a yellow bottom border expand on hover."
+  },
+  "image_urls": [
+    {
+      "url": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHN0YWRpdW0lMjBtYXRjaHxlbnwwfHx8fDE3ODU4MjgyNDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "Hero / Cover",
+      "description": "Wide shot of a lush green football stadium under lights. Perfect for the full-bleed cover section with a black/50 overlay."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHw0fHxmb290YmFsbCUyMHN0YWRpdW0lMjBtYXRjaHxlbnwwfHx8fDE3ODU4MjgyNDJ8MA&ixlib=rb-4.1.0&q=85",
+      "category": "Ecosystem / Atmosphere",
+      "description": "Dramatic lighting under floodlights with players in the distance. Good for backing up text-heavy sections like 'Why SCC / Why Now'."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1635798522688-7520a6d26e0e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxoZXJpdGFnZSUyMGNsYXNzaWMlMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzg1ODI4MjQyfDA&ixlib=rb-4.1.0&q=85",
+      "category": "Heritage Placeholder",
+      "description": "A classic heritage building with a clock tower. Use as a placeholder for the 1852 Heritage section."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1641159009736-8a5fd4e52fef?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxzb2NjZXIlMjB0ZWFtJTIwaHVkZGxlfGVufDB8fHx8MTc4NTgyODI0Mnww&ixlib=rb-4.1.0&q=85",
+      "category": "Team / Community",
+      "description": "Soccer team huddle wearing yellow kits. Extremely aligned with SCC's brand colors. Use in 'Football Ecosystem' or 'Partner With Us'."
+    }
+  ],
+  "accessibility": {
+    "contrast": "Ensure text over images uses a dark gradient or solid overlay (bg-black/60) to maintain WCAG AA compliance. Never use a fully transparent background behind text overlays.",
+    "keyboard_nav": "Presenter mode MUST support left/right arrow keys to switch slides. Focus states for toggle buttons must use ring-primary_yellow.",
+    "aria": "Add data-testid to all interactive elements."
+  },
+  "instructions_to_main_agent": [
+    "Build a dual-mode application using React (.js files, no TypeScript). Use a global state or React Context to manage `isPresenterMode` (boolean).",
+    "In standard mode, map over the 16 sections rendering them vertically.",
+    "In Presenter mode, lock body scroll and render only the active section in a 100vh flex container with left/right arrow key listeners.",
+    "Implement Framer Motion for cinematic reveals and AnimatePresence for slide transitions.",
+    "Do not use generic Shadcn cards with white backgrounds and drop shadows. Use border-white/10 and flat dark surfaces.",
+    "Include Google Fonts: Cormorant Garamond, Oswald, and Manrope in the index.html or import them in index.css.",
+    "Ensure the stat tiles have massive typographic impact.",
+    "Do not put actual pricing in the packages. Use 'Investment on request'.",
+    "Include data-testid on every clickable or interactable element."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "Avoid AI slop aesthetic. No purple/violet gradients.",
+    "Create depth through layered design elements with z-index hierarchy, not drop shadows.",
+    "Use glass-morphism effects with backdrop filters for navigation.",
+    "MUST NOT apply universal transition (e.g., transition: all). Add transitions for specific interactive elements.",
+    "MUST NOT center align the app container (.App { text-align: center; } is banned). Left-align dense content.",
+    "Every interaction needs micro-animations - hover states, transitions.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Missing categories (especially logos) = main agent will use placeholder text. Never use dummyimage URLs.",
+    "GENERAL UI UX DESIGN GUIDELINES: All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing."
+  ]
+}
