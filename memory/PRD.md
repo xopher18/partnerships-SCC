@@ -53,9 +53,16 @@ Premium sponsorship deck for SCC Football (Singapore Cricket Club Football) in c
 - **Added real .pptx download** — client‑side generator using pptxgenjs 4.0.1 (`src/lib/generatePptx.js`). Two entry points: `data-testid='download-pptx'` in top nav, and `data-testid='cta-download-pptx'` on Partner slide. Produces a 546KB, 19‑slide, 16:9 widescreen `.pptx` — 18 sections + one extra SCC 7s Sponsor Value slide, with Yellow #FFCC00 accents, Cormorant / Oswald / Manrope fonts, Title Partner tile rendered on yellow, Partner slide fully yellow.
 - Fixed webpack: added NormalModuleReplacementPlugin for `node:*` imports so pptxgenjs bundles cleanly in the browser (`craco.config.js` + `plugins/empty-node-stub.js`).
 
+### 2026‑01‑04 · v4 (charity & community)
+- **Added Charity & Community section** (id `charity`, position 11 of 19) between Alignment and Inventory. Content: 20‑year support of Youth Football Home in Phuket (education, tuition fees, stationery, living quarters upkeep); Catch Plus grassroots partnership for under‑privileged children; long‑term individual support of a young Singaporean with cerebral palsy from toddler to university. Includes a Sponsor Hook · CSR / ESG callout and a "Full CSR portfolio available on request" footnote.
+- Updated Alignment pillar to include "20‑Year CSR Track Record" and ROI pillar to include "CSR / ESG Substance"
+- Extended `.pptx` generator with Slide 12 · Charity — flagship 20 Years stat, three programme cards, sponsor hook + footnote. Total PPT now 20 slides (~572KB).
+
 ## Testing
-- iteration_1: **100% pass** (SCC 7s emphasis + PDF fix)
-- iteration_2: **100% pass** (presenter fit + .pptx download; 8/8 review sub‑tasks)
+- iteration_1: **100% pass** (SCC 7s + PDF fix)
+- iteration_2: **100% pass** (presenter fit + .pptx download)
+- iteration_3: 95% pass (charity section rendered; PPT missing footnote)
+- iteration_4: **100% pass** (footnote fix verified)
 
 ## Backlog (P1)
 - Real SCC photography — swap Unsplash placeholders in `heroImages` + per-section
