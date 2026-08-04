@@ -58,6 +58,17 @@ Premium sponsorship deck for SCC Football (Singapore Cricket Club Football) in c
 - Updated Alignment pillar to include "20‑Year CSR Track Record" and ROI pillar to include "CSR / ESG Substance"
 - Extended `.pptx` generator with Slide 12 · Charity — flagship 20 Years stat, three programme cards, sponsor hook + footnote. Total PPT now 20 slides (~572KB).
 
+### 2026‑02‑04 · v7 (better heritage photo + concept-lock decision)
+- **Replaced the flat 2006 side-angle SCC clubhouse photo** with a proper front-facade hero shot from Wikimedia Commons (CC-BY 2.0). The new image shows the SCC clubhouse with its trademark red-tile roof, white columns, colonial arches and the SCC flag flying — a legitimate, licensed, high-resolution photo of the actual building.
+- **Concept-lock agreement with user**: PPT rebuild is deliberately paused until the deck's content and design concept are finalised. This avoids rework — every edit currently invalidates hand-tuned slide layouts. Next PPT rebuild will use dedicated 16:9 slide layouts (Option A) once user signs off on final content.
+
+## Locked-but-pending decisions
+- Better SCC clubhouse photo — DONE (Wikimedia Commons front-facade shot)
+- Content / wording review — PENDING user feedback
+- Sponsor logos strip — PENDING assets from user
+- Real contact details — PENDING from user
+- Dedicated 16:9 slide layout rebuild — PENDING content-lock signal from user
+
 ### 2026‑02‑04 · v6 (PPTX rewritten as screenshot-based export)
 - **Ditched hand-coded pptxgenjs coordinates** — the old approach was fundamentally fragile: every text/image change drifted the layout. Rewrote `generatePptx.js` to use **`html2canvas` + `pptxgenjs`**. Each web section is cloned into an off-screen 1920px stage, styled to compress scroll-mode padding, vertically centre its content and pin `min-h-screen` to 1080px, then screenshot with `useCORS: true`. Each capture becomes a full-bleed image on a 16:9 PPT slide.
 - **Aspect-ratio letterboxing** — sections that need more than 1080px (At a Glance, Ecosystem, Inventory) capture at their natural height and are letterboxed inside the 16:9 slide with the same black slide background, so nothing is cropped and no bars are visible.
