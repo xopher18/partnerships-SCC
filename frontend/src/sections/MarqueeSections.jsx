@@ -178,18 +178,18 @@ export function Regional({ presenter }) {
             className="relative aspect-[16/9] overflow-hidden border border-white/10"
           >
             <img
-              src={heroImages.champions}
-              alt="SCC Football — RSC International Soccer 7s Champions"
+              src={heroImages.regional}
+              alt="SCC Football at Hong Kong 7s"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
               <div>
                 <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
-                  Champions
+                  On Tour · Hong Kong 7s
                 </div>
                 <div className="font-heritage text-lg text-white mt-1 leading-tight">
-                  RSC International Soccer 7s
+                  Men&rsquo;s side representing SCC in the region
                 </div>
               </div>
             </div>

@@ -1,0 +1,43 @@
+{
+  "summary": "Iteration 6 — Frontend-only regression of the new photo mapping (SFL Champions trophy-lift + Ladies at National Stadium + HK men's team + kit flat-lay) on both the web deck and the PPTX export. All 8 review-request checks passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_6.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "generatePptx.js still contains a duplicate embedded image: heroImages.cover === heroImages.champions (same URL), so ppt/media/ actually has 6 image entries but two of them (image-1-1 and image-4-1) are byte-identical duplicates of the SFL trophy-lift photo. Not a bug — the deck spec allows this — but a minor size optimisation would be to reuse the same fetched dataURL for both slides instead of re-adding it.",
+    "generatePptx.js file is 1150+ lines. Consider splitting per-slide builders into /src/lib/pptx/ modules for maintainability (>700 lines threshold).",
+    "OpeningSections.jsx Heritage caption 'At the National Stadium' is rendered with CSS uppercase — this is intentional but means text search / accessibility tools see the CSS-transformed text; consider adding aria-label if screen-reader intent matters."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Web verified: cover img src contains 'd3imn60c'; [data-testid=glance-champions-photo] img src contains 'd3imn60c' with captions 'Singapore Football League · Division 1', 'Champions.', '$15,000 prize · trophy lifted'; heritage img src contains 'y59qu6tl', no grayscale class, no 'Placeholder image' label, caption 'At the National Stadium' present (CSS-uppercased); [data-testid=regional-hero-photo] img src contains '88urycvx' with captions 'On Tour · Hong Kong 7s' and 'Men's side representing SCC in the region'; NO 'RSC International Soccer 7s' text anywhere in regional section; [data-testid=inventory-kit-photo] img src contains '8bkb0b2l' with 'Sponsor Visibility · In the Field' caption. Section count = 19. Zero console errors on load or on Download PPT click. PPTX export verified: file 2.68 MB (2,808,680 bytes ≥ 2.5MB target), opens as valid zip, exactly 20 slides, ppt/media/ contains 6 unique image entries with 3 files >400KB (453KB, 542KB, 599KB — real photos), slide20.xml contains 'sccfootball.com' and does NOT contain 'sccfootball.sg'.",
+  "verification_evidence": {
+    "cover_img_src": "…d3imn60c_WhatsApp%20Image%202026-08-04%20at%208.01.32%20PM.jpeg",
+    "glance_img_src_contains_d3imn60c": true,
+    "glance_captions_present": ["Singapore Football League · Division 1", "Champions.", "$15,000 prize · trophy lifted"],
+    "heritage_img_src_contains_y59qu6tl": true,
+    "heritage_grayscale_class": false,
+    "heritage_placeholder_label_present": false,
+    "regional_img_src_contains_88urycvx": true,
+    "regional_caption_hong_kong_7s": true,
+    "regional_mentions_rsc_international": false,
+    "inventory_img_src_contains_8bkb0b2l": true,
+    "section_count_on_page": 19,
+    "console_errors": 0,
+    "pptx_size_bytes": 2808680,
+    "pptx_slide_count": 20,
+    "pptx_media_files": 6,
+    "pptx_media_files_over_400kb": 3,
+    "slide20_has_sccfootball_com": true,
+    "slide20_has_sccfootball_sg": false,
+    "pptx_valid_zipfile": true
+  }
+}

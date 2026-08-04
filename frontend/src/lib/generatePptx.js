@@ -216,11 +216,13 @@ export async function generateSccPptx() {
   pptx.layout = "LAYOUT_WIDE"; // 13.333 x 7.5
 
   // Pre-fetch real photography so slides can embed data URLs (self-contained PPT).
-  const [imgCover, imgAtmosphere, imgChampions, imgKits] = await Promise.all([
+  const [imgCover, imgAtmosphere, imgChampions, imgKits, imgHeritage, imgRegional] = await Promise.all([
     fetchImageDataUrl(heroImages.cover),
     fetchImageDataUrl(heroImages.atmosphere),
     fetchImageDataUrl(heroImages.champions),
     fetchImageDataUrl(heroImages.kits),
+    fetchImageDataUrl(heroImages.heritage),
+    fetchImageDataUrl(heroImages.regional),
   ]);
 
   const total = sectionsMeta.length;
@@ -329,15 +331,27 @@ export async function generateSccPptx() {
     addHeader(s, num("heritage", 2), "Heritage · Est. 1852");
     s.addText("One of Singapore's oldest,\nmost trusted sporting\ninstitutions.", {
       x: MARGIN_X, y: 1.2, w: 7, h: 3,
-      fontSize: 36, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      fontSize: 32, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
     s.addText(
       "Founded in 1852, the Singapore Cricket Club has been a fixture of Singaporean sport for over 170 years. Our football section carries that heritage forward — merging legacy with modern ambition.",
       {
-        x: MARGIN_X, y: 4.4, w: 7, h: 1.6,
-        fontSize: 13, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x: MARGIN_X, y: 4.4, w: 7, h: 1.5,
+        fontSize: 12, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       }
     );
+    // Ladies at National Stadium (right column)
+    if (imgHeritage) {
+      s.addImage({
+        data: imgHeritage,
+        x: W - 4.9, y: 1.15, w: 4.2, h: 4.55,
+        sizing: { type: "cover", w: 4.2, h: 4.55 },
+      });
+      s.addText("SCC LADIES · SINGAPORE NATIONAL STADIUM", {
+        x: W - 4.9, y: 5.75, w: 4.2, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
+      });
+    }
     const h = [
       { n: "1852", l: "Founded" },
       { n: "170+", l: "Years of Sport" },
@@ -345,14 +359,14 @@ export async function generateSccPptx() {
     ];
     h.forEach((it, i) => {
       const x = MARGIN_X + i * 2.2;
-      s.addShape("rect", { x, y: 6.05, w: 0.08, h: 0.55, fill: { color: BRAND.yellow }, line: { color: BRAND.yellow } });
+      s.addShape("rect", { x, y: 6.15, w: 0.08, h: 0.55, fill: { color: BRAND.yellow }, line: { color: BRAND.yellow } });
       s.addText(it.n, {
-        x: x + 0.2, y: 6, w: 2, h: 0.4,
-        fontSize: 20, color: BRAND.white, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true,
+        x: x + 0.2, y: 6.1, w: 2, h: 0.4,
+        fontSize: 20, color: BRAND.white, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true, valign: "top",
       });
       s.addText(it.l.toUpperCase(), {
-        x: x + 0.2, y: 6.4, w: 2, h: 0.3,
-        fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 4,
+        x: x + 0.2, y: 6.5, w: 2, h: 0.3,
+        fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 4, valign: "top",
       });
     });
     addFooter(s, 3, total);
@@ -364,24 +378,37 @@ export async function generateSccPptx() {
     s.background = { color: BRAND.black };
     addHeader(s, num("at-a-glance", 3), "SCC Football at a Glance");
     s.addText("The proof, in numbers.", {
-      x: MARGIN_X, y: 1.1, w: W - MARGIN_X * 2, h: 0.9,
-      fontSize: 40, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.1, w: 8.5, h: 0.9,
+      fontSize: 34, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
     s.addText(
       "A fast, scannable snapshot of what SCC Football delivers today — the base every sponsorship conversation should start from.",
       {
-        x: MARGIN_X, y: 2.05, w: 8, h: 0.65,
-        fontSize: 12, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x: MARGIN_X, y: 2.0, w: 8.5, h: 0.65,
+        fontSize: 11, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       }
     );
+    // SFL CHAMPIONS trophy-lift photo on the right — proof for the "SFL D1 Champions" tile.
+    if (imgChampions) {
+      s.addImage({
+        data: imgChampions,
+        x: W - 4.4, y: 1.05, w: 3.7, h: 1.85,
+        sizing: { type: "cover", w: 3.7, h: 1.85 },
+      });
+      s.addText("SFL D1 · CHAMPIONS", {
+        x: W - 4.4, y: 2.95, w: 3.7, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
+      });
+    }
+    // Stats grid — slightly smaller cells so photo + grid coexist
     const grid = glanceStats.slice(0, 9);
     const cellW = (W - MARGIN_X * 2) / 3 - 0.05;
-    const cellH = 1.15;
+    const cellH = 1.1;
     grid.forEach((st, i) => {
       const col = i % 3;
       const row = Math.floor(i / 3);
       const x = MARGIN_X + col * (cellW + 0.05);
-      const y = 3 + row * (cellH + 0.05);
+      const y = 3.4 + row * (cellH + 0.05);
       addStatTile(s, x, y, cellW, cellH, st.value, st.label);
     });
     addFooter(s, 4, total);
@@ -529,14 +556,14 @@ export async function generateSccPptx() {
       x: MARGIN_X, y: 1.1, w: 8, h: 2,
       fontSize: 34, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
-    // Champions photo on the right of the intro
-    if (imgChampions) {
+    // HK men's team photo on the right of the intro (overseas tournaments proof)
+    if (imgRegional) {
       s.addImage({
-        data: imgChampions,
+        data: imgRegional,
         x: W - 4.5, y: 1.1, w: 3.9, h: 2.15,
         sizing: { type: "cover", w: 3.9, h: 2.15 },
       });
-      s.addText("CHAMPIONS · RSC INTERNATIONAL SOCCER 7s", {
+      s.addText("SCC ON TOUR · HONG KONG 7s", {
         x: W - 4.5, y: 3.3, w: 3.9, h: 0.25,
         fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
       });

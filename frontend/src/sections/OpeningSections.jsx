@@ -187,8 +187,8 @@ export function Heritage({ presenter }) {
         <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden">
           <img
             src={heroImages.heritage}
-            alt="SCC heritage placeholder"
-            className="absolute inset-0 w-full h-full object-cover grayscale"
+            alt="SCC Ladies at Singapore National Stadium"
+            className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
           <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
@@ -199,7 +199,7 @@ export function Heritage({ presenter }) {
               <div className="font-heritage text-3xl mt-1">Singapore Cricket Club</div>
             </div>
             <div className="text-[10px] tracking-[0.24em] uppercase text-white/50">
-              Placeholder image
+              At the National Stadium
             </div>
           </div>
         </div>
@@ -225,6 +225,32 @@ export function AtAGlance({ presenter }) {
           A fast, scannable snapshot of what SCC Football delivers today — the base every
           sponsorship conversation should start from.
         </p>
+      </div>
+
+      {/* SFL D1 Champions moment — the proof behind the stat */}
+      <div
+        data-testid="glance-champions-photo"
+        className="mt-12 relative aspect-[21/9] overflow-hidden border border-white/10"
+      >
+        <img
+          src={heroImages.champions}
+          alt="SCC Football lifting the Singapore Football League Division 1 trophy"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+        <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+          <div>
+            <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+              Singapore Football League · Division 1
+            </div>
+            <div className="font-heritage text-2xl md:text-3xl text-white mt-1 leading-tight">
+              Champions.
+            </div>
+          </div>
+          <div className="hidden md:block font-display text-[10px] tracking-[0.24em] uppercase text-white/50">
+            $15,000 prize · trophy lifted
+          </div>
+        </div>
       </div>
 
       <div className="mt-14 grid grid-cols-2 md:grid-cols-3 gap-px bg-white/10 border border-white/10">

@@ -2,23 +2,28 @@
 // 16 sections — sponsor-first narrative
 
 export const heroImages = {
-  // Real SCC Football photography, replacing stock placeholders.
-  // 1) Ladies team at the National Stadium — the Cover hero. Premium, atmospheric.
+  // COVER — SCC lifting the SFL trophy with champagne spray. The strongest hero we have.
   cover:
-    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
-  // 2) HK FC 7s — men's team in SCC yellow, showing real kit sponsor visibility (Helios Fitness).
-  atmosphere:
-    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/8bkb0b2l_WhatsApp%20Image%202026-08-04%20at%205.46.41%20PM.jpeg",
-  // 3) Champions at RSC International Soccer 7's — regional circuit proof.
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/d3imn60c_WhatsApp%20Image%202026-08-04%20at%208.01.32%20PM.jpeg",
+  // SFL CHAMPIONS moment (used for At-a-Glance and Why Now stat callout)
   champions:
-    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
-  // 4) Kit flat-lay showing sponsor branding real-world — sponsor visibility proof.
-  kits:
-    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",
-  // 5) HK team wider shot — heritage / partner closing slide background.
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/d3imn60c_WhatsApp%20Image%202026-08-04%20at%208.01.32%20PM.jpeg",
+  // OVERSEAS TOURNAMENTS — Men's team at HK 7s in SCC yellow (Helios Fitness sponsor).
+  atmosphere:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
+  // HERITAGE — Ladies team at Singapore National Stadium (grand national-scale shot).
   heritage:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",
+  // INVENTORY — Kit flat-lay with real sponsor branding.
+  kits:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/8bkb0b2l_WhatsApp%20Image%202026-08-04%20at%205.46.41%20PM.jpeg",
+  // REGIONAL CIRCUIT — alt team photo, HK men's team wider shot.
+  regional:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
+  // RSC KL Girls Champions (used as secondary Regional callout / Ecosystem women's football)
+  rscChampions:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/mopj1mm6_WhatsApp%20Image%202026-08-04%20at%201.56.51%20PM.jpeg",
-  // Reuse HK team as the team shot for Partner With Us
+  // PARTNER WITH US background (team shot)
   team:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
 };
