@@ -8,7 +8,7 @@ export function Inventory({ presenter }) {
   return (
     <SectionShell
       id="inventory"
-      number="09"
+
       eyebrow="Sponsorship Inventory"
       presenter={presenter}
     >
@@ -50,7 +50,7 @@ export function Packages({ presenter }) {
   return (
     <SectionShell
       id="packages"
-      number="10"
+
       eyebrow="Sponsorship Packages"
       presenter={presenter}
       className="border-t border-white/5"
@@ -143,7 +143,7 @@ export function Custom({ presenter }) {
   return (
     <SectionShell
       id="custom"
-      number="11"
+
       eyebrow="Custom Sponsorship"
       presenter={presenter}
     >

@@ -1,21 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { sectionsMeta } from "@/data/deckContent";
 
 /**
  * Section wrapper for both scroll and presenter mode.
  *  - In scroll: sections are stacked with generous padding.
  *  - In presenter: the parent renders one shell at a time at 100vh.
+ *  - Number auto-derived from sectionsMeta by id (kept in sync with nav).
  */
 export default function SectionShell({
   id,
   eyebrow,
-  number,
+  number: numberProp,
   presenter,
   children,
   className = "",
   bg = "black",
   testId,
 }) {
+  const meta = sectionsMeta.find((s) => s.id === id);
+  const number = numberProp || meta?.number;
   const bgClass =
     bg === "yellow"
       ? "bg-[var(--scc-yellow)] text-black"

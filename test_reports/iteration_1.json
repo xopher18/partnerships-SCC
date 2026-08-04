@@ -1,0 +1,36 @@
+{
+  "summary": "Frontend-only testing of SCC Football sponsorship deck. Verified all 18 sections load with correct content, presenter mode keyboard nav works, print/PDF CSS produces light background with dark text (fixing the reported dark-on-dark bug), beforeprint listener correctly flips presenter mode off so all 18 slides appear in print, and yellow slides (Partner, Home/Live TV regional cards) render black text on yellow (proper contrast). No console errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results_detail": {
+    "cover_loads": "PASS — hero 'Partner with SCC Football.' visible, presenter-toggle visible, no compile errors",
+    "sections_dropdown_18_entries": "PASS — all 18 entries present in correct order with numbers 01–18 and labels matching spec (Cover, Why Now, Heritage, At a Glance, Ecosystem, SCC Football 7s, Regional Circuit, Pathway, Audience, Alignment, Inventory, Packages, Custom, Events, ROI, Metrics, Impact, Partner)",
+    "nav_jump_ids_note": "MINOR — Review spec expected data-testid='nav-jump-roi' and 'nav-jump-impact' but actual test ids are 'nav-jump-why-it-works' and 'nav-jump-needs' (labels displayed as 'ROI' and 'Impact' correctly). The ids are auto-derived from section ids in sectionsMeta. Not a functional bug — jumps work — but a naming inconsistency between visible label and test id. If Playwright specs elsewhere query by 'nav-jump-roi'/'nav-jump-impact' they will miss. Recommend renaming section ids to 'roi' and 'impact' for consistency.",
+    "scc_7s_section": "PASS — headline, italic subtitle, scc7s-hero-stat=1M+, all 4 stat tiles (1M+/82/2 Days/Padang), 3 marquee cards (Jon Arne Riise, Teddy Sheringham, Patrick Berger), 6 benefit bullets including Gala Dinner seats and all-star team with marquee ex-pro all present",
+    "regional_section": "PASS — 4 cards (SCC Football 7s Home, Hong Kong FC 7s Live TV May, Royal Selangor 7s July, Bangkok 7s RBSC). Home + Live TV cards computed style bg=rgb(255,204,0) yellow with color=rgb(0,0,0) black — readable. Other two cards black bg / white text.",
+    "audience_section": "PASS — 8 audience rows including 'All SCC Sports Sections', 'Wider SCC Membership', 'SCC 7s Attendees', 'Regional Football Community'. 8 demographics including Doctors, Lawyers, Finance, Entrepreneurs, Teachers, Elite & Retired Sportspeople.",
+    "at_a_glance_9_tiles": "PASS — all 9 stat tiles including '1M+ · Views · SCC Football 7s Reach', '82 · Teams · SCC 7s Regional Tournament', '4 · Regional 7s Circuits Per Year' plus 234+, 1852, SFL D1, 8, 7/7, 1 Roof",
+    "presenter_mode": "PASS — counter '01/18' initial, after 5 right arrows '06/18' and 'SCC Football 7s' slide visible with 1M+ hero, left arrow returns to 05/18, Escape exits",
+    "contrast_check": "PASS — yellow Partner slide computed style yellow bg with dark text (rgb(5,5,5)); black slides use white text; regional Home/Live TV cards yellow/black",
+    "print_pdf_export": "PASS — page.emulate_media(print) shows body bg rgb(255,255,255) white with color rgb(5,5,5) dark, nav hidden, all 18 sections rendered in DOM, Partner slide preserves yellow bg with dark text. beforeprint event correctly disables presenter mode.",
+    "console_errors": "PASS — no console errors during full nav/presenter/print flow"
+  },
+  "test_report_links": [],
+  "action_items": [
+    "OPTIONAL: rename section ids 'why-it-works' -> 'roi' and 'needs' -> 'impact' in deckContent.sectionsMeta so data-testid='nav-jump-roi' and 'nav-jump-impact' match what the review spec expected. Currently mismatched but labels display correctly."
+  ],
+  "critical_code_review_comments": [
+    "Cover slide in print mode retains a dark background image which reduces text legibility slightly (see print_cover screenshot) — the light print CSS applied globally but the cover's inline background image is still present. Not a blocker (users primarily see Partner CTA slide when printing), but consider hiding hero background images in @media print for even cleaner PDF output.",
+    "sectionsMeta uses inconsistent ids ('why-it-works','needs') vs their display labels ('ROI','Impact'). Recommend aligning for testability and URL anchor readability."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100% of specified test cases passed (1 minor id-naming inconsistency)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Static React deck at '/'. All 18 sections, presenter mode, print CSS, and contrast confirmed working. Only cosmetic id-naming note remains. REACT_APP_BACKEND_URL points to preview URL. No backend."
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import SectionShell from "@/components/SectionShell";
-import { events, whyItWorks, metrics, needs, contact, heroImages } from "@/data/deckContent";
+import { events, whyItWorks, metrics, needs, contact, heroImages, sectionsMeta } from "@/data/deckContent";
 import { Mail, Globe, Phone, ArrowUpRight } from "lucide-react";
 
 /* 12 — EVENTS & ACTIVATION */
@@ -8,7 +8,7 @@ export function Events({ presenter }) {
   return (
     <SectionShell
       id="events"
-      number="12"
+
       eyebrow="Events, Programmes & Activation"
       presenter={presenter}
       className="border-t border-white/5"
@@ -49,7 +49,7 @@ export function WhyItWorks({ presenter }) {
   return (
     <SectionShell
       id="why-it-works"
-      number="13"
+
       eyebrow="Why It Works for Sponsors"
       presenter={presenter}
     >
@@ -89,7 +89,7 @@ export function Metrics({ presenter }) {
   return (
     <SectionShell
       id="metrics"
-      number="14"
+
       eyebrow="What Partners Receive"
       presenter={presenter}
       className="border-t border-white/5"
@@ -128,7 +128,7 @@ export function Needs({ presenter }) {
   return (
     <SectionShell
       id="needs"
-      number="15"
+
       eyebrow="Where Sponsorship Goes"
       presenter={presenter}
     >
@@ -182,7 +182,9 @@ export function Partner({ presenter }) {
 
       <div className="relative z-10 mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 py-28 md:py-36 min-h-screen flex flex-col justify-between">
         <div className="flex items-center gap-4">
-          <span className="font-display text-black text-xs tracking-[0.4em]">16</span>
+          <span className="font-display text-black text-xs tracking-[0.4em]">
+            {sectionsMeta.find((s) => s.id === "partner")?.number}
+          </span>
           <span className="font-display uppercase tracking-[0.32em] text-[11px] text-black/70">
             — Partner With Us
           </span>

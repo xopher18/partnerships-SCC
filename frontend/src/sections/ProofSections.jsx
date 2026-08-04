@@ -4,6 +4,8 @@ import {
   ecosystem,
   pathway,
   audienceGroups,
+  audienceDemographics,
+  broaderScc,
   alignmentPillars,
   heroImages,
 } from "@/data/deckContent";
@@ -24,7 +26,7 @@ export function Ecosystem({ presenter }) {
   return (
     <SectionShell
       id="ecosystem"
-      number="05"
+
       eyebrow="Our Football Ecosystem"
       presenter={presenter}
     >
@@ -65,7 +67,7 @@ export function Pathway({ presenter }) {
   return (
     <SectionShell
       id="pathway"
-      number="06"
+
       eyebrow="Youth to Senior · The Pathway"
       presenter={presenter}
       className="border-t border-white/5"
@@ -116,59 +118,77 @@ export function Pathway({ presenter }) {
   );
 }
 
-/* 07 — AUDIENCE */
+/* 09 — AUDIENCE */
 export function Audience({ presenter }) {
   return (
     <SectionShell
       id="audience"
-      number="07"
       eyebrow="Audience & Reach"
       presenter={presenter}
     >
       <div className="grid lg:grid-cols-12 gap-10 items-start">
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-5">
           <h2 className="font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
             Who a partnership <br />
             <span className="italic text-[var(--scc-yellow)]">puts you in front of.</span>
           </h2>
           <p className="mt-8 text-white/60 leading-relaxed max-w-lg">
-            SCC Football is not one team &mdash; it&rsquo;s a network of engaged players, families and
-            members. Sponsors gain repeated, meaningful exposure across every one of them.
+            SCC Football is a network of engaged players, families and members &mdash; and it
+            sits inside one of Singapore&rsquo;s most respected clubs.
           </p>
-          <div className="mt-8 p-4 border border-white/10 text-[11px] tracking-[0.22em] uppercase text-white/50 font-display">
-            Exact reach numbers · <span className="text-[var(--scc-yellow)]">Data pending</span>
+          <div className="mt-6 p-5 border-l-2 border-[var(--scc-yellow)] bg-white/[0.02]">
+            <div className="text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)] font-display">
+              Beyond Football
+            </div>
+            <p className="mt-2 text-white/75 text-sm leading-relaxed">{broaderScc}</p>
           </div>
         </div>
 
-        <ul className="lg:col-span-6 divide-y divide-white/10 border-y border-white/10">
+        <ul className="lg:col-span-4 divide-y divide-white/10 border-y border-white/10">
           {audienceGroups.map((a, i) => (
             <li
               key={a.label}
               data-testid={`audience-${i}`}
-              className="flex items-center justify-between py-5 group cursor-default"
+              className="flex items-center justify-between py-4 group cursor-default"
             >
               <div>
-                <div className="font-display text-lg md:text-xl">{a.label}</div>
-                <div className="text-white/50 text-sm">{a.note}</div>
+                <div className="font-display text-base md:text-lg">{a.label}</div>
+                <div className="text-white/50 text-xs md:text-sm">{a.note}</div>
               </div>
               <ArrowRight
-                size={16}
+                size={14}
                 className="text-white/30 group-hover:text-[var(--scc-yellow)] group-hover:translate-x-1 transition-all"
               />
             </li>
           ))}
         </ul>
+
+        <div className="lg:col-span-3">
+          <div className="text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)] font-display mb-4">
+            Member Demographics
+          </div>
+          <ul className="flex flex-col gap-2">
+            {audienceDemographics.map((d, i) => (
+              <li
+                key={d}
+                data-testid={`demographic-${i}`}
+                className="text-white/75 text-sm border-b border-white/10 pb-2"
+              >
+                {d}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </SectionShell>
   );
 }
 
-/* 08 — ALIGNMENT */
+/* 10 — ALIGNMENT */
 export function Alignment({ presenter }) {
   return (
     <SectionShell
       id="alignment"
-      number="08"
       eyebrow="What Sponsors Align With"
       presenter={presenter}
       className="border-t border-white/5"

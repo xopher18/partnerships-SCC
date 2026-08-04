@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SectionShell from "@/components/SectionShell";
-import { heroImages, glanceStats } from "@/data/deckContent";
+import { heroImages, glanceStats, sectionsMeta } from "@/data/deckContent";
 import { ArrowDown } from "lucide-react";
 
 /* 01 — COVER */
@@ -27,7 +27,9 @@ export function Cover({ presenter, onJumpNext }) {
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-full min-h-screen flex flex-col justify-between pt-28 pb-20">
         <div className="flex items-center gap-4">
-          <span className="font-display text-[var(--scc-yellow)] text-xs tracking-[0.4em]">01</span>
+          <span className="font-display text-[var(--scc-yellow)] text-xs tracking-[0.4em]">
+            {sectionsMeta.find((s) => s.id === "cover")?.number}
+          </span>
           <span className="font-display uppercase tracking-[0.32em] text-[11px] text-white/60">
             — Sponsorship Opportunities
           </span>
@@ -95,7 +97,7 @@ export function WhyNow({ presenter }) {
   return (
     <SectionShell
       id="why-now"
-      number="02"
+
       eyebrow="Why SCC · Why Now"
       presenter={presenter}
     >
@@ -141,7 +143,7 @@ export function Heritage({ presenter }) {
   return (
     <SectionShell
       id="heritage"
-      number="03"
+
       eyebrow="Heritage · Est. 1852"
       presenter={presenter}
       className="border-t border-white/5"
@@ -149,7 +151,7 @@ export function Heritage({ presenter }) {
       <div className="grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6 order-2 lg:order-1">
           <h2 className="font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
-            One of Singapore's oldest, most trusted sporting institutions.
+            One of Singapore&rsquo;s oldest, most trusted sporting institutions.
           </h2>
           <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
             Founded in 1852, the Singapore Cricket Club has been a fixture of Singaporean sport
@@ -200,7 +202,7 @@ export function AtAGlance({ presenter }) {
   return (
     <SectionShell
       id="at-a-glance"
-      number="04"
+
       eyebrow="SCC Football at a Glance"
       presenter={presenter}
     >

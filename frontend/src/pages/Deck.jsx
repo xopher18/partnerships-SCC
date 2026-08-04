@@ -4,6 +4,7 @@ import DeckNav from "@/components/DeckNav";
 import PresenterControls from "@/components/PresenterControls";
 import { sectionsMeta } from "@/data/deckContent";
 import { Cover, WhyNow, Heritage, AtAGlance } from "@/sections/OpeningSections";
+import { Scc7s, Regional } from "@/sections/MarqueeSections";
 import {
   Ecosystem,
   Pathway,
@@ -35,6 +36,8 @@ export default function Deck() {
       { id: "heritage", Comp: Heritage },
       { id: "at-a-glance", Comp: AtAGlance },
       { id: "ecosystem", Comp: Ecosystem },
+      { id: "scc-7s", Comp: Scc7s },
+      { id: "regional", Comp: Regional },
       { id: "pathway", Comp: Pathway },
       { id: "audience", Comp: Audience },
       { id: "alignment", Comp: Alignment },
@@ -82,6 +85,13 @@ export default function Deck() {
     }
     return () => document.body.classList.remove("presenter-lock");
   }, [presenterMode]);
+
+  // Force scroll mode before print so all 18 sections render into the PDF
+  useEffect(() => {
+    const onBeforePrint = () => setPresenterMode(false);
+    window.addEventListener("beforeprint", onBeforePrint);
+    return () => window.removeEventListener("beforeprint", onBeforePrint);
+  }, []);
 
   // Keyboard listener for presenter mode
   useEffect(() => {

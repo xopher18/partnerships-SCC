@@ -18,25 +18,30 @@ export const sectionsMeta = [
   { id: "heritage", number: "03", label: "Heritage" },
   { id: "at-a-glance", number: "04", label: "At a Glance" },
   { id: "ecosystem", number: "05", label: "Ecosystem" },
-  { id: "pathway", number: "06", label: "Pathway" },
-  { id: "audience", number: "07", label: "Audience" },
-  { id: "alignment", number: "08", label: "Alignment" },
-  { id: "inventory", number: "09", label: "Inventory" },
-  { id: "packages", number: "10", label: "Packages" },
-  { id: "custom", number: "11", label: "Custom" },
-  { id: "events", number: "12", label: "Events" },
-  { id: "why-it-works", number: "13", label: "ROI" },
-  { id: "metrics", number: "14", label: "Metrics" },
-  { id: "needs", number: "15", label: "Impact" },
-  { id: "partner", number: "16", label: "Partner" },
+  { id: "scc-7s", number: "06", label: "SCC Football 7s" },
+  { id: "regional", number: "07", label: "Regional Circuit" },
+  { id: "pathway", number: "08", label: "Pathway" },
+  { id: "audience", number: "09", label: "Audience" },
+  { id: "alignment", number: "10", label: "Alignment" },
+  { id: "inventory", number: "11", label: "Inventory" },
+  { id: "packages", number: "12", label: "Packages" },
+  { id: "custom", number: "13", label: "Custom" },
+  { id: "events", number: "14", label: "Events" },
+  { id: "why-it-works", number: "15", label: "ROI" },
+  { id: "metrics", number: "16", label: "Metrics" },
+  { id: "needs", number: "17", label: "Impact" },
+  { id: "partner", number: "18", label: "Partner" },
 ];
 
 export const glanceStats = [
+  { value: "1M+", label: "Views · SCC Football 7s Reach" },
   { value: "234+", label: "Football Section Members" },
   { value: "1852", label: "Singapore Cricket Club Founded" },
   { value: "SFL D1", label: "Division 1 Champions" },
+  { value: "82", label: "Teams · SCC 7s Regional Tournament" },
   { value: "8", label: "Competitive & Social Teams" },
   { value: "7 / 7", label: "Days of Football Every Week" },
+  { value: "4", label: "Regional 7s Circuits Per Year" },
   { value: "1 Roof", label: "Youth to Senior Pathway" },
 ];
 
@@ -67,6 +72,65 @@ export const ecosystem = [
   },
 ];
 
+// ─────────────────────────────────────────
+// SCC Football 7s — Marquee tournament
+// ─────────────────────────────────────────
+export const scc7s = {
+  eyebrow: "The Marquee Event",
+  headline: "SCC Football 7s.",
+  italic: "One weekend. A million eyes.",
+  intro:
+    "An Asia‑wide 7‑a‑side tournament staged on the Padang — Singapore's most iconic sporting stage. Two days of football, a black‑tie gala and a sponsor showcase that has reached over one million people online.",
+  bigStats: [
+    { value: "1M+", label: "Views & Digital Reach" },
+    { value: "82", label: "Teams · Singapore & Asia" },
+    { value: "2 Days", label: "Weekend Tournament" },
+    { value: "Padang", label: "Iconic Home Ground" },
+  ],
+  marqueePlayers: [
+    { name: "Jon Arne Riise", club: "Liverpool · Norway" },
+    { name: "Teddy Sheringham", club: "Man Utd · England" },
+    { name: "Patrick Berger", club: "Liverpool · Czech Rep." },
+  ],
+  sponsorBenefits: [
+    "Reserved seats at the black‑tie Gala Dinner",
+    "Play in an all‑star team alongside a marquee ex‑pro",
+    "Prime on‑pitch and Padang branding across the weekend",
+    "Broadcast, digital and social media exposure at scale",
+    "Hospitality access across the two‑day event",
+    "Category exclusivity available at senior tiers",
+  ],
+};
+
+export const regionalTournaments = [
+  {
+    title: "SCC Football 7s",
+    place: "Singapore · Padang",
+    month: "Annual · Home Tournament",
+    note: "Our own regional flagship. 82 teams from Singapore and across Asia.",
+    highlight: "Home",
+  },
+  {
+    title: "Hong Kong FC 7s",
+    place: "Hong Kong Football Club",
+    month: "May · Annual",
+    note: "Live broadcast tournament — one of the biggest 7s events in the region.",
+    highlight: "Live TV",
+  },
+  {
+    title: "Royal Selangor 7s",
+    place: "Royal Selangor Sports Club · KL",
+    month: "July · Annual",
+    note: "A cornerstone stop on our regional 7s calendar, played every year.",
+  },
+  {
+    title: "Bangkok 7s",
+    place: "Royal Bangkok Sports Club",
+    month: "Annual",
+    note: "Hosted by RBSC — a prestigious Southeast Asian club tournament.",
+  },
+];
+
 export const pathway = [
   {
     stage: "Entry",
@@ -93,32 +157,53 @@ export const pathway = [
 export const audienceGroups = [
   { label: "Youth Players", note: "Academy & development squads" },
   { label: "Parents & Families", note: "Weekly matchday & training audience" },
-  { label: "Adult Members", note: "Active adult footballing community" },
-  { label: "SCC Membership", note: "Wider club member network" },
-  { label: "Event Attendees", note: "Matchdays, tournaments, camps" },
-  { label: "Alumni & Community", note: "Legacy supporters and partners" },
+  { label: "Adult Football Members", note: "234+ engaged section members" },
+  { label: "All SCC Sports Sections", note: "Cricket, rugby, hockey, tennis, netball & more" },
+  { label: "Wider SCC Membership", note: "Ordinary members and the full club community" },
+  { label: "SCC 7s Attendees", note: "82 teams, gala guests, weekend crowds" },
+  { label: "Regional Football Community", note: "HK, KL and Bangkok tournament networks" },
+  { label: "Alumni & Legacy Network", note: "170+ years of members and supporters" },
 ];
 
+// Professional cross-section of the SCC football and wider member body.
+export const audienceDemographics = [
+  "Doctors & Medical Professionals",
+  "Lawyers & Legal Advisors",
+  "Finance & Investment Professionals",
+  "Entrepreneurs & Business Owners",
+  "Teachers & Academics",
+  "Elite & Retired Sportspeople",
+  "Corporate Leaders & C‑Suite",
+  "Diplomatic & Expat Community",
+];
+
+// One-line reinforcement for cross-club exposure beyond football.
+export const broaderScc =
+  "A sponsorship at SCC Football also puts your brand in front of every other SCC sports section — cricket, rugby, hockey, tennis, netball — and the wider ordinary membership. One partnership. Club‑wide visibility.";
+
 export const alignmentPillars = [
+  { title: "Marquee Event Reach", copy: "Association with the SCC Football 7s and its 1M+ digital audience." },
   { title: "Youth Development", copy: "Investing in the next generation of Singaporean footballers." },
   { title: "Sporting Excellence", copy: "Backing a champion side competing at the sharp end of the SFL." },
-  { title: "Community Impact", copy: "Tangible presence across families, schools and neighbourhoods." },
+  { title: "Club‑Wide Visibility", copy: "Exposure across all SCC sports sections and ordinary members." },
+  { title: "Regional Presence", copy: "Travelling side representing SCC in HK, KL and Bangkok 7s." },
   { title: "Heritage", copy: "Association with a 170+ year Singaporean sporting institution." },
-  { title: "Family Engagement", copy: "Multi‑generational touchpoints in a trusted club setting." },
-  { title: "Health & Active Lifestyle", copy: "Football, wellbeing and belonging — seven days a week." },
+  { title: "Family & Community", copy: "Multi‑generational touchpoints in a trusted club setting." },
   { title: "Inclusion & Women's Football", copy: "Championing an accessible and diverse football culture." },
-  { title: "Long‑term Legacy", copy: "Partnerships that build together, season after season." },
 ];
 
 export const inventory = [
+  { title: "SCC Football 7s Title", note: "Naming rights across the marquee tournament" },
+  { title: "Gala Dinner Partner", note: "Black‑tie evening co‑branding & hosting" },
+  { title: "Marquee Player Team", note: "Play alongside an ex‑pro in the all‑star match" },
   { title: "Headline Football Partner", note: "Section‑wide title association" },
   { title: "Academy Partner", note: "Youth development co‑branding" },
   { title: "Kit Sponsor", note: "First team & competitive kits" },
   { title: "Training Apparel", note: "Warm‑ups and training kit" },
   { title: "Matchday & Event", note: "Fixture and tournament activation" },
   { title: "Digital & Content", note: "Owned channels, features, stories" },
-  { title: "Tournament & Camp", note: "Holiday programmes and cup events" },
-  { title: "On‑ground Branding", note: "Signage, boards and activation zones" },
+  { title: "On‑ground Branding", note: "Signage, boards and activation zones on the Padang" },
+  { title: "Regional Tour Partner", note: "Travel visibility across HK · KL · Bangkok 7s" },
   { title: "Hospitality", note: "Member and guest hosting" },
 ];
 
@@ -128,10 +213,11 @@ export const packages = [
     tagline: "Category exclusive. Section‑wide.",
     benefits: [
       "Prime naming rights across SCC Football",
+      "SCC Football 7s title association & Padang branding",
+      "Gala Dinner top table & marquee player photo access",
+      "Play in the all‑star marquee player team",
       "Kit and matchday branding",
-      "Priority academy & event association",
       "Premium hospitality allocation",
-      "Bespoke content series & storytelling",
       "Full digital and PR visibility",
     ],
   },
@@ -140,7 +226,8 @@ export const packages = [
     tagline: "Season‑long, high‑visibility.",
     benefits: [
       "Kit or training apparel branding",
-      "Matchday and tournament visibility",
+      "SCC 7s tournament branding & gala seats",
+      "Regional 7s circuit exposure",
       "Academy activation touchpoints",
       "Hospitality access",
       "Digital feature integration",
@@ -151,7 +238,7 @@ export const packages = [
     tagline: "Committed brand presence.",
     benefits: [
       "On‑ground branding",
-      "Selected event visibility",
+      "SCC 7s selected activation opportunities",
       "Digital mentions and recognition",
       "Community access opportunities",
     ],
@@ -188,21 +275,23 @@ export const customOptions = [
 ];
 
 export const events = [
+  { title: "SCC Football 7s (Home)", copy: "Our marquee weekend. 82 teams. 1M+ views. Padang backdrop." },
+  { title: "Gala Dinner", copy: "Black‑tie evening with marquee ex‑pros. Sponsor hosting at scale." },
+  { title: "Regional 7s Circuit", copy: "SCC teams playing HK FC 7s, Royal Selangor 7s and Bangkok 7s." },
   { title: "Academy Programmes", copy: "Weekly youth training and development sessions." },
-  { title: "Tournaments", copy: "Home‑hosted cup competitions and invitationals." },
-  { title: "Holiday Camps", copy: "School‑break intensives welcoming new players and families." },
   { title: "Matchdays", copy: "SFL Division 1 fixtures and community game‑days." },
+  { title: "Holiday Camps", copy: "School‑break intensives welcoming new players and families." },
   { title: "Community Events", copy: "Charity days, family days and inclusion‑led activations." },
   { title: "Sponsor Activation", copy: "Booths, sampling, content shoots and hospitality moments." },
 ];
 
 export const whyItWorks = [
-  { title: "Brand Visibility", copy: "Seven‑day footballing calendar keeps sponsors in view year‑round." },
+  { title: "Marquee Reach", copy: "SCC Football 7s alone has attracted 1M+ views — instant brand scale." },
   { title: "Premium Association", copy: "Aligned with one of Singapore's most established sporting institutions." },
-  { title: "Direct Touchpoints", copy: "Meaningful, face‑to‑face contact with families and members." },
-  { title: "CSR & ESG Fit", copy: "Youth development and community outcomes to report against." },
-  { title: "Engaged Audience", copy: "Active, affluent and loyal SCC member community." },
-  { title: "Storytelling Runway", copy: "Ongoing content — from academy stories to championship moments." },
+  { title: "Club‑Wide Exposure", copy: "Visibility across every SCC sports section and the wider membership." },
+  { title: "Affluent Audience", copy: "Doctors, lawyers, finance, entrepreneurs and elite sportspeople." },
+  { title: "Regional Footprint", copy: "Brand travel through HK, KL and Bangkok 7s tournaments." },
+  { title: "Storytelling Runway", copy: "From academy stories to championship moments — year‑round content." },
 ];
 
 export const metrics = [

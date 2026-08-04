@@ -117,22 +117,165 @@ body.presenter-lock {
     height: 100vh;
 }
 
-/* Print styles for pdf export */
+/* ────────────────────────────────────────────────────────────
+   PRINT — Clean, editorial PDF output.
+   Converts the dark theme into a light editorial style while
+   preserving the yellow accent so the printed deck stays on brand.
+   ──────────────────────────────────────────────────────────── */
 @media print {
-    .no-print {
+    @page {
+        size: A4 landscape;
+        margin: 14mm 12mm;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    .no-print,
+    [data-testid="deck-nav"],
+    [data-testid="presenter-chrome"],
+    [data-testid="cover-scroll-cue"],
+    [data-testid="cta-print"] {
         display: none !important;
     }
-    section {
-        page-break-after: always;
-        break-after: page;
-    }
+
     html,
     body {
         background: #ffffff !important;
         color: #050505 !important;
     }
-    .grain-overlay::before {
+
+    .grain-overlay::before,
+    .App {
+        background: #ffffff !important;
+    }
+
+    /* Section = full landscape page */
+    section {
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        min-height: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        color: #050505 !important;
+        border: none !important;
+    }
+    section:last-of-type {
+        page-break-after: auto;
+    }
+
+    section > div {
+        padding-top: 12mm !important;
+        padding-bottom: 12mm !important;
+        max-width: 100% !important;
+    }
+
+    /* Flatten hero image overlays for print — keep image visible */
+    section img {
+        opacity: 1 !important;
+        filter: none !important;
+    }
+
+    /* Neutralise dark overlays that muddy print */
+    .absolute.inset-0.bg-gradient-to-b,
+    .absolute.inset-0.bg-gradient-to-r,
+    .absolute.inset-0.bg-gradient-to-t,
+    section .absolute.inset-0 > .bg-\[var\(--scc-yellow\)\] {
         display: none !important;
+    }
+
+    /* Text tokens */
+    .text-white,
+    .text-white\/90,
+    .text-white\/80,
+    .text-white\/75,
+    .text-white\/70,
+    .text-white\/60,
+    .text-white\/55,
+    .text-white\/50,
+    .text-white\/40,
+    .text-white\/30 {
+        color: #1a1a1a !important;
+    }
+
+    .text-black\/85,
+    .text-black\/80,
+    .text-black\/75,
+    .text-black\/70,
+    .text-black\/60 {
+        color: #1a1a1a !important;
+    }
+
+    /* Yellow accent kept for headings, numbers, rules */
+    .text-\[var\(--scc-yellow\)\] {
+        color: #b8860b !important; /* deeper yellow prints cleaner */
+    }
+
+    /* Backgrounds — strip dark, keep yellow */
+    .bg-black,
+    .bg-black\/60,
+    .bg-black\/70,
+    .bg-black\/95,
+    .bg-\[var\(--scc-black\)\],
+    .bg-\[var\(--scc-surface\)\],
+    .bg-\[var\(--scc-surface-2\)\] {
+        background: #ffffff !important;
+    }
+
+    .bg-white\/5,
+    .bg-white\/10,
+    .bg-white\/\[0\.02\] {
+        background: #f5f5f5 !important;
+    }
+
+    /* Yellow feature blocks -> keep on print with high contrast */
+    .bg-\[var\(--scc-yellow\)\] {
+        background: #ffcc00 !important;
+        color: #050505 !important;
+    }
+    .bg-\[var\(--scc-yellow\)\] * {
+        color: #050505 !important;
+    }
+    .bg-\[var\(--scc-yellow\)\] .text-\[var\(--scc-yellow\)\] {
+        color: #050505 !important;
+    }
+
+    /* Borders */
+    [class*="border-white/"] {
+        border-color: #d4d4d4 !important;
+    }
+    .border-\[var\(--scc-yellow\)\] {
+        border-color: #b8860b !important;
+    }
+
+    /* Cover page — force white bg, dark text */
+    #cover {
+        color: #050505 !important;
+    }
+    #cover img {
+        opacity: 0.85 !important;
+    }
+
+    /* Ensure hero titles read clearly */
+    h1,
+    h2,
+    h3 {
+        color: #050505 !important;
+    }
+    .italic.text-\[var\(--scc-yellow\)\],
+    .text-\[var\(--scc-yellow\)\].italic {
+        color: #b8860b !important;
+    }
+
+    /* Tile hover disabled */
+    .tile-hover {
+        transform: none !important;
     }
 }
 
