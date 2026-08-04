@@ -11,8 +11,10 @@ export const heroImages = {
   // OVERSEAS TOURNAMENTS — Men's team at HK 7s in SCC yellow (Helios Fitness sponsor).
   atmosphere:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
-  // HERITAGE — Ladies team at Singapore National Stadium (grand national-scale shot).
-  heritage:
+  // HERITAGE — no stock photo. Typography-led slide until a real SCC clubhouse photo is supplied.
+  heritage: null,
+  // LADIES at Singapore National Stadium — moved to Ecosystem to headline the Ladies Team.
+  ladies:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",
   // INVENTORY — Kit flat-lay with real sponsor branding.
   kits:
@@ -20,7 +22,7 @@ export const heroImages = {
   // REGIONAL CIRCUIT — alt team photo, HK men's team wider shot.
   regional:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
-  // RSC KL Girls Champions (used as secondary Regional callout / Ecosystem women's football)
+  // RSC KL Girls Champions (used as secondary Regional callout)
   rscChampions:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/mopj1mm6_WhatsApp%20Image%202026-08-04%20at%201.56.51%20PM.jpeg",
   // PARTNER WITH US background (team shot)

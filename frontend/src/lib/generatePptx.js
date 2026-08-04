@@ -216,13 +216,14 @@ export async function generateSccPptx() {
   pptx.layout = "LAYOUT_WIDE"; // 13.333 x 7.5
 
   // Pre-fetch real photography so slides can embed data URLs (self-contained PPT).
-  const [imgCover, imgAtmosphere, imgChampions, imgKits, imgHeritage, imgRegional] = await Promise.all([
+  // Heritage intentionally omitted — no stock photo, typography-led slide instead.
+  const [imgCover, imgAtmosphere, imgChampions, imgKits, imgRegional, imgLadies] = await Promise.all([
     fetchImageDataUrl(heroImages.cover),
     fetchImageDataUrl(heroImages.atmosphere),
     fetchImageDataUrl(heroImages.champions),
     fetchImageDataUrl(heroImages.kits),
-    fetchImageDataUrl(heroImages.heritage),
     fetchImageDataUrl(heroImages.regional),
+    fetchImageDataUrl(heroImages.ladies),
   ]);
 
   const total = sectionsMeta.length;
@@ -233,59 +234,74 @@ export async function generateSccPptx() {
   const label = (id) => meta(id)?.label || "";
 
   // 01 · Cover ------------------------------------------------
+  // Split layout: text on left panel (0..7.4), image on right panel (7.4..13.333).
+  // Guarantees text and image never overlap.
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
-    // Full-bleed hero image with dark scrim
+    const LEFT_W = 7.4;
+    // Right-side hero image (correct 16:9-ish region for the landscape photo)
     if (imgCover) {
-      s.addImage({ data: imgCover, x: 0, y: 0, w: W, h: H, sizing: { type: "cover", w: W, h: H } });
-      // Dark overlay layer for text legibility
+      s.addImage({
+        data: imgCover,
+        x: LEFT_W, y: 0, w: W - LEFT_W, h: H,
+        sizing: { type: "cover", w: W - LEFT_W, h: H },
+      });
+      // Vertical fade from black on the seam to full image on the right
       s.addShape("rect", {
-        x: 0, y: 0, w: W, h: H,
-        fill: { color: BRAND.black, transparency: 30 },
+        x: LEFT_W, y: 0, w: 0.7, h: H,
+        fill: { color: BRAND.black, transparency: 40 },
         line: { color: BRAND.black, transparency: 100 },
       });
-      s.addShape("rect", {
-        x: 0, y: 0, w: W * 0.65, h: H,
-        fill: { color: BRAND.black, transparency: 20 },
-        line: { color: BRAND.black, transparency: 100 },
+      // Caption on the image (bottom-right)
+      s.addText("SFL DIVISION 1 · CHAMPIONS", {
+        x: LEFT_W + 0.3, y: H - 0.8, w: W - LEFT_W - 0.6, h: 0.3,
+        fontSize: 9, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 6, align: "right", valign: "top",
       });
     }
-    // Yellow accent bar
+    // Yellow accent bar (far left)
     s.addShape("rect", { x: 0, y: 0, w: 0.15, h: H, fill: { color: BRAND.yellow }, line: { color: BRAND.yellow } });
+
     // Eyebrow
     s.addText("EST. 1852 — SINGAPORE CRICKET CLUB", {
-      x: MARGIN_X, y: 1.2, w: W - MARGIN_X * 2, h: 0.35,
-      fontSize: 10, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 6,
+      x: MARGIN_X, y: 1.15, w: LEFT_W - MARGIN_X - 0.3, h: 0.35,
+      fontSize: 10, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 6, valign: "top",
     });
-    // Hero title
+    // Hero title (kept within left panel — width capped)
     s.addText("Partner with", {
-      x: MARGIN_X, y: 1.7, w: W - MARGIN_X * 2, h: 1.4,
-      fontSize: 66, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.6, w: LEFT_W - MARGIN_X - 0.3, h: 1.2,
+      fontSize: 52, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
     s.addText("SCC Football.", {
-      x: MARGIN_X, y: 2.9, w: W - MARGIN_X * 2, h: 1.6,
-      fontSize: 78, color: BRAND.yellow, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, italic: true,
+      x: MARGIN_X, y: 2.7, w: LEFT_W - MARGIN_X - 0.3, h: 1.4,
+      fontSize: 60, color: BRAND.yellow, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, italic: true, valign: "top",
     });
-    // Tagline
+    // Tagline — short + generous h so no overflow duplication
+    s.addText("Heritage. Community. Performance. Pathway.", {
+      x: MARGIN_X, y: 4.35, w: LEFT_W - MARGIN_X - 0.3, h: 0.5,
+      fontSize: 14, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
+    });
     s.addText(
-      "Heritage. Community. Performance. Pathway. A sponsorship platform built around one of Singapore's most established sporting institutions.",
+      "A sponsorship platform built around Singapore's most established sporting institution.",
       {
-        x: MARGIN_X, y: 4.9, w: W - MARGIN_X * 2 - 2, h: 1,
-        fontSize: 14, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x: MARGIN_X, y: 4.85, w: LEFT_W - MARGIN_X - 0.3, h: 1.0,
+        fontSize: 12, color: BRAND.textMuted, fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       }
     );
-    // Stat strip
+    // Stat strip inside the left panel (three tiles side by side)
     const strip = glanceStats.slice(0, 3);
+    const stripY = 5.9;
+    const cellW = (LEFT_W - MARGIN_X - 0.3) / 3 - 0.1;
     strip.forEach((st, i) => {
-      const x = MARGIN_X + i * 2.6;
+      const x = MARGIN_X + i * (cellW + 0.15);
       s.addText(st.value, {
-        x, y: 6.1, w: 2.4, h: 0.55,
-        fontSize: 22, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true,
+        x, y: stripY, w: cellW, h: 0.45,
+        fontSize: fitStatFont(cellW + 0.4, st.value, 22),
+        color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true, valign: "top",
       });
       s.addText(st.label, {
-        x, y: 6.65, w: 2.4, h: 0.35,
-        fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 4,
+        x, y: stripY + 0.5, w: cellW, h: 0.5,
+        fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 4, valign: "top",
       });
     });
     addFooter(s, 1, total);
@@ -340,18 +356,34 @@ export async function generateSccPptx() {
         fontSize: 12, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       }
     );
-    // Ladies at National Stadium (right column)
-    if (imgHeritage) {
-      s.addImage({
-        data: imgHeritage,
-        x: W - 4.9, y: 1.15, w: 4.2, h: 4.55,
-        sizing: { type: "cover", w: 4.2, h: 4.55 },
-      });
-      s.addText("SCC LADIES · SINGAPORE NATIONAL STADIUM", {
-        x: W - 4.9, y: 5.75, w: 4.2, h: 0.25,
-        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
-      });
-    }
+    // Typography-led heritage panel on the right — no stock photo used.
+    // Awaits a real SCC clubhouse photograph; user can swap by populating heroImages.heritage.
+    const panelX = W - 4.7;
+    s.addShape("rect", {
+      x: panelX, y: 1.2, w: 4.0, h: 4.5,
+      fill: { color: BRAND.surface }, line: { color: BRAND.divider, width: 0.75 },
+    });
+    s.addText("EST.", {
+      x: panelX + 0.35, y: 1.5, w: 3, h: 0.3,
+      fontSize: 10, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, valign: "top",
+    });
+    s.addText("1852", {
+      x: panelX + 0.3, y: 1.75, w: 3.5, h: 2.5,
+      fontSize: 140, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
+    });
+    // Yellow divider rule
+    s.addShape("rect", {
+      x: panelX + 0.35, y: 4.35, w: 0.7, h: 0.03,
+      fill: { color: BRAND.yellow }, line: { color: BRAND.yellow },
+    });
+    s.addText("Singapore\nCricket Club", {
+      x: panelX + 0.35, y: 4.5, w: 3.3, h: 0.9,
+      fontSize: 22, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
+    });
+    s.addText("THE PADANG · SINGAPORE", {
+      x: panelX + 0.35, y: 5.45, w: 3.3, h: 0.25,
+      fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, valign: "top",
+    });
     const h = [
       { n: "1852", l: "Founded" },
       { n: "170+", l: "Years of Sport" },
@@ -419,28 +451,42 @@ export async function generateSccPptx() {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
     addHeader(s, num("ecosystem", 4), "Our Football Ecosystem");
+    // Two-column intro area: headline on left, Ladies photo on right
     s.addText("More than a team.\nA footballing community.", {
-      x: MARGIN_X, y: 1.1, w: W - MARGIN_X * 2, h: 1.6,
-      fontSize: 34, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.15, w: 6.4, h: 1.8,
+      fontSize: 30, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
+    if (imgLadies) {
+      s.addImage({
+        data: imgLadies,
+        x: W - 5.0, y: 1.15, w: 4.3, h: 1.75,
+        sizing: { type: "cover", w: 4.3, h: 1.75 },
+      });
+      s.addText("LADIES TEAM · AT THE NATIONAL STADIUM", {
+        x: W - 5.0, y: 2.95, w: 4.3, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right", valign: "top",
+      });
+    }
     const gridW = (W - MARGIN_X * 2) / 3 - 0.06;
+    const gridStartY = 3.4;
+    const cellH = 1.65;
     ecosystem.forEach((e, i) => {
       const col = i % 3;
       const row = Math.floor(i / 3);
       const x = MARGIN_X + col * (gridW + 0.06);
-      const y = 3.1 + row * 1.9;
-      s.addShape("rect", { x, y, w: gridW, h: 1.75, fill: { color: BRAND.black }, line: { color: BRAND.divider, width: 0.75 } });
+      const y = gridStartY + row * (cellH + 0.05);
+      s.addShape("rect", { x, y, w: gridW, h: cellH, fill: { color: BRAND.black }, line: { color: BRAND.divider, width: 0.75 } });
       s.addText(String(i + 1).padStart(2, "0"), {
         x: x + 0.2, y: y + 0.15, w: 1, h: 0.4,
-        fontSize: 20, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true,
+        fontSize: 18, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true, valign: "top",
       });
       s.addText(e.title, {
-        x: x + 0.2, y: y + 0.55, w: gridW - 0.4, h: 0.5,
-        fontSize: 18, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+        x: x + 0.2, y: y + 0.55, w: gridW - 0.4, h: 0.45,
+        fontSize: 15, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
       });
       s.addText(e.copy, {
-        x: x + 0.2, y: y + 1.05, w: gridW - 0.4, h: 0.65,
-        fontSize: 10, color: BRAND.textMuted, fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x: x + 0.2, y: y + 1.0, w: gridW - 0.4, h: 0.62,
+        fontSize: 9, color: BRAND.textMuted, fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       });
     });
     addFooter(s, 5, total);
@@ -450,15 +496,7 @@ export async function generateSccPptx() {
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
-    // Subtle atmosphere image full-bleed at low opacity, then dark scrim
-    if (imgAtmosphere) {
-      s.addImage({ data: imgAtmosphere, x: 0, y: 0, w: W, h: H, sizing: { type: "cover", w: W, h: H } });
-      s.addShape("rect", {
-        x: 0, y: 0, w: W, h: H,
-        fill: { color: BRAND.black, transparency: 15 },
-        line: { color: BRAND.black, transparency: 100 },
-      });
-    }
+    // Atmosphere image sits ONLY in the right stat-card column — no full-bleed to keep text clean.
     addHeader(s, num("scc-7s", 5), scc7s.eyebrow);
     // Headline (smaller, single line where possible)
     s.addText([

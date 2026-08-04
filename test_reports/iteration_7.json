@@ -1,0 +1,43 @@
+{
+  "summary": "Iteration 7 frontend-only verification of SCC Football sponsorship deck. Validated web Heritage typography (no image), Audience headline rewrite, Ecosystem Ladies photo, and PPT XML structure per user's trust-critical requirements. All checks passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "web_checks": {
+    "heritage_no_img_tag": true,
+    "heritage_has_1852_and_scc_and_padang": true,
+    "unsplash_absent_globally": true,
+    "photo_1635798522688_absent": true,
+    "audience_headline_new": "The people / your brand meets. (present)",
+    "audience_old_phrase_absent": true,
+    "ecosystem_ladies_photo_testid_present": true,
+    "ecosystem_ladies_img_src_contains_y59qu6tl": true,
+    "ecosystem_ladies_caption_present": true,
+    "sections_on_page": 19,
+    "console_errors": 0
+  },
+  "pptx_checks": {
+    "file_size_mb": 2.16,
+    "slide_count": 20,
+    "slide3_heritage_has_no_r_embed": true,
+    "slide3_contains_1852_SCC_Padang": true,
+    "slide5_ecosystem_has_r_embed": true,
+    "slide1_cover_has_r_embed": true,
+    "unsplash_absent_in_package": true,
+    "photo_1635798522688_absent_in_package": true,
+    "established_count_in_slide1": 1,
+    "partner_slide_has_email": true
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All iteration 7 asks verified. Heritage panel is typography-only (no <img>, no Unsplash anywhere in DOM or PPT package). Audience headline rewritten. Ladies photo relocated to Ecosystem with proper testid and correct source (y59qu6tl). PPT slide3 has no r:embed (image ref) confirming no misrepresentative photo; slide1 cover and slide5 ecosystem retain their r:embed. 'established' appears exactly once in slide1 XML. 20 slides, 2.16MB, no console errors."
+}

@@ -58,11 +58,34 @@ export function Ecosystem({ presenter }) {
           );
         })}
       </div>
+
+      {/* Ladies at National Stadium — hero moment for women's football */}
+      <div
+        data-testid="ecosystem-ladies-photo"
+        className="mt-10 relative aspect-[21/9] overflow-hidden border border-white/10"
+      >
+        <img
+          src={heroImages.ladies}
+          alt="SCC Ladies at Singapore National Stadium"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+          <div>
+            <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+              Ladies Team · At the National Stadium
+            </div>
+            <div className="font-heritage text-2xl md:text-3xl text-white mt-1 leading-tight">
+              Inclusion, excellence, national‑stage football.
+            </div>
+          </div>
+        </div>
+      </div>
     </SectionShell>
   );
 }
 
-/* 06 — PATHWAY */
+/* 08 — PATHWAY */
 export function Pathway({ presenter }) {
   return (
     <SectionShell
@@ -129,8 +152,8 @@ export function Audience({ presenter }) {
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-5">
           <h2 className="font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
-            Who a partnership <br />
-            <span className="italic text-[var(--scc-yellow)]">puts you in front of.</span>
+            The people <br />
+            <span className="italic text-[var(--scc-yellow)]">your brand meets.</span>
           </h2>
           <p className="mt-8 text-white/60 leading-relaxed max-w-lg">
             SCC Football is a network of engaged players, families and members &mdash; and it

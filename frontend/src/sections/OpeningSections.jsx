@@ -184,22 +184,35 @@ export function Heritage({ presenter }) {
             ))}
           </div>
         </div>
-        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden">
-          <img
-            src={heroImages.heritage}
-            alt="SCC Ladies at Singapore National Stadium"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-            <div>
-              <div className="font-display text-[var(--scc-yellow)] text-xs tracking-[0.3em] uppercase">
-                Est. 1852
+        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#141414] to-[#0a0a0a] border border-white/10">
+          {/* Typography-led heritage panel — awaits a real SCC clubhouse photo */}
+          <div className="absolute inset-0 flex flex-col justify-between p-8">
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="font-display text-[var(--scc-yellow)] text-[10px] tracking-[0.32em] uppercase">
+                  Est.
+                </div>
+                <div className="font-heritage text-[9rem] md:text-[12rem] leading-none text-white tracking-tight">
+                  1852
+                </div>
               </div>
-              <div className="font-heritage text-3xl mt-1">Singapore Cricket Club</div>
+              <div className="text-right">
+                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40">
+                  170+
+                </div>
+                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40 mt-1">
+                  Years
+                </div>
+              </div>
             </div>
-            <div className="text-[10px] tracking-[0.24em] uppercase text-white/50">
-              At the National Stadium
+            <div className="space-y-3">
+              <div className="h-px w-16 bg-[var(--scc-yellow)]" />
+              <div className="font-heritage text-3xl leading-tight">
+                Singapore <br />Cricket Club
+              </div>
+              <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40">
+                The Padang · Singapore
+              </div>
             </div>
           </div>
         </div>
