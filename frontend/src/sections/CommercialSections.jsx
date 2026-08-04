@@ -1,6 +1,6 @@
 import React from "react";
 import SectionShell from "@/components/SectionShell";
-import { inventory, packages, customOptions } from "@/data/deckContent";
+import { inventory, packages, customOptions, heroImages } from "@/data/deckContent";
 import { Check, Sparkles } from "lucide-react";
 
 /* 09 — INVENTORY */
@@ -40,6 +40,41 @@ export function Inventory({ presenter }) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Sponsor Visibility · Real-world proof (kit flat-lay) */}
+      <div className="mt-14 grid lg:grid-cols-12 gap-10 items-center">
+        <div
+          data-testid="inventory-kit-photo"
+          className="lg:col-span-7 relative aspect-[4/3] overflow-hidden border border-white/10"
+        >
+          <img
+            src={heroImages.kits}
+            alt="SCC Football kits featuring real sponsor branding"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+            <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+              Sponsor Visibility · In the Field
+            </div>
+            <div className="text-white/90 text-sm mt-1">
+              Real SCC kits carrying live sponsor branding — training, matchdays and the regional 7s circuit.
+            </div>
+          </div>
+        </div>
+        <div className="lg:col-span-5 space-y-4">
+          <div className="text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)] font-display">
+            What your brand looks like on SCC
+          </div>
+          <h3 className="font-heritage text-3xl leading-tight">
+            Front‑of‑shirt, sleeves, shorts, back panel — a canvas built for partners.
+          </h3>
+          <p className="text-white/60 text-sm leading-relaxed">
+            Multiple print zones across match, training and travel kit. Placement, size and
+            category exclusivity are all negotiable — packages built around your visibility
+            objectives and your budget.
+          </p>
+        </div>
       </div>
     </SectionShell>
   );

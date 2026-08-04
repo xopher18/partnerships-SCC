@@ -26,6 +26,7 @@ import {
   metrics,
   needs,
   contact,
+  heroImages,
 } from "@/data/deckContent";
 
 // ── SCC brand tokens ─────────────────────────────────────────
@@ -49,6 +50,27 @@ const W = 13.333;
 const H = 7.5;
 const MARGIN_X = 0.7;
 const MARGIN_Y = 0.55;
+
+/**
+ * Fetch a remote image and return a data URL. Keeps PPT self-contained.
+ * Falls back to null on error so a slide still renders without the image.
+ */
+async function fetchImageDataUrl(url) {
+  try {
+    const res = await fetch(url, { mode: "cors" });
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    return await new Promise((resolve) => {
+      const r = new FileReader();
+      r.onloadend = () => resolve(r.result);
+      r.onerror = () => resolve(null);
+      r.readAsDataURL(blob);
+    });
+  } catch (e) {
+    console.warn("PPT image fetch failed for", url, e);
+    return null;
+  }
+}
 
 /**
  * Add the common header (section number + eyebrow) to every slide.
@@ -193,6 +215,14 @@ export async function generateSccPptx() {
   pptx.author = "SCC Football";
   pptx.layout = "LAYOUT_WIDE"; // 13.333 x 7.5
 
+  // Pre-fetch real photography so slides can embed data URLs (self-contained PPT).
+  const [imgCover, imgAtmosphere, imgChampions, imgKits] = await Promise.all([
+    fetchImageDataUrl(heroImages.cover),
+    fetchImageDataUrl(heroImages.atmosphere),
+    fetchImageDataUrl(heroImages.champions),
+    fetchImageDataUrl(heroImages.kits),
+  ]);
+
   const total = sectionsMeta.length;
 
   // Slide meta helper
@@ -204,6 +234,21 @@ export async function generateSccPptx() {
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
+    // Full-bleed hero image with dark scrim
+    if (imgCover) {
+      s.addImage({ data: imgCover, x: 0, y: 0, w: W, h: H, sizing: { type: "cover", w: W, h: H } });
+      // Dark overlay layer for text legibility
+      s.addShape("rect", {
+        x: 0, y: 0, w: W, h: H,
+        fill: { color: BRAND.black, transparency: 30 },
+        line: { color: BRAND.black, transparency: 100 },
+      });
+      s.addShape("rect", {
+        x: 0, y: 0, w: W * 0.65, h: H,
+        fill: { color: BRAND.black, transparency: 20 },
+        line: { color: BRAND.black, transparency: 100 },
+      });
+    }
     // Yellow accent bar
     s.addShape("rect", { x: 0, y: 0, w: 0.15, h: H, fill: { color: BRAND.yellow }, line: { color: BRAND.yellow } });
     // Eyebrow
@@ -378,6 +423,15 @@ export async function generateSccPptx() {
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
+    // Subtle atmosphere image full-bleed at low opacity, then dark scrim
+    if (imgAtmosphere) {
+      s.addImage({ data: imgAtmosphere, x: 0, y: 0, w: W, h: H, sizing: { type: "cover", w: W, h: H } });
+      s.addShape("rect", {
+        x: 0, y: 0, w: W, h: H,
+        fill: { color: BRAND.black, transparency: 15 },
+        line: { color: BRAND.black, transparency: 100 },
+      });
+    }
     addHeader(s, num("scc-7s", 5), scc7s.eyebrow);
     // Headline (smaller, single line where possible)
     s.addText([
@@ -472,9 +526,21 @@ export async function generateSccPptx() {
       { text: "Your brand.\n", options: { color: BRAND.white } },
       { text: "On tour across Asia.", options: { color: BRAND.yellow, italic: true } },
     ], {
-      x: MARGIN_X, y: 1.1, w: W - MARGIN_X * 2, h: 2,
-      fontSize: 38, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.1, w: 8, h: 2,
+      fontSize: 34, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
+    // Champions photo on the right of the intro
+    if (imgChampions) {
+      s.addImage({
+        data: imgChampions,
+        x: W - 4.5, y: 1.1, w: 3.9, h: 2.15,
+        sizing: { type: "cover", w: 3.9, h: 2.15 },
+      });
+      s.addText("CHAMPIONS · RSC INTERNATIONAL SOCCER 7s", {
+        x: W - 4.5, y: 3.3, w: 3.9, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
+      });
+    }
     const cardW = (W - MARGIN_X * 2) / 2 - 0.15;
     regionalTournaments.forEach((t, i) => {
       const col = i % 2;
@@ -754,30 +820,42 @@ export async function generateSccPptx() {
       { text: "Every asset a sponsor\n", options: { color: BRAND.white } },
       { text: "could actually own.", options: { color: BRAND.yellow, italic: true } },
     ], {
-      x: MARGIN_X, y: 1.1, w: W - MARGIN_X * 2, h: 1.8,
-      fontSize: 32, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.1, w: 8, h: 1.6,
+      fontSize: 30, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
     });
+    // Kit flat-lay photo on the right of the intro area — real sponsor visibility proof
+    if (imgKits) {
+      s.addImage({
+        data: imgKits,
+        x: W - 4.5, y: 1.1, w: 3.9, h: 1.9,
+        sizing: { type: "cover", w: 3.9, h: 1.9 },
+      });
+      s.addText("SPONSOR VISIBILITY · IN THE FIELD", {
+        x: W - 4.5, y: 3.05, w: 3.9, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
+      });
+    }
     const colW = (W - MARGIN_X * 2) / 4 - 0.06;
     inventory.forEach((it, i) => {
       const col = i % 4;
       const row = Math.floor(i / 4);
       const x = MARGIN_X + col * (colW + 0.06);
-      const y = 3.3 + row * 1.35;
+      const y = 3.55 + row * 1.15;
       s.addShape("rect", {
-        x, y, w: colW, h: 1.25,
+        x, y, w: colW, h: 1.05,
         fill: { color: BRAND.black }, line: { color: BRAND.divider, width: 0.75 },
       });
       s.addText(String(i + 1).padStart(2, "0"), {
-        x: x + 0.15, y: y + 0.12, w: 0.6, h: 0.4,
-        fontSize: 14, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true,
+        x: x + 0.15, y: y + 0.1, w: 0.6, h: 0.35,
+        fontSize: 13, color: BRAND.yellow, fontFace: FONTS.display, autoFit: false, shrinkText: false, bold: true, valign: "top",
       });
       s.addText(it.title, {
-        x: x + 0.15, y: y + 0.5, w: colW - 0.3, h: 0.4,
-        fontSize: 11.5, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+        x: x + 0.15, y: y + 0.4, w: colW - 0.3, h: 0.35,
+        fontSize: 11, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
       });
       s.addText(it.note, {
-        x: x + 0.15, y: y + 0.87, w: colW - 0.3, h: 0.35,
-        fontSize: 8.5, color: BRAND.textMuted, fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x: x + 0.15, y: y + 0.72, w: colW - 0.3, h: 0.32,
+        fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       });
     });
     addFooter(s, 12, total);

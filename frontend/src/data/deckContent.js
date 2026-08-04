@@ -2,14 +2,25 @@
 // 16 sections — sponsor-first narrative
 
 export const heroImages = {
+  // Real SCC Football photography, replacing stock placeholders.
+  // 1) Ladies team at the National Stadium — the Cover hero. Premium, atmospheric.
   cover:
-    "https://images.unsplash.com/photo-1522778119026-d647f0596c20?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxmb290YmFsbCUyMHN0YWRpdW0lMjBtYXRjaHxlbnwwfHx8fDE3ODU4MjgyNDJ8MA&ixlib=rb-4.1.0&q=85",
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
+  // 2) HK FC 7s — men's team in SCC yellow, showing real kit sponsor visibility (Helios Fitness).
   atmosphere:
-    "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHw0fHxmb290YmFsbCUyMHN0YWRpdW0lMjBtYXRjaHxlbnwwfHx8fDE3ODU4MjgyNDJ8MA&ixlib=rb-4.1.0&q=85",
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/8bkb0b2l_WhatsApp%20Image%202026-08-04%20at%205.46.41%20PM.jpeg",
+  // 3) Champions at RSC International Soccer 7's — regional circuit proof.
+  champions:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
+  // 4) Kit flat-lay showing sponsor branding real-world — sponsor visibility proof.
+  kits:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",
+  // 5) HK team wider shot — heritage / partner closing slide background.
   heritage:
-    "https://images.unsplash.com/photo-1635798522688-7520a6d26e0e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxoZXJpdGFnZSUyMGNsYXNzaWMlMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzg1ODI4MjQyfDA&ixlib=rb-4.1.0&q=85",
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/mopj1mm6_WhatsApp%20Image%202026-08-04%20at%201.56.51%20PM.jpeg",
+  // Reuse HK team as the team shot for Partner With Us
   team:
-    "https://images.unsplash.com/photo-1641159009736-8a5fd4e52fef?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxzb2NjZXIlMjB0ZWFtJTIwaHVkZGxlfGVufDB8fHx8MTc4NTgyODI0Mnww&ixlib=rb-4.1.0&q=85",
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
 };
 
 export const sectionsMeta = [

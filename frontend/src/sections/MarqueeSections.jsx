@@ -161,17 +161,40 @@ export function Regional({ presenter }) {
       presenter={presenter}
       className="border-t border-white/5"
     >
-      <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
-        <h2 className="lg:col-span-8 font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
+      <div className="grid lg:grid-cols-12 gap-10 items-start mb-10">
+        <h2 className="lg:col-span-7 font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
           Your brand.
           <br />
           <span className="italic text-[var(--scc-yellow)]">On tour across Asia.</span>
         </h2>
-        <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          SCC Football doesn&rsquo;t only host. Our teams travel a prestigious regional 7s
-          calendar — carrying sponsor branding across three of Asia&rsquo;s most storied
-          clubs, plus our own headline event.
-        </p>
+        <div className="lg:col-span-5 space-y-4">
+          <p className="text-white/60 leading-relaxed">
+            SCC Football doesn&rsquo;t only host. Our teams travel a prestigious regional 7s
+            calendar — carrying sponsor branding across three of Asia&rsquo;s most storied
+            clubs, plus our own headline event.
+          </p>
+          <div
+            data-testid="regional-hero-photo"
+            className="relative aspect-[16/9] overflow-hidden border border-white/10"
+          >
+            <img
+              src={heroImages.champions}
+              alt="SCC Football — RSC International Soccer 7s Champions"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+              <div>
+                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+                  Champions
+                </div>
+                <div className="font-heritage text-lg text-white mt-1 leading-tight">
+                  RSC International Soccer 7s
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
