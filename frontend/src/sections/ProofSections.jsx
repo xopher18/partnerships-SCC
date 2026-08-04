@@ -1,0 +1,205 @@
+import React from "react";
+import SectionShell from "@/components/SectionShell";
+import {
+  ecosystem,
+  pathway,
+  audienceGroups,
+  alignmentPillars,
+  heroImages,
+} from "@/data/deckContent";
+import {
+  Users,
+  Trophy,
+  UserPlus,
+  Heart,
+  Baby,
+  Home as HomeIcon,
+  ArrowRight,
+} from "lucide-react";
+
+const ECO_ICONS = [Baby, Trophy, Users, UserPlus, HomeIcon, Heart];
+
+/* 05 — ECOSYSTEM */
+export function Ecosystem({ presenter }) {
+  return (
+    <SectionShell
+      id="ecosystem"
+      number="05"
+      eyebrow="Our Football Ecosystem"
+      presenter={presenter}
+    >
+      <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
+        <h2 className="lg:col-span-8 font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
+          More than a team. A footballing community.
+        </h2>
+        <p className="lg:col-span-4 text-white/60 leading-relaxed">
+          SCC Football operates a full ecosystem — from academy grassroots through to
+          senior competition, women&rsquo;s football and lifelong social football.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+        {ecosystem.map((e, i) => {
+          const Icon = ECO_ICONS[i % ECO_ICONS.length];
+          return (
+            <div
+              key={e.title}
+              data-testid={`ecosystem-${i}`}
+              className="bg-black p-8 tile-hover flex flex-col gap-4 min-h-[220px]"
+            >
+              <div className="h-10 w-10 border border-[var(--scc-yellow)] text-[var(--scc-yellow)] grid place-items-center">
+                <Icon size={18} />
+              </div>
+              <div className="font-heritage text-2xl">{e.title}</div>
+              <p className="text-white/60 text-sm leading-relaxed">{e.copy}</p>
+            </div>
+          );
+        })}
+      </div>
+    </SectionShell>
+  );
+}
+
+/* 06 — PATHWAY */
+export function Pathway({ presenter }) {
+  return (
+    <SectionShell
+      id="pathway"
+      number="06"
+      eyebrow="Youth to Senior · The Pathway"
+      presenter={presenter}
+      className="border-t border-white/5"
+    >
+      <div className="grid lg:grid-cols-12 gap-10 items-end">
+        <h2 className="lg:col-span-7 font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
+          One club. One journey.
+          <br />
+          <span className="italic text-[var(--scc-yellow)]">A lifetime of belonging.</span>
+        </h2>
+        <p className="lg:col-span-5 text-white/60 leading-relaxed">
+          Few clubs in Singapore can offer a complete pathway from a first coaching session
+          to lifelong senior football &mdash; under the same crest. That&rsquo;s the SCC advantage.
+        </p>
+      </div>
+
+      <div className="mt-16 relative">
+        {/* Connecting line */}
+        <div className="hidden md:block absolute left-0 right-0 top-8 h-px bg-white/10">
+          <div className="h-px bg-[var(--scc-yellow)]" style={{ width: "100%" }} />
+        </div>
+
+        <ol className="grid md:grid-cols-4 gap-8 md:gap-6 relative">
+          {pathway.map((p, i) => (
+            <li
+              key={p.title}
+              data-testid={`pathway-step-${i}`}
+              className="relative"
+            >
+              <div className="flex items-center gap-3">
+                <div className="h-4 w-4 rounded-full bg-[var(--scc-yellow)] ring-4 ring-black relative z-10" />
+                <span className="font-display text-[11px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+                  Step {i + 1}
+                </span>
+              </div>
+              <div className="mt-6 pl-1">
+                <div className="font-display text-[11px] tracking-[0.22em] uppercase text-white/40">
+                  {p.stage}
+                </div>
+                <div className="font-heritage text-2xl mt-1">{p.title}</div>
+                <p className="mt-3 text-white/60 text-sm leading-relaxed">{p.copy}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </SectionShell>
+  );
+}
+
+/* 07 — AUDIENCE */
+export function Audience({ presenter }) {
+  return (
+    <SectionShell
+      id="audience"
+      number="07"
+      eyebrow="Audience & Reach"
+      presenter={presenter}
+    >
+      <div className="grid lg:grid-cols-12 gap-10 items-start">
+        <div className="lg:col-span-6">
+          <h2 className="font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
+            Who a partnership <br />
+            <span className="italic text-[var(--scc-yellow)]">puts you in front of.</span>
+          </h2>
+          <p className="mt-8 text-white/60 leading-relaxed max-w-lg">
+            SCC Football is not one team &mdash; it&rsquo;s a network of engaged players, families and
+            members. Sponsors gain repeated, meaningful exposure across every one of them.
+          </p>
+          <div className="mt-8 p-4 border border-white/10 text-[11px] tracking-[0.22em] uppercase text-white/50 font-display">
+            Exact reach numbers · <span className="text-[var(--scc-yellow)]">Data pending</span>
+          </div>
+        </div>
+
+        <ul className="lg:col-span-6 divide-y divide-white/10 border-y border-white/10">
+          {audienceGroups.map((a, i) => (
+            <li
+              key={a.label}
+              data-testid={`audience-${i}`}
+              className="flex items-center justify-between py-5 group cursor-default"
+            >
+              <div>
+                <div className="font-display text-lg md:text-xl">{a.label}</div>
+                <div className="text-white/50 text-sm">{a.note}</div>
+              </div>
+              <ArrowRight
+                size={16}
+                className="text-white/30 group-hover:text-[var(--scc-yellow)] group-hover:translate-x-1 transition-all"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </SectionShell>
+  );
+}
+
+/* 08 — ALIGNMENT */
+export function Alignment({ presenter }) {
+  return (
+    <SectionShell
+      id="alignment"
+      number="08"
+      eyebrow="What Sponsors Align With"
+      presenter={presenter}
+      className="border-t border-white/5"
+    >
+      <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
+        <h2 className="lg:col-span-8 font-heritage text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em]">
+          A brand association with substance.
+        </h2>
+        <p className="lg:col-span-4 text-white/60 leading-relaxed">
+          Partners align with values that matter to their customers — youth, community,
+          heritage and performance — all lived weekly at SCC Football.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10">
+        {alignmentPillars.map((p, i) => (
+          <div
+            key={p.title}
+            data-testid={`alignment-${i}`}
+            className="bg-black p-6 tile-hover min-h-[170px] flex flex-col justify-between"
+          >
+            <div className="font-display text-[var(--scc-yellow)] text-2xl">
+              {String(i + 1).padStart(2, "0")}
+            </div>
+            <div>
+              <div className="font-heritage text-xl mt-4">{p.title}</div>
+              <p className="text-white/60 text-sm mt-2 leading-relaxed">{p.copy}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
