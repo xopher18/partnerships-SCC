@@ -135,6 +135,7 @@ export default function Deck() {
               <Comp
                 key={s.id}
                 presenter={false}
+                setPresenterMode={setPresenterMode}
                 onJumpNext={
                   s.id === "cover" ? () => jumpTo("why-now") : undefined
                 }
@@ -164,7 +165,7 @@ export default function Deck() {
             >
               {(() => {
                 const Comp = active.Comp;
-                return <Comp presenter={true} />;
+                return <Comp presenter={true} setPresenterMode={setPresenterMode} />;
               })()}
             </motion.div>
           </AnimatePresence>

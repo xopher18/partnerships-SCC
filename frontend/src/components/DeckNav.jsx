@@ -14,16 +14,27 @@ import { generateSccPptx } from "@/lib/generatePptx";
 export default function DeckNav({ presenterMode, setPresenterMode, onJump }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [downloading, setDownloading] = React.useState(false);
+  const [progress, setProgress] = React.useState(null); // { current, total, label } | null
   const menuRef = React.useRef(null);
 
   const handleDownload = async () => {
     try {
       setDownloading(true);
-      await generateSccPptx();
+      setProgress({ current: 0, total: 0, label: "Preparing" });
+      // Force scroll view so every section is mounted in the DOM
+      if (presenterMode) setPresenterMode(false);
+      // Wait a beat for React to commit
+      await new Promise((r) => setTimeout(r, 200));
+      await generateSccPptx((s) => setProgress(s));
     } catch (e) {
       console.error("PPT generation failed", e);
+      // Toast the user with the reason (esp. mobile-width guard)
+      if (typeof window !== "undefined") {
+        window.alert(e?.message || "Sorry — the PPT download failed. Please try again.");
+      }
     } finally {
       setDownloading(false);
+      setProgress(null);
     }
   };
 
@@ -137,7 +148,11 @@ export default function DeckNav({ presenterMode, setPresenterMode, onJump }) {
             className="hidden md:inline-flex items-center gap-2 px-4 h-10 border border-white/20 text-white/80 hover:border-[var(--scc-yellow)] hover:text-white text-[11px] tracking-[0.22em] uppercase font-display transition-colors disabled:opacity-50 disabled:cursor-wait"
           >
             <Download size={14} />
-            {downloading ? "Building…" : "Download PPT"}
+            {downloading
+              ? progress && progress.total
+                ? `Building ${progress.current}/${progress.total}…`
+                : "Building…"
+              : "Download PPT"}
           </button>
 
           <button

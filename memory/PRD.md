@@ -58,11 +58,14 @@ Premium sponsorship deck for SCC Football (Singapore Cricket Club Football) in c
 - Updated Alignment pillar to include "20‑Year CSR Track Record" and ROI pillar to include "CSR / ESG Substance"
 - Extended `.pptx` generator with Slide 12 · Charity — flagship 20 Years stat, three programme cards, sponsor hook + footnote. Total PPT now 20 slides (~572KB).
 
-### 2026‑02‑04 · v5 (PPTX visual polish + real Heritage photo)
-- **Real SCC Clubhouse photograph** added to Heritage slide (web + PPT). Replaced typography‑only panel with the actual white/red‑roof colonial clubhouse on the Padang. Photo uses `object-cover` (web) and `sizing: { type: 'cover' }` (PPT) so it never stretches. Yellow rule + caption ("Singapore Cricket Club · The Clubhouse · The Padang · Est. 1852") layered on a subtle bottom gradient for legibility.
-- **Fixed Slide 4 (At a Glance) stat‑tile compression** — bumped label font from 9pt to 10pt, tightened value cap to 32pt, adjusted 3×3 grid cellH to 1.18" and gap to 0.06" so long labels like "82 · Teams · SCC 7s Regional Tournament" and "7 / 7 · Days of Football Every Week" now read comfortably without visual squash. `addStatTile` now takes an `opts` param (`labelFont`, `valueCap`).
-- **Fixed Slide 19 (Partner With Us) headline overflow** — reduced 60pt Cormorant Garamond headline to 46pt italic, re‑spaced contact grid (y=5.5 with black accent rules), so "Let's build something lasting." fits comfortably within slide bounds on the yellow background.
-- Verified generated PPTX (2.87 MB, 19 slides) via `analyze_file_tool` — all target issues resolved, no other visible defects.
+### 2026‑02‑04 · v6 (PPTX rewritten as screenshot-based export)
+- **Ditched hand-coded pptxgenjs coordinates** — the old approach was fundamentally fragile: every text/image change drifted the layout. Rewrote `generatePptx.js` to use **`html2canvas` + `pptxgenjs`**. Each web section is cloned into an off-screen 1920px stage, styled to compress scroll-mode padding, vertically centre its content and pin `min-h-screen` to 1080px, then screenshot with `useCORS: true`. Each capture becomes a full-bleed image on a 16:9 PPT slide.
+- **Aspect-ratio letterboxing** — sections that need more than 1080px (At a Glance, Ecosystem, Inventory) capture at their natural height and are letterboxed inside the 16:9 slide with the same black slide background, so nothing is cropped and no bars are visible.
+- **Result: PPT is pixel-identical to the web deck.** Real SCC clubhouse photo, sponsor kit branding, ladies team at national stadium, trophy-lift, HK 7s all render exactly as designed. Verified by downloading the 3.06 MB output via Playwright and extracting all 19 slide images.
+- **Progress indicator** — DOWNLOAD PPT button now shows `Building 4/19…` so users know the browser is still working.
+- **Desktop-width guard** — refuses to run at <1280px and shows a clear message, because responsive Tailwind breakpoints would otherwise produce mobile layouts in the PPT.
+- **Trade-off (documented for the user)**: text in the PPT is now non-editable in PowerPoint. This is the standard trade Pitch / Beautiful.ai / Gamma exports make to guarantee visual fidelity.
+- New dep: `html2canvas@1.4.1` (~120KB gz).
 
 ## Testing
 - iteration_1..7: previous history retained

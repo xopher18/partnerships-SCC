@@ -163,16 +163,24 @@ export function Needs({ presenter }) {
 }
 
 /* 18 — PARTNER WITH US */
-export function Partner({ presenter }) {
+export function Partner({ presenter, setPresenterMode }) {
   const [downloading, setDownloading] = React.useState(false);
+  const [progress, setProgress] = React.useState(null);
   const handlePptx = async () => {
     try {
       setDownloading(true);
-      await generateSccPptx();
+      setProgress({ current: 0, total: 0, label: "Preparing" });
+      if (presenter && setPresenterMode) setPresenterMode(false);
+      await new Promise((r) => setTimeout(r, 200));
+      await generateSccPptx((s) => setProgress(s));
     } catch (e) {
       console.error("PPT generation failed", e);
+      if (typeof window !== "undefined") {
+        window.alert(e?.message || "Sorry — the PPT download failed. Please try again.");
+      }
     } finally {
       setDownloading(false);
+      setProgress(null);
     }
   };
   return (
@@ -253,7 +261,11 @@ export function Partner({ presenter }) {
               className="inline-flex items-center gap-2 bg-black text-[var(--scc-yellow)] px-6 h-12 font-display uppercase tracking-[0.22em] text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-60 disabled:cursor-wait"
             >
               <Download size={14} />
-              {downloading ? "Building…" : "Download PPT"}
+              {downloading
+                ? progress && progress.total
+                  ? `Building ${progress.current}/${progress.total}…`
+                  : "Building…"
+                : "Download PPT"}
             </button>
             <button
               data-testid="cta-print"
