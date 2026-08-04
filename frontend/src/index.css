@@ -258,8 +258,12 @@ body.presenter-lock {
     #cover {
         color: #050505 !important;
     }
-    #cover img {
-        opacity: 0.85 !important;
+    /* Hide the cover full-bleed hero image in print for cleaner PDF */
+    #cover > div:first-child img {
+        display: none !important;
+    }
+    #cover > div:first-child {
+        display: none !important;
     }
 
     /* Ensure hero titles read clearly */
