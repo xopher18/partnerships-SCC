@@ -23,14 +23,15 @@ export const sectionsMeta = [
   { id: "pathway", number: "08", label: "Pathway" },
   { id: "audience", number: "09", label: "Audience" },
   { id: "alignment", number: "10", label: "Alignment" },
-  { id: "inventory", number: "11", label: "Inventory" },
-  { id: "packages", number: "12", label: "Packages" },
-  { id: "custom", number: "13", label: "Custom" },
-  { id: "events", number: "14", label: "Events" },
-  { id: "why-it-works", number: "15", label: "ROI" },
-  { id: "metrics", number: "16", label: "Metrics" },
-  { id: "needs", number: "17", label: "Impact" },
-  { id: "partner", number: "18", label: "Partner" },
+  { id: "charity", number: "11", label: "Charity & Community" },
+  { id: "inventory", number: "12", label: "Inventory" },
+  { id: "packages", number: "13", label: "Packages" },
+  { id: "custom", number: "14", label: "Custom" },
+  { id: "events", number: "15", label: "Events" },
+  { id: "why-it-works", number: "16", label: "ROI" },
+  { id: "metrics", number: "17", label: "Metrics" },
+  { id: "needs", number: "18", label: "Impact" },
+  { id: "partner", number: "19", label: "Partner" },
 ];
 
 export const glanceStats = [
@@ -181,14 +182,50 @@ export const audienceDemographics = [
 export const broaderScc =
   "A sponsorship at SCC Football also puts your brand in front of every other SCC sports section — cricket, rugby, hockey, tennis, netball — and the wider ordinary membership. One partnership. Club‑wide visibility.";
 
+// ─────────────────────────────────────────
+// Charity & Community — SCC Football's CSR footprint
+// ─────────────────────────────────────────
+export const charity = {
+  eyebrow: "Charity & Community",
+  headline: "Football with a conscience.",
+  italic: "Two decades of giving back.",
+  intro:
+    "Long before the term ESG entered corporate vocabulary, SCC Football was quietly investing in young lives at home and across the region. Sponsors partner with a club that already puts community impact into practice.",
+  headlineStat: { value: "20 Years", label: "Supporting Youth Football Home, Phuket" },
+  programmes: [
+    {
+      title: "Youth Football Home · Phuket",
+      duration: "Two decades of partnership",
+      copy:
+        "Annual lump‑sum contributions towards the education, tuition fees, stationery and continued upgrading of living quarters for children in the Home.",
+    },
+    {
+      title: "Catch Plus · Singapore",
+      duration: "Grassroots partner",
+      copy:
+        "Working alongside a non‑profit grassroots organisation to give under‑privileged children access to organised football and competitive playing opportunities.",
+    },
+    {
+      title: "Long‑term Individual Support",
+      duration: "From toddler to university",
+      copy:
+        "Standing beside a young Singaporean with cerebral palsy since he was a toddler — a two‑decade family‑level partnership now culminating in his move to university.",
+    },
+  ],
+  csrFootnote:
+    "Plus additional community programmes and one‑off charitable initiatives across the year. Full CSR portfolio available on request.",
+  sponsorHook:
+    "Aligning with SCC Football gives your CSR / ESG story genuine, reportable substance — 20+ years of continuous community impact you can co‑brand and share.",
+};
+
 export const alignmentPillars = [
   { title: "Marquee Event Reach", copy: "Association with the SCC Football 7s and its 1M+ digital audience." },
   { title: "Youth Development", copy: "Investing in the next generation of Singaporean footballers." },
   { title: "Sporting Excellence", copy: "Backing a champion side competing at the sharp end of the SFL." },
   { title: "Club‑Wide Visibility", copy: "Exposure across all SCC sports sections and ordinary members." },
+  { title: "20‑Year CSR Track Record", copy: "Real charity impact — Phuket youth home, Catch Plus and beyond." },
   { title: "Regional Presence", copy: "Travelling side representing SCC in HK, KL and Bangkok 7s." },
   { title: "Heritage", copy: "Association with a 170+ year Singaporean sporting institution." },
-  { title: "Family & Community", copy: "Multi‑generational touchpoints in a trusted club setting." },
   { title: "Inclusion & Women's Football", copy: "Championing an accessible and diverse football culture." },
 ];
 
@@ -289,9 +326,9 @@ export const whyItWorks = [
   { title: "Marquee Reach", copy: "SCC Football 7s alone has attracted 1M+ views — instant brand scale." },
   { title: "Premium Association", copy: "Aligned with one of Singapore's most established sporting institutions." },
   { title: "Club‑Wide Exposure", copy: "Visibility across every SCC sports section and the wider membership." },
+  { title: "CSR / ESG Substance", copy: "20+ years of real, reportable charity impact you can co‑brand." },
   { title: "Affluent Audience", copy: "Doctors, lawyers, finance, entrepreneurs and elite sportspeople." },
   { title: "Regional Footprint", copy: "Brand travel through HK, KL and Bangkok 7s tournaments." },
-  { title: "Storytelling Runway", copy: "From academy stories to championship moments — year‑round content." },
 ];
 
 export const metrics = [

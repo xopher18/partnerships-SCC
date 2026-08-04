@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only iteration 3: verified new Charity & Community section (id=11). Section renders with correct headline, italic subline, flagship 20 Years stat card, 3 programme cards (Youth Football Home Phuket, Catch Plus Singapore, Long-term Individual Support), sponsor CSR/ESG hook, and footnote 'Full CSR portfolio available on request'. Sections dropdown now has 19 entries with 'nav-jump-charity' labelled '11 Charity & Community' and clicking it scrolls to section. Presenter mode advances to slide 11/19 showing Charity content within 1366x700 without hard clipping. PPTX download works (571KB) and contains exactly 20 slide XML files. 7 of 9 required PPTX strings found verbatim; 2 minor issues: (a) 'Long-term Individual Support' present but with U+2011 non-breaking hyphen ('Long‑term'), same for 'under-privileged'/'non-profit' — cosmetic only; (b) 'Full CSR portfolio available on request' footnote is present on the web page but MISSING from the PPTX slide 12. Regression test-ids (scc7s-marquee-0, regional-0, audience-0, demographic-0, package-0) all still resolve; no new console errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {"flow": "PPTX export - Charity slide", "issue": "The 'Full CSR portfolio available on request' footnote is present in the web Charity section but is not emitted into the generated .pptx slide 12. Spec explicitly requires this string to be findable in the PPT XML.", "affected_selectors": ["download-pptx"]}
+    ],
+    "design_issues": [
+      {"screen": "Charity section & PPTX text", "issues": ["Non-breaking hyphens (U+2011) used consistently for 'Long‑term', 'non‑profit', 'under‑privileged', 'co‑brand', 'family‑level', 'two‑decade', 'lump‑sum'. Visually indistinguishable but breaks strict ASCII-hyphen assertions in downstream tests. Consider standardizing to ASCII '-' unless intentional typography."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/iteration_3.json"],
+  "action_items": [
+    "Add the 'Full CSR portfolio available on request' footnote (charity.csrFootnote) to the Charity slide in /app/frontend/src/lib/generatePptx.js so PPTX matches web output and spec.",
+    "(Optional/minor) Consider replacing non-breaking hyphens (U+2011) with ASCII '-' in charity content for consistency and simpler test assertions."
+  ],
+  "critical_code_review_comments": [
+    "generatePptx.js: charity slide XML emits all content EXCEPT the csrFootnote — likely a missed field when copying the slide template. Verify addFooter numbers 12-19 are actually shifted (they were per file review).",
+    "deckContent.js charity content uses U+2011 non-breaking hyphens; fine for typography but be aware of QA impact."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "95%"},
+  "test_credentials": "n/a",
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Charity section on the web is fully compliant. Presenter counter reads '11 / 19' and shows Charity content correctly (test with >=300ms delay per ArrowRight and additional 1s settle after final key press — the section uses a fade-in animation). PPTX unzipped at /tmp/pptx_extract; slide12.xml is the Charity slide. Only follow-up: verify csrFootnote appears in slide12.xml after fix. Note: PPTX uses U+2011 (non-breaking hyphen) throughout — either grep with unicode-aware patterns or normalize before matching. Also downloaded PPTX contains exactly 20 slides (19 sections + 1 SCC 7s Sponsor Value slide) as expected.",
+  "rca of the issue": "Root cause: generatePptx.js when building the Charity slide (inserted at slide index 12) references deckContent.charity for headline, intro, headlineStat, programmes, and sponsorHook, but does not render charity.csrFootnote. Fix: add a text-run for charity.csrFootnote near the bottom of the charity slide layout in generatePptx.js. Reproduction: click data-testid='download-pptx', unzip and grep 'Full CSR portfolio' in ppt/slides/slide12.xml — returns no match. Mitigation: append the footnote in the slide builder function, then regenerate."
+}

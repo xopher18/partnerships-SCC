@@ -17,6 +17,7 @@ import {
   audienceDemographics,
   broaderScc,
   alignmentPillars,
+  charity,
   inventory,
   packages,
   customOptions,
@@ -619,7 +620,86 @@ export async function generateSccPptx() {
     addFooter(s, 10, total);
   }
 
-  // 11 · Inventory --------------------------------------------
+  // 11 · Charity & Community ----------------------------------
+  {
+    const s = pptx.addSlide();
+    s.background = { color: BRAND.black };
+    addHeader(s, num("charity", 10), charity.eyebrow);
+    s.addText([
+      { text: charity.headline + "\n", options: { color: BRAND.white } },
+      { text: charity.italic, options: { color: BRAND.yellow, italic: true } },
+    ], {
+      x: MARGIN_X, y: 1.1, w: 8, h: 2,
+      fontSize: 38, fontFace: FONTS.heritage, lineSpacingMultiple: 1.05,
+    });
+    s.addText(charity.intro, {
+      x: MARGIN_X, y: 3.15, w: 8, h: 1.4,
+      fontSize: 12, color: "CCCCCC", fontFace: FONTS.body, lineSpacingMultiple: 1.5,
+    });
+
+    // Flagship stat right side
+    s.addShape("rect", {
+      x: W - 3.6, y: 1.15, w: 2.9, h: 2.2,
+      fill: { color: BRAND.surface }, line: { color: BRAND.divider, width: 0.75 },
+    });
+    s.addText("FLAGSHIP COMMITMENT", {
+      x: W - 3.4, y: 1.3, w: 2.6, h: 0.3,
+      fontSize: 9, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6,
+    });
+    s.addText(charity.headlineStat.value, {
+      x: W - 3.4, y: 1.6, w: 2.6, h: 1,
+      fontSize: 52, color: BRAND.yellow, fontFace: FONTS.display, bold: true,
+    });
+    s.addText(charity.headlineStat.label, {
+      x: W - 3.4, y: 2.6, w: 2.6, h: 0.6,
+      fontSize: 10, color: "CCCCCC", fontFace: FONTS.body, lineSpacingMultiple: 1.4,
+    });
+
+    // Three programme cards
+    const cardW = (W - MARGIN_X * 2) / 3 - 0.15;
+    charity.programmes.forEach((p, i) => {
+      const x = MARGIN_X + i * (cardW + 0.15);
+      const y = 4.7;
+      s.addShape("rect", {
+        x, y, w: cardW, h: 2.1,
+        fill: { color: BRAND.black }, line: { color: BRAND.divider, width: 0.75 },
+      });
+      // Small yellow icon square
+      s.addShape("rect", {
+        x: x + 0.25, y: y + 0.25, w: 0.3, h: 0.3,
+        fill: { color: BRAND.black }, line: { color: BRAND.yellow, width: 1 },
+      });
+      s.addText(p.duration.toUpperCase(), {
+        x: x + 0.25, y: y + 0.7, w: cardW - 0.5, h: 0.25,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6,
+      });
+      s.addText(p.title, {
+        x: x + 0.25, y: y + 0.95, w: cardW - 0.5, h: 0.55,
+        fontSize: 15, color: BRAND.white, fontFace: FONTS.heritage,
+      });
+      s.addText(p.copy, {
+        x: x + 0.25, y: y + 1.5, w: cardW - 0.5, h: 0.65,
+        fontSize: 9, color: BRAND.textMuted, fontFace: FONTS.body, lineSpacingMultiple: 1.4,
+      });
+    });
+
+    // Sponsor hook strip
+    s.addShape("rect", {
+      x: MARGIN_X, y: H - 0.9, w: 0.06, h: 0.45,
+      fill: { color: BRAND.yellow }, line: { color: BRAND.yellow },
+    });
+    s.addText("SPONSOR HOOK · CSR / ESG", {
+      x: MARGIN_X + 0.18, y: H - 0.92, w: 8, h: 0.22,
+      fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6,
+    });
+    s.addText(charity.sponsorHook, {
+      x: MARGIN_X + 0.18, y: H - 0.7, w: W - MARGIN_X * 2 - 3.5, h: 0.35,
+      fontSize: 10, color: "DDDDDD", fontFace: FONTS.body,
+    });
+    addFooter(s, 11, total);
+  }
+
+  // 12 · Inventory --------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -654,10 +734,10 @@ export async function generateSccPptx() {
         fontSize: 8.5, color: BRAND.textMuted, fontFace: FONTS.body,
       });
     });
-    addFooter(s, 11, total);
+    addFooter(s, 12, total);
   }
 
-  // 12 · Packages ---------------------------------------------
+  // 13 · Packages ---------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -706,10 +786,10 @@ export async function generateSccPptx() {
         fontSize: 13, color: isTitle ? "050505" : BRAND.yellow, fontFace: FONTS.heritage,
       });
     });
-    addFooter(s, 12, total);
+    addFooter(s, 13, total);
   }
 
-  // 13 · Custom -----------------------------------------------
+  // 14 · Custom -----------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -741,10 +821,10 @@ export async function generateSccPptx() {
         fontSize: 10, color: BRAND.textMuted, fontFace: FONTS.body, lineSpacingMultiple: 1.4,
       });
     });
-    addFooter(s, 13, total);
+    addFooter(s, 14, total);
   }
 
-  // 14 · Events -----------------------------------------------
+  // 15 · Events -----------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -776,10 +856,10 @@ export async function generateSccPptx() {
         fontSize: 9, color: BRAND.textMuted, fontFace: FONTS.body, lineSpacingMultiple: 1.4,
       });
     });
-    addFooter(s, 14, total);
+    addFooter(s, 15, total);
   }
 
-  // 15 · ROI --------------------------------------------------
+  // 16 · ROI --------------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -808,10 +888,10 @@ export async function generateSccPptx() {
         fontSize: 10, color: BRAND.textMuted, fontFace: FONTS.body, lineSpacingMultiple: 1.4,
       });
     });
-    addFooter(s, 15, total);
+    addFooter(s, 16, total);
   }
 
-  // 16 · Metrics ----------------------------------------------
+  // 17 · Metrics ----------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -839,10 +919,10 @@ export async function generateSccPptx() {
         fontSize: 11, color: BRAND.textMuted, fontFace: FONTS.body,
       });
     });
-    addFooter(s, 16, total);
+    addFooter(s, 17, total);
   }
 
-  // 17 · Needs / Impact ---------------------------------------
+  // 18 · Needs / Impact ---------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.black };
@@ -874,10 +954,10 @@ export async function generateSccPptx() {
         fontSize: 10, color: BRAND.textMuted, fontFace: FONTS.body, lineSpacingMultiple: 1.4,
       });
     });
-    addFooter(s, 17, total);
+    addFooter(s, 18, total);
   }
 
-  // 18 · Partner ----------------------------------------------
+  // 19 · Partner ----------------------------------------------
   {
     const s = pptx.addSlide();
     s.background = { color: BRAND.yellow };
@@ -909,7 +989,7 @@ export async function generateSccPptx() {
         fontSize: 10, color: "333333", fontFace: FONTS.body,
       });
     });
-    addFooter(s, 18, total, true);
+    addFooter(s, 19, total, true);
   }
 
   // Save

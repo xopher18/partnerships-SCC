@@ -11,6 +11,7 @@ import {
   Audience,
   Alignment,
 } from "@/sections/ProofSections";
+import { Charity } from "@/sections/CharitySection";
 import { Inventory, Packages, Custom } from "@/sections/CommercialSections";
 import {
   Events,
@@ -41,6 +42,7 @@ export default function Deck() {
       { id: "pathway", Comp: Pathway },
       { id: "audience", Comp: Audience },
       { id: "alignment", Comp: Alignment },
+      { id: "charity", Comp: Charity },
       { id: "inventory", Comp: Inventory },
       { id: "packages", Comp: Packages },
       { id: "custom", Comp: Custom },
