@@ -1,5 +1,6 @@
 // craco.config.js
 const path = require("path");
+const webpack = require("webpack");
 require("dotenv").config();
 
 // Check if we're in development/preview mode (not production build)
@@ -97,6 +98,28 @@ let webpackConfig = {
             '**/public/**',
         ],
       };
+
+      // Stub Node built-ins for browser bundling (pptxgenjs, jszip).
+      webpackConfig.resolve = webpackConfig.resolve || {};
+      webpackConfig.resolve.fallback = {
+        ...(webpackConfig.resolve.fallback || {}),
+        fs: false,
+        https: false,
+        http: false,
+        path: false,
+        os: false,
+        stream: false,
+        crypto: false,
+      };
+
+      // Redirect `node:xxx` scheme imports (from pptxgenjs) to an empty stub.
+      const emptyStub = path.resolve(__dirname, "plugins/empty-node-stub.js");
+      webpackConfig.plugins = webpackConfig.plugins || [];
+      webpackConfig.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+          resource.request = emptyStub;
+        })
+      );
 
       // Add health check plugin to webpack if enabled
       if (config.enableHealthCheck && healthPluginInstance) {

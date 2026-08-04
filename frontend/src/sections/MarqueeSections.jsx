@@ -9,8 +9,9 @@ export function Scc7s({ presenter }) {
     <section
       id="scc-7s"
       data-testid="section-scc-7s"
+      data-presenter={presenter ? "true" : "false"}
       className={`relative w-full bg-[var(--scc-black)] text-white overflow-hidden ${
-        presenter ? "h-screen" : "min-h-screen"
+        presenter ? "min-h-full" : "min-h-screen"
       }`}
     >
       {/* Backdrop hero */}
@@ -26,7 +27,7 @@ export function Scc7s({ presenter }) {
       <div
         className={`relative z-10 mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 ${
           presenter
-            ? "h-full flex flex-col justify-center pt-24 pb-28"
+            ? "min-h-[calc(100vh-4rem)] flex flex-col justify-center py-10 md:py-14"
             : "py-28 md:py-36"
         }`}
       >
@@ -39,7 +40,13 @@ export function Scc7s({ presenter }) {
 
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-8">
-            <h2 className="font-heritage text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-[-0.02em]">
+            <h2
+              className={
+                presenter
+                  ? "font-heritage text-4xl md:text-5xl lg:text-6xl leading-[0.98] tracking-[-0.02em]"
+                  : "font-heritage text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-[-0.02em]"
+              }
+            >
               {scc7s.headline}
               <br />
               <span className="italic text-[var(--scc-yellow)]">{scc7s.italic}</span>
@@ -57,7 +64,11 @@ export function Scc7s({ presenter }) {
               </div>
               <div
                 data-testid="scc7s-hero-stat"
-                className="font-display text-[var(--scc-yellow)] text-[96px] leading-none mt-3"
+                className={
+                  presenter
+                    ? "font-display text-[var(--scc-yellow)] text-[72px] leading-none mt-3"
+                    : "font-display text-[var(--scc-yellow)] text-[96px] leading-none mt-3"
+                }
               >
                 1M+
               </div>

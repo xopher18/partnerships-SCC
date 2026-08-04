@@ -31,13 +31,16 @@ export default function SectionShell({
     <section
       id={id}
       data-testid={testId || `section-${id}`}
+      data-presenter={presenter ? "true" : "false"}
       className={`relative w-full ${bgClass} ${
-        presenter ? "min-h-screen h-screen overflow-hidden" : "min-h-screen"
+        presenter ? "min-h-full" : "min-h-screen"
       } ${className}`}
     >
       <div
         className={`relative mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 ${
-          presenter ? "h-full flex flex-col justify-center pt-24 pb-28" : "py-28 md:py-36"
+          presenter
+            ? "min-h-[calc(100vh-4rem)] flex flex-col justify-center py-10 md:py-14"
+            : "py-28 md:py-36"
         }`}
       >
         {(eyebrow || number) && (

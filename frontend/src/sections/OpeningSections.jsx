@@ -10,8 +10,9 @@ export function Cover({ presenter, onJumpNext }) {
     <section
       id="cover"
       data-testid="section-cover"
+      data-presenter={presenter ? "true" : "false"}
       className={`relative w-full bg-black text-white overflow-hidden ${
-        presenter ? "h-screen" : "min-h-screen"
+        presenter ? "min-h-full" : "min-h-screen"
       }`}
     >
       {/* Full-bleed hero image */}
@@ -25,7 +26,13 @@ export function Cover({ presenter, onJumpNext }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-full min-h-screen flex flex-col justify-between pt-28 pb-20">
+      <div
+        className={`relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex flex-col justify-between ${
+          presenter
+            ? "min-h-[calc(100vh-4rem)] py-10"
+            : "min-h-screen pt-28 pb-20"
+        }`}
+      >
         <div className="flex items-center gap-4">
           <span className="font-display text-[var(--scc-yellow)] text-xs tracking-[0.4em]">
             {sectionsMeta.find((s) => s.id === "cover")?.number}
@@ -48,7 +55,11 @@ export function Cover({ presenter, onJumpNext }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heritage text-[52px] md:text-[92px] lg:text-[128px] leading-[0.92] tracking-[-0.02em]"
+            className={
+              presenter
+                ? "font-heritage text-[44px] md:text-[68px] lg:text-[88px] leading-[0.95] tracking-[-0.02em]"
+                : "font-heritage text-[52px] md:text-[92px] lg:text-[128px] leading-[0.92] tracking-[-0.02em]"
+            }
           >
             Partner with <br />
             <span className="italic text-[var(--scc-yellow)]">SCC Football.</span>

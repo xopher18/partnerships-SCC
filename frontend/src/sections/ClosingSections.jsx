@@ -1,7 +1,8 @@
 import React from "react";
 import SectionShell from "@/components/SectionShell";
 import { events, whyItWorks, metrics, needs, contact, heroImages, sectionsMeta } from "@/data/deckContent";
-import { Mail, Globe, Phone, ArrowUpRight } from "lucide-react";
+import { Mail, Globe, Phone, ArrowUpRight, Download, Printer } from "lucide-react";
+import { generateSccPptx } from "@/lib/generatePptx";
 
 /* 12 — EVENTS & ACTIVATION */
 export function Events({ presenter }) {
@@ -161,14 +162,26 @@ export function Needs({ presenter }) {
   );
 }
 
-/* 16 — PARTNER WITH US */
+/* 18 — PARTNER WITH US */
 export function Partner({ presenter }) {
+  const [downloading, setDownloading] = React.useState(false);
+  const handlePptx = async () => {
+    try {
+      setDownloading(true);
+      await generateSccPptx();
+    } catch (e) {
+      console.error("PPT generation failed", e);
+    } finally {
+      setDownloading(false);
+    }
+  };
   return (
     <section
       id="partner"
       data-testid="section-partner"
+      data-presenter={presenter ? "true" : "false"}
       className={`relative w-full bg-[var(--scc-yellow)] text-black overflow-hidden ${
-        presenter ? "h-screen" : "min-h-screen"
+        presenter ? "min-h-full" : "min-h-screen"
       }`}
     >
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -180,7 +193,13 @@ export function Partner({ presenter }) {
         <div className="absolute inset-0 bg-[var(--scc-yellow)] mix-blend-multiply" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 py-28 md:py-36 min-h-screen flex flex-col justify-between">
+      <div
+        className={`relative z-10 mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 flex flex-col justify-between ${
+          presenter
+            ? "min-h-[calc(100vh-4rem)] py-10 md:py-14 gap-8"
+            : "min-h-screen py-28 md:py-36"
+        }`}
+      >
         <div className="flex items-center gap-4">
           <span className="font-display text-black text-xs tracking-[0.4em]">
             {sectionsMeta.find((s) => s.id === "partner")?.number}
@@ -191,7 +210,13 @@ export function Partner({ presenter }) {
         </div>
 
         <div className="max-w-4xl">
-          <h2 className="font-heritage text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-[-0.02em]">
+          <h2
+            className={
+              presenter
+                ? "font-heritage text-4xl md:text-6xl lg:text-7xl leading-[0.98] tracking-[-0.02em]"
+                : "font-heritage text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-[-0.02em]"
+            }
+          >
             {contact.headline}
           </h2>
           <p className="mt-8 text-black/75 text-lg md:text-xl max-w-2xl leading-relaxed">
@@ -213,7 +238,7 @@ export function Partner({ presenter }) {
             );
           })}
 
-          <div className="md:col-span-3 flex flex-wrap gap-4 pt-4">
+          <div className="md:col-span-3 flex flex-wrap gap-3 pt-4">
             <a
               data-testid="cta-email"
               href="mailto:partnerships@sccfootball.sg"
@@ -222,11 +247,21 @@ export function Partner({ presenter }) {
               Start a Conversation <ArrowUpRight size={14} />
             </a>
             <button
+              data-testid="cta-download-pptx"
+              onClick={handlePptx}
+              disabled={downloading}
+              className="inline-flex items-center gap-2 bg-black text-[var(--scc-yellow)] px-6 h-12 font-display uppercase tracking-[0.22em] text-xs hover:bg-white hover:text-black transition-colors disabled:opacity-60 disabled:cursor-wait"
+            >
+              <Download size={14} />
+              {downloading ? "Building…" : "Download PPT"}
+            </button>
+            <button
               data-testid="cta-print"
               onClick={() => window.print()}
               className="inline-flex items-center gap-2 border border-black text-black px-6 h-12 font-display uppercase tracking-[0.22em] text-xs hover:bg-black hover:text-[var(--scc-yellow)] transition-colors"
             >
-              Download / Print Deck
+              <Printer size={14} />
+              Print / PDF
             </button>
           </div>
         </div>

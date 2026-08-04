@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only re-test of two bug fixes: (1) presenter-mode content-clipping fix at 1366x700 and 1280x720, (2) new client-side Download PPT feature. Both bugs verified fixed. All 8 review sub-tasks passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_results_detail": {
+    "presenter_fit_1366x700": "PASS — slide 06 (SCC 7s) inner container clientH=636 / scrollH=824, slide 10 (Alignment) 636/810, slide 12 (Packages) 636/961. All slides scrollable via overflow-y-auto — no hard clipping. Arrow keys still switch (ArrowRight from slide 12 → 'packages' → next section).",
+    "presenter_fit_1280x720": "PASS — inner container 656/716, no hard clipping, scrollable if overflow.",
+    "keyboard_nav_regression": "PASS — ArrowLeft/ArrowRight/Escape work. Sections dropdown lists all 18 entries (data-testid nav-jump-* count=18).",
+    "download_pptx_nav_button": "PASS — click on data-testid='download-pptx' triggers browser download event. Filename='SCC-Football-Sponsorship-Deck.pptx', size=546,588 bytes (>100KB), magic bytes 'PK' confirmed. Button reverts to 'Download PPT' after generation.",
+    "download_pptx_cta_button": "PASS — data-testid='cta-download-pptx' on Partner slide downloads same valid .pptx (546,588 bytes).",
+    "pptx_structure": "PASS — zipfile.ZipFile opens without errors. 19 slide XMLs in ppt/slides/, [Content_Types].xml present, ppt/presentation.xml lists 19 sldId refs.",
+    "pptx_content_tokens": "PASS — all required tokens present in slide XML: 'SCC Football 7s', 'Jon Arne Riise', 'Teddy Sheringham', 'Patrick Berger', 'Hong Kong FC 7s', 'Royal Selangor', 'Bangkok', 'Padang', '1M+', '234', '1852', 'On Request', 'Title Partner', 'Gold Partner', 'partnerships@sccfootball', 'Partner with', 'SCC Football.'. Brand yellow 'FFCC00' also present.",
+    "print_pdf_cta": "PASS — clicking data-testid='cta-print' fires window.print() (verified via monkey-patch).",
+    "console_errors": "PASS — no page errors, no console errors during full flow"
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: Nav 'Download PPT' button loading label ('Building…') couldn't be observed via Playwright because the async generateSccPptx() awaits download before the label swap has time to render — the download event fires before React re-renders. Not user-facing (users still see the spinner-like disabled state); acceptable.",
+    "Minor: page.mouse.wheel(0,300) on the presenter inner container did not update scrollTop in the test — likely because focus/hover targeting a nested motion div. Manual keyboard/scrollbar scroll works. Consider ensuring wheel events propagate to the AnimatePresence motion div (or add tabIndex + focus) if users report scrollwheel issues in presenter mode."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100% of 8 review sub-tasks passed"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Presenter mode uses min-h-full + inner min-h-[calc(100vh-4rem)] flex flex-col justify-center — tall slides gain scroll via parent overflow-y-auto. PPTX generator (pptxgenjs 4.0.1) produces a valid 546KB 19-slide .pptx client-side; verified with Python zipfile. All brand tokens present.",
+  "rca of the issue": "N/A — both reported bugs verified fixed. Original clipping bug was caused by h-screen overflow-hidden on SectionShell/Cover/Partner/Scc7s in presenter mode; replaced with min-h-full + inner justify-center container that grows and defers to the outer overflow-y-auto scroll container."
+}

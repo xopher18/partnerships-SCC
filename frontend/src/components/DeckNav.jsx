@@ -1,7 +1,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sectionsMeta } from "@/data/deckContent";
-import { Play, Layers, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Play, Layers, ArrowUpRight, ChevronDown, Download } from "lucide-react";
+import { generateSccPptx } from "@/lib/generatePptx";
 
 /**
  * Compact sticky top nav.
@@ -12,7 +13,19 @@ import { Play, Layers, ArrowUpRight, ChevronDown } from "lucide-react";
  */
 export default function DeckNav({ presenterMode, setPresenterMode, onJump }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [downloading, setDownloading] = React.useState(false);
   const menuRef = React.useRef(null);
+
+  const handleDownload = async () => {
+    try {
+      setDownloading(true);
+      await generateSccPptx();
+    } catch (e) {
+      console.error("PPT generation failed", e);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   React.useEffect(() => {
     const onClick = (e) => {
@@ -115,6 +128,16 @@ export default function DeckNav({ presenterMode, setPresenterMode, onJump }) {
           >
             {presenterMode ? <Layers size={14} /> : <Play size={14} />}
             {presenterMode ? "Exit Presenter" : "Presenter"}
+          </button>
+
+          <button
+            data-testid="download-pptx"
+            onClick={handleDownload}
+            disabled={downloading}
+            className="hidden md:inline-flex items-center gap-2 px-4 h-10 border border-white/20 text-white/80 hover:border-[var(--scc-yellow)] hover:text-white text-[11px] tracking-[0.22em] uppercase font-display transition-colors disabled:opacity-50 disabled:cursor-wait"
+          >
+            <Download size={14} />
+            {downloading ? "Building…" : "Download PPT"}
           </button>
 
           <button
