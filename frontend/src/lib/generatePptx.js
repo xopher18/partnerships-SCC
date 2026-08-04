@@ -47,8 +47,9 @@ function waitForImages(root, timeoutMs = 4000) {
 /**
  * Neutralise things on the cloned tree that would otherwise:
  *   • ghost the shot (framer-motion pre-animation transforms)
+ *   • leave huge empty margins on a 1920×1080 slide
  *   • overflow the 16:9 capture (huge py-28 / py-36 scroll-mode padding)
- *   • cluster content at the top with a large empty stripe beneath
+ *   • cap content to 1400px when we have 1920px of canvas to fill
  */
 function prepareCloneForCapture(root) {
   // Kill motion-driven inline transforms / opacity so nothing is ghosted
@@ -62,17 +63,25 @@ function prepareCloneForCapture(root) {
       el.style.maxHeight = "none";
     }
   }
-  // Compress the giant scroll-mode padding AND turn the padded wrapper into
-  // a flex column that vertically centres its content — unless it already
-  // opts into a specific justify-* strategy (Cover / Partner use
-  // `justify-between`). Also clamp `min-h-screen` to the capture height so
-  // sections don't drift off the slide.
+  // 1. Break out of the max-w-[1400px] scroll cap — a PPT slide has 1920px
+  //    to fill horizontally; using only 1400 leaves ~13% dead space on each
+  //    side and makes the deck look tiny.
+  const capped = root.querySelectorAll(
+    "[class*='max-w-[1400px]'], [class*='max-w-[1200px]'], [class*='max-w-5xl'], [class*='max-w-6xl'], [class*='max-w-7xl']"
+  );
+  capped.forEach((el) => {
+    el.style.maxWidth = "1780px";
+  });
+  // 2. Compress the giant scroll-mode padding AND turn the padded wrapper
+  //    into a flex column that vertically centres its content — unless it
+  //    already opts into a specific justify-* strategy (Cover / Partner
+  //    use `justify-between`).
   const padded = root.querySelectorAll(
     "[class*='py-28'], [class*='py-32'], [class*='py-36'], [class*='py-40']"
   );
   padded.forEach((el) => {
-    el.style.paddingTop = "56px";
-    el.style.paddingBottom = "56px";
+    el.style.paddingTop = "40px";
+    el.style.paddingBottom = "40px";
     el.style.minHeight = `${CAP_H}px`;
     const cls = el.getAttribute("class") || "";
     const hasOwnJustify = /\bjustify-(between|start|end|around|evenly)\b/.test(cls);
@@ -82,9 +91,19 @@ function prepareCloneForCapture(root) {
       el.style.justifyContent = "center";
     }
   });
+  // 3. Clamp `min-h-screen` to the capture height so sections don't drift.
   const screenTall = root.querySelectorAll("[class*='min-h-screen']");
   screenTall.forEach((el) => {
     el.style.minHeight = `${CAP_H}px`;
+  });
+  // 4. Loosen large horizontal padding (px-6/px-12/px-20) so content isn't
+  //    hemmed in as much on the 1920px stage.
+  const hPadded = root.querySelectorAll(
+    "[class*='px-20'], [class*='px-16'], [class*='lg:px-20']"
+  );
+  hPadded.forEach((el) => {
+    el.style.paddingLeft = "72px";
+    el.style.paddingRight = "72px";
   });
 }
 
