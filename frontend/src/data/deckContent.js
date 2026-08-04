@@ -354,7 +354,7 @@ export const contact = {
     "Partner with SCC Football to invest in Singapore's football pathway, our champion teams and a community that has stood together since 1852.",
   people: [
     { role: "Football Section Chair", name: "SCC Football Section", detail: "Partnerships & Sponsorship" },
-    { role: "Contact", name: "partnerships@sccfootball.sg", detail: "For tailored discussions" },
-    { role: "Website", name: "sccfootball.sg", detail: "Learn more about the club" },
+    { role: "Contact", name: "partnerships@sccfootball.com", detail: "For tailored discussions" },
+    { role: "Website", name: "sccfootball.com", detail: "Learn more about the club" },
   ],
 };

@@ -241,7 +241,7 @@ export function Partner({ presenter }) {
           <div className="md:col-span-3 flex flex-wrap gap-3 pt-4">
             <a
               data-testid="cta-email"
-              href="mailto:partnerships@sccfootball.sg"
+              href="mailto:partnerships@sccfootball.com"
               className="inline-flex items-center gap-2 bg-black text-white px-6 h-12 font-display uppercase tracking-[0.22em] text-xs hover:bg-white hover:text-black transition-colors"
             >
               Start a Conversation <ArrowUpRight size={14} />

@@ -175,17 +175,20 @@ export function Regional({ presenter }) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
-        {regionalTournaments.map((t, i) => (
+        {regionalTournaments.map((t, i) => {
+          // Diagonal yellow layout: positions 1 & 4 (indexes 0 and 3)
+          const isYellow = i === 0 || i === 3;
+          return (
           <div
             key={t.title}
             data-testid={`regional-${i}`}
             className={`p-8 tile-hover ${
-              t.highlight ? "bg-[var(--scc-yellow)] text-black" : "bg-black text-white"
+              isYellow ? "bg-[var(--scc-yellow)] text-black" : "bg-black text-white"
             }`}
           >
             <div
               className={`flex items-center justify-between text-[10px] tracking-[0.28em] uppercase font-display ${
-                t.highlight ? "text-black/70" : "text-[var(--scc-yellow)]"
+                isYellow ? "text-black/70" : "text-[var(--scc-yellow)]"
               }`}
             >
               <span className="flex items-center gap-2">
@@ -193,7 +196,13 @@ export function Regional({ presenter }) {
                 {t.month}
               </span>
               {t.highlight && (
-                <span className="flex items-center gap-1.5 bg-black text-[var(--scc-yellow)] px-2 py-0.5">
+                <span
+                  className={`flex items-center gap-1.5 px-2 py-0.5 ${
+                    isYellow
+                      ? "bg-black text-[var(--scc-yellow)]"
+                      : "bg-[var(--scc-yellow)] text-black"
+                  }`}
+                >
                   {t.highlight === "Live TV" ? <Radio size={10} /> : <Trophy size={10} />}
                   {t.highlight}
                 </span>
@@ -204,7 +213,7 @@ export function Regional({ presenter }) {
             </div>
             <div
               className={`mt-3 flex items-center gap-2 text-sm ${
-                t.highlight ? "text-black/70" : "text-white/60"
+                isYellow ? "text-black/70" : "text-white/60"
               }`}
             >
               <MapPin size={14} />
@@ -212,13 +221,14 @@ export function Regional({ presenter }) {
             </div>
             <p
               className={`mt-4 text-sm leading-relaxed ${
-                t.highlight ? "text-black/80" : "text-white/60"
+                isYellow ? "text-black/80" : "text-white/60"
               }`}
             >
               {t.note}
             </p>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mt-10 flex items-center gap-3 text-white/50 text-sm">
