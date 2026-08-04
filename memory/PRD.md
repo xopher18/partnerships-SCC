@@ -47,9 +47,15 @@ Premium sponsorship deck for SCC Football (Singapore Cricket Club Football) in c
 - **Updated Alignment / ROI / Events / Inventory / Packages** to reference SCC 7s and regional presence — Title Partner benefits now include 7s title association, Gala top table, marquee player photo access, play in all‑star team
 - **Rewrote print @media CSS** — A4 landscape, forces white bg + dark text, keeps yellow accents (deep gold #B8860B for print legibility), hides no-print chrome. `beforeprint` listener automatically flips presenter → scroll so full 18-section PDF is exported. Cover hero image hidden in print for cleaner first page.
 
+### 2026‑01‑04 · v3 (presentation fixes)
+- **Fixed presenter‑mode clipping** — SectionShell / Cover / Partner / SCC 7s no longer force `h-screen overflow-hidden`. Slides now use `min-h-full` + inner `min-h-[calc(100vh-4rem)] flex flex-col justify-center` so short slides center‑fill and tall slides scroll within the viewport. Verified at 1366×700 and 1280×720.
+- Reduced Cover / SCC 7s / Partner headline sizes when in presenter mode so hero content fits laptop screens.
+- **Added real .pptx download** — client‑side generator using pptxgenjs 4.0.1 (`src/lib/generatePptx.js`). Two entry points: `data-testid='download-pptx'` in top nav, and `data-testid='cta-download-pptx'` on Partner slide. Produces a 546KB, 19‑slide, 16:9 widescreen `.pptx` — 18 sections + one extra SCC 7s Sponsor Value slide, with Yellow #FFCC00 accents, Cormorant / Oswald / Manrope fonts, Title Partner tile rendered on yellow, Partner slide fully yellow.
+- Fixed webpack: added NormalModuleReplacementPlugin for `node:*` imports so pptxgenjs bundles cleanly in the browser (`craco.config.js` + `plugins/empty-node-stub.js`).
+
 ## Testing
-- Testing agent iteration_1: **100% pass rate**, no ui bugs, no console errors
-- Verified: 18 sections load, dropdown lists all, SCC 7s + Regional content, contrast (yellow bg = black text; black bg = white text), presenter mode keyboard nav & counter 01/18–18/18, `beforeprint` correctly flips mode, print media shows white bg + dark text with yellow accents preserved
+- iteration_1: **100% pass** (SCC 7s emphasis + PDF fix)
+- iteration_2: **100% pass** (presenter fit + .pptx download; 8/8 review sub‑tasks)
 
 ## Backlog (P1)
 - Real SCC photography — swap Unsplash placeholders in `heroImages` + per-section
