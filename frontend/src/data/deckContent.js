@@ -11,8 +11,9 @@ export const heroImages = {
   // OVERSEAS TOURNAMENTS — Men's team at HK 7s in SCC yellow (Helios Fitness sponsor).
   atmosphere:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
-  // HERITAGE — no stock photo. Typography-led slide until a real SCC clubhouse photo is supplied.
-  heritage: null,
+  // HERITAGE — the real Singapore Cricket Club clubhouse on the Padang.
+  heritage:
+    "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/e3f6krtx_Singapore_Cricket_Club_2%2C_Jan_06.jpg",
   // LADIES at Singapore National Stadium — moved to Ecosystem to headline the Ladies Team.
   ladies:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",

@@ -58,19 +58,23 @@ Premium sponsorship deck for SCC Football (Singapore Cricket Club Football) in c
 - Updated Alignment pillar to include "20‑Year CSR Track Record" and ROI pillar to include "CSR / ESG Substance"
 - Extended `.pptx` generator with Slide 12 · Charity — flagship 20 Years stat, three programme cards, sponsor hook + footnote. Total PPT now 20 slides (~572KB).
 
+### 2026‑02‑04 · v5 (PPTX visual polish + real Heritage photo)
+- **Real SCC Clubhouse photograph** added to Heritage slide (web + PPT). Replaced typography‑only panel with the actual white/red‑roof colonial clubhouse on the Padang. Photo uses `object-cover` (web) and `sizing: { type: 'cover' }` (PPT) so it never stretches. Yellow rule + caption ("Singapore Cricket Club · The Clubhouse · The Padang · Est. 1852") layered on a subtle bottom gradient for legibility.
+- **Fixed Slide 4 (At a Glance) stat‑tile compression** — bumped label font from 9pt to 10pt, tightened value cap to 32pt, adjusted 3×3 grid cellH to 1.18" and gap to 0.06" so long labels like "82 · Teams · SCC 7s Regional Tournament" and "7 / 7 · Days of Football Every Week" now read comfortably without visual squash. `addStatTile` now takes an `opts` param (`labelFont`, `valueCap`).
+- **Fixed Slide 19 (Partner With Us) headline overflow** — reduced 60pt Cormorant Garamond headline to 46pt italic, re‑spaced contact grid (y=5.5 with black accent rules), so "Let's build something lasting." fits comfortably within slide bounds on the yellow background.
+- Verified generated PPTX (2.87 MB, 19 slides) via `analyze_file_tool` — all target issues resolved, no other visible defects.
+
 ## Testing
-- iteration_1: **100% pass** (SCC 7s + PDF fix)
-- iteration_2: **100% pass** (presenter fit + .pptx download)
-- iteration_3: 95% pass (charity section rendered; PPT missing footnote)
-- iteration_4: **100% pass** (footnote fix verified)
+- iteration_1..7: previous history retained
+- 2026‑02‑04 self‑test: browser Playwright download + Gemini visual sweep across all 19 slides → PASS
 
 ## Backlog (P1)
-- Real SCC photography — swap Unsplash placeholders in `heroImages` + per-section
-- Confirm real reach numbers if available (kept 1M+ SCC 7s number per user brief)
-- Add real contact names / email / phone in `contact` object
-- Add SCC Football crest / logo (currently a stylised "SCC" mark placeholder)
+- Sponsor logos strip (Helios Fitness, Ryudben, Futbolita, Select) on Packages / Visibility slides
+- Confirm real contact names / email / phone in `contact` object
+- Real SCC crest / logo (currently a stylised "SCC" mark placeholder)
 
 ## Backlog (P2)
+- SCC 7s highlight video clip on live web Cover
 - Existing sponsor logo strip
 - Sponsor-specific variants (SME cut / corporate cut) selectable via URL param
 - 1-page summary PDF as alternate export

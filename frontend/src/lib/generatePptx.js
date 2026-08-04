@@ -169,7 +169,9 @@ const BODY = {
 /**
  * Reusable stat tile.
  */
-function addStatTile(slide, x, y, w, h, value, label) {
+function addStatTile(slide, x, y, w, h, value, label, opts = {}) {
+  const labelFont = opts.labelFont || 9;
+  const valueCap = opts.valueCap || 40;
   slide.addShape("rect", {
     x,
     y,
@@ -182,8 +184,8 @@ function addStatTile(slide, x, y, w, h, value, label) {
     x: x + 0.2,
     y: y + 0.15,
     w: w - 0.4,
-    h: h * 0.55,
-    fontSize: fitStatFont(w, value),
+    h: h * 0.52,
+    fontSize: fitStatFont(w, value, valueCap),
     color: BRAND.yellow,
     fontFace: FONTS.display,
     bold: true,
@@ -193,13 +195,12 @@ function addStatTile(slide, x, y, w, h, value, label) {
   });
   slide.addText(label, {
     x: x + 0.2,
-    y: y + h * 0.62,
+    y: y + h * 0.58,
     w: w - 0.4,
-    h: h * 0.36,
-    fontSize: 9,
-    color: BRAND.textMuted,
-    fontFace: FONTS.display,
-    charSpacing: 4,
+    h: h * 0.4,
+    fontSize: labelFont,
+    color: "CCCCCC",
+    fontFace: FONTS.body,
     valign: "top",
     autoFit: false,
     shrinkText: false,
@@ -217,13 +218,14 @@ export async function generateSccPptx() {
 
   // Pre-fetch real photography so slides can embed data URLs (self-contained PPT).
   // Heritage intentionally omitted — no stock photo, typography-led slide instead.
-  const [imgCover, imgAtmosphere, imgChampions, imgKits, imgRegional, imgLadies] = await Promise.all([
+  const [imgCover, imgAtmosphere, imgChampions, imgKits, imgRegional, imgLadies, imgHeritage] = await Promise.all([
     fetchImageDataUrl(heroImages.cover),
     fetchImageDataUrl(heroImages.atmosphere),
     fetchImageDataUrl(heroImages.champions),
     fetchImageDataUrl(heroImages.kits),
     fetchImageDataUrl(heroImages.regional),
     fetchImageDataUrl(heroImages.ladies),
+    fetchImageDataUrl(heroImages.heritage),
   ]);
 
   const total = sectionsMeta.length;
@@ -356,34 +358,60 @@ export async function generateSccPptx() {
         fontSize: 12, color: "CCCCCC", fontFace: FONTS.body, autoFit: false, shrinkText: false, valign: "top",
       }
     );
-    // Typography-led heritage panel on the right — no stock photo used.
-    // Awaits a real SCC clubhouse photograph; user can swap by populating heroImages.heritage.
+    // Right-side panel — real SCC Clubhouse photograph.
     const panelX = W - 4.7;
-    s.addShape("rect", {
-      x: panelX, y: 1.2, w: 4.0, h: 4.5,
-      fill: { color: BRAND.surface }, line: { color: BRAND.divider, width: 0.75 },
-    });
-    s.addText("EST.", {
-      x: panelX + 0.35, y: 1.5, w: 3, h: 0.3,
-      fontSize: 10, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, valign: "top",
-    });
-    s.addText("1852", {
-      x: panelX + 0.3, y: 1.75, w: 3.5, h: 2.5,
-      fontSize: 140, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
-    });
-    // Yellow divider rule
-    s.addShape("rect", {
-      x: panelX + 0.35, y: 4.35, w: 0.7, h: 0.03,
-      fill: { color: BRAND.yellow }, line: { color: BRAND.yellow },
-    });
-    s.addText("Singapore\nCricket Club", {
-      x: panelX + 0.35, y: 4.5, w: 3.3, h: 0.9,
-      fontSize: 22, color: BRAND.white, fontFace: FONTS.heritage, autoFit: false, shrinkText: false, valign: "top",
-    });
-    s.addText("THE PADANG · SINGAPORE", {
-      x: panelX + 0.35, y: 5.45, w: 3.3, h: 0.25,
-      fontSize: 8, color: BRAND.textMuted, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, valign: "top",
-    });
+    const panelY = 1.2;
+    const panelW = 4.0;
+    const panelH = 4.5;
+    if (imgHeritage) {
+      s.addImage({
+        data: imgHeritage,
+        x: panelX, y: panelY, w: panelW, h: panelH,
+        sizing: { type: "cover", w: panelW, h: panelH },
+      });
+      // Dark bottom gradient block for legible caption
+      s.addShape("rect", {
+        x: panelX, y: panelY + panelH - 1.4, w: panelW, h: 1.4,
+        fill: { color: BRAND.black, transparency: 25 },
+        line: { color: BRAND.black, transparency: 100 },
+      });
+      // Yellow rule
+      s.addShape("rect", {
+        x: panelX + 0.3, y: panelY + panelH - 1.1, w: 0.7, h: 0.03,
+        fill: { color: BRAND.yellow }, line: { color: BRAND.yellow },
+      });
+      s.addText("Singapore Cricket Club", {
+        x: panelX + 0.3, y: panelY + panelH - 1.0, w: panelW - 0.6, h: 0.55,
+        fontSize: 20, color: BRAND.white, fontFace: FONTS.heritage,
+        autoFit: false, shrinkText: false, valign: "top",
+      });
+      s.addText("THE CLUBHOUSE · THE PADANG · EST. 1852", {
+        x: panelX + 0.3, y: panelY + panelH - 0.45, w: panelW - 0.6, h: 0.3,
+        fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display,
+        charSpacing: 6, autoFit: false, shrinkText: false, valign: "top",
+      });
+    } else {
+      // Typography fallback if the photo failed to fetch
+      s.addShape("rect", {
+        x: panelX, y: panelY, w: panelW, h: panelH,
+        fill: { color: BRAND.surface }, line: { color: BRAND.divider, width: 0.75 },
+      });
+      s.addText("EST.", {
+        x: panelX + 0.35, y: panelY + 0.3, w: 3, h: 0.3,
+        fontSize: 10, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6,
+        autoFit: false, shrinkText: false, valign: "top",
+      });
+      s.addText("1852", {
+        x: panelX + 0.3, y: panelY + 0.55, w: 3.5, h: 2.5,
+        fontSize: 140, color: BRAND.white, fontFace: FONTS.heritage,
+        autoFit: false, shrinkText: false, valign: "top",
+      });
+      s.addText("Singapore\nCricket Club", {
+        x: panelX + 0.35, y: panelY + 3.3, w: panelW - 0.7, h: 0.9,
+        fontSize: 22, color: BRAND.white, fontFace: FONTS.heritage,
+        autoFit: false, shrinkText: false, valign: "top",
+      });
+    }
     const h = [
       { n: "1852", l: "Founded" },
       { n: "170+", l: "Years of Sport" },
@@ -432,16 +460,16 @@ export async function generateSccPptx() {
         fontSize: 8, color: BRAND.yellow, fontFace: FONTS.display, charSpacing: 6, autoFit: false, shrinkText: false, align: "right",
       });
     }
-    // Stats grid — slightly smaller cells so photo + grid coexist
+    // Stats grid — 3×3 tiles, calibrated to fit between photo (bottom 3.2) and footer (7.05).
     const grid = glanceStats.slice(0, 9);
-    const cellW = (W - MARGIN_X * 2) / 3 - 0.05;
-    const cellH = 1.1;
+    const cellW = (W - MARGIN_X * 2) / 3 - 0.08;
+    const cellH = 1.18;
     grid.forEach((st, i) => {
       const col = i % 3;
       const row = Math.floor(i / 3);
-      const x = MARGIN_X + col * (cellW + 0.05);
-      const y = 3.4 + row * (cellH + 0.05);
-      addStatTile(s, x, y, cellW, cellH, st.value, st.label);
+      const x = MARGIN_X + col * (cellW + 0.08);
+      const y = 3.35 + row * (cellH + 0.06);
+      addStatTile(s, x, y, cellW, cellH, st.value, st.label, { labelFont: 10, valueCap: 32 });
     });
     addFooter(s, 4, total);
   }
@@ -1152,30 +1180,40 @@ export async function generateSccPptx() {
     s.background = { color: BRAND.yellow };
     addHeader(s, num("partner", 17), "Partner With Us", true);
     s.addText(contact.headline, {
-      x: MARGIN_X, y: 1.4, w: W - MARGIN_X * 2, h: 2.2,
-      fontSize: 60, color: "050505", fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 1.6, w: W - MARGIN_X * 2, h: 1.7,
+      fontSize: 46, color: "050505", fontFace: FONTS.heritage,
+      autoFit: false, shrinkText: false, italic: true, valign: "top",
     });
     s.addText(contact.subline, {
-      x: MARGIN_X, y: 3.7, w: W - 5.5, h: 1.3,
-      fontSize: 14, color: "1a1a1a", fontFace: FONTS.body, autoFit: false, shrinkText: false,
+      x: MARGIN_X, y: 3.5, w: W - MARGIN_X * 2 - 0.3, h: 1.5,
+      fontSize: 14, color: "1a1a1a", fontFace: FONTS.body,
+      autoFit: false, shrinkText: false, valign: "top",
     });
 
     // Contact grid
     const colW = (W - MARGIN_X * 2) / 3 - 0.2;
     contact.people.forEach((c, i) => {
       const x = MARGIN_X + i * (colW + 0.3);
-      const y = 5.4;
+      const y = 5.5;
+      // Yellow accent → invert to black on this yellow background
+      s.addShape("rect", {
+        x, y, w: 0.6, h: 0.04,
+        fill: { color: "050505" }, line: { color: "050505" },
+      });
       s.addText(c.role.toUpperCase(), {
-        x, y, w: colW, h: 0.25,
-        fontSize: 8, color: "1a1a1a", fontFace: FONTS.display, autoFit: false, shrinkText: false, charSpacing: 6,
+        x, y: y + 0.15, w: colW, h: 0.3,
+        fontSize: 8.5, color: "1a1a1a", fontFace: FONTS.display,
+        autoFit: false, shrinkText: false, charSpacing: 6, valign: "top",
       });
       s.addText(c.name, {
-        x, y: y + 0.3, w: colW, h: 0.55,
-        fontSize: 18, color: "050505", fontFace: FONTS.heritage, autoFit: false, shrinkText: false,
+        x, y: y + 0.5, w: colW, h: 0.55,
+        fontSize: 16, color: "050505", fontFace: FONTS.heritage,
+        autoFit: false, shrinkText: false, valign: "top",
       });
       s.addText(c.detail, {
-        x, y: y + 0.9, w: colW, h: 0.3,
-        fontSize: 10, color: "333333", fontFace: FONTS.body, autoFit: false, shrinkText: false,
+        x, y: y + 1.05, w: colW, h: 0.4,
+        fontSize: 10, color: "333333", fontFace: FONTS.body,
+        autoFit: false, shrinkText: false, valign: "top",
       });
     });
     addFooter(s, 19, total, true);

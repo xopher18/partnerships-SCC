@@ -184,24 +184,31 @@ export function Heritage({ presenter }) {
             ))}
           </div>
         </div>
-        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#141414] to-[#0a0a0a] border border-white/10">
-          {/* Typography-led heritage panel — awaits a real SCC clubhouse photo */}
+        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden bg-black border border-white/10">
+          {/* Real SCC Clubhouse photograph on the Padang */}
+          <img
+            src={heroImages.heritage}
+            alt="Singapore Cricket Club clubhouse on the Padang"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Subtle darkening + brand caption overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40" />
           <div className="absolute inset-0 flex flex-col justify-between p-8">
             <div className="flex items-start justify-between">
               <div>
                 <div className="font-display text-[var(--scc-yellow)] text-[10px] tracking-[0.32em] uppercase">
                   Est.
                 </div>
-                <div className="font-heritage text-[9rem] md:text-[12rem] leading-none text-white tracking-tight">
+                <div className="font-heritage text-6xl md:text-7xl leading-none text-white tracking-tight mt-1">
                   1852
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40">
-                  170+
+                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/70">
+                  The Clubhouse
                 </div>
-                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40 mt-1">
-                  Years
+                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/50 mt-1">
+                  The Padang
                 </div>
               </div>
             </div>
@@ -210,8 +217,8 @@ export function Heritage({ presenter }) {
               <div className="font-heritage text-3xl leading-tight">
                 Singapore <br />Cricket Club
               </div>
-              <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/40">
-                The Padang · Singapore
+              <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]/90">
+                A national landmark since 1852
               </div>
             </div>
           </div>
