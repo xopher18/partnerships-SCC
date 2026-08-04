@@ -1,0 +1,20 @@
+{
+  "summary": "Re-verified charity slide CSR footnote fix in downloaded PPTX. All 9 required strings now present (including 'Full CSR portfolio available on request' in slide12.xml). Slide count = 20.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "PPTX export from data-testid='download-pptx' produces 20 slides. Charity slide12.xml contains all required strings incl. new CSR footnote 'Full CSR portfolio available on request'. Downloaded 572568 bytes.",
+  "verification_details": {
+    "slide12_has_csr_footnote": true,
+    "all_9_strings_present_in_pptx": true,
+    "slide_count": 20,
+    "hyphen_normalization_applied": "U+2011 -> ASCII '-'"
+  }
+}

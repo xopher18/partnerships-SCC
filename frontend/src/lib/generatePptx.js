@@ -696,6 +696,11 @@ export async function generateSccPptx() {
       x: MARGIN_X + 0.18, y: H - 0.7, w: W - MARGIN_X * 2 - 3.5, h: 0.35,
       fontSize: 10, color: "DDDDDD", fontFace: FONTS.body,
     });
+    // CSR portfolio footnote (right side)
+    s.addText(charity.csrFootnote, {
+      x: W - MARGIN_X - 3.2, y: H - 0.85, w: 3.2, h: 0.5,
+      fontSize: 9, color: "999999", fontFace: FONTS.body, italic: true, lineSpacingMultiple: 1.3,
+    });
     addFooter(s, 11, total);
   }
 
