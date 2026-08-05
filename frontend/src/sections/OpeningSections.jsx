@@ -29,7 +29,7 @@ export function Cover({ presenter, onJumpNext }) {
       <div
         className={`relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex flex-col justify-between ${
           presenter
-            ? "min-h-[1080px] py-10"
+            ? "min-h-full py-10"
             : "min-h-screen pt-28 pb-20"
         }`}
       >
@@ -184,42 +184,27 @@ export function Heritage({ presenter }) {
             ))}
           </div>
         </div>
-        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[4/5] overflow-hidden bg-black border border-white/10">
-          {/* Real SCC Clubhouse photograph on the Padang */}
+        <div className="lg:col-span-6 order-1 lg:order-2 relative aspect-[3/2] overflow-hidden bg-black border border-white/10 max-h-[440px]">
+          {/* Real SCC Clubhouse photograph on the Padang - front facade */}
           <img
             src={heroImages.heritage}
             alt="Singapore Cricket Club clubhouse on the Padang"
             className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center 40%" }}
           />
-          {/* Subtle darkening + brand caption overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40" />
-          <div className="absolute inset-0 flex flex-col justify-between p-8">
-            <div className="flex items-start justify-between">
-              <div>
-                <div className="font-display text-[var(--scc-yellow)] text-[10px] tracking-[0.32em] uppercase">
-                  Est.
-                </div>
-                <div className="font-heritage text-6xl md:text-7xl leading-none text-white tracking-tight mt-1">
-                  1852
-                </div>
+          {/* Subtle bottom overlay with caption band */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute bottom-3 left-5 right-5 flex items-end justify-between">
+            <div>
+              <div className="font-display text-[9px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
+                The Clubhouse · The Padang
               </div>
-              <div className="text-right">
-                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/70">
-                  The Clubhouse
-                </div>
-                <div className="font-display text-[10px] tracking-[0.28em] uppercase text-white/50 mt-1">
-                  The Padang
-                </div>
+              <div className="font-heritage text-xl text-white leading-tight mt-1">
+                Singapore Cricket Club
               </div>
             </div>
-            <div className="space-y-3">
-              <div className="h-px w-16 bg-[var(--scc-yellow)]" />
-              <div className="font-heritage text-3xl leading-tight">
-                Singapore <br />Cricket Club
-              </div>
-              <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]/90">
-                A national landmark since 1852
-              </div>
+            <div className="font-heritage text-3xl text-[var(--scc-yellow)] leading-none">
+              1852
             </div>
           </div>
         </div>

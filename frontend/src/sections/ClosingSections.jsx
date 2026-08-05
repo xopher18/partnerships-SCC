@@ -204,7 +204,7 @@ export function Partner({ presenter, setPresenterMode }) {
       <div
         className={`relative z-10 mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 flex flex-col justify-between ${
           presenter
-            ? "min-h-[1080px] py-10 md:py-14 gap-8"
+            ? "min-h-full py-10 md:py-14 gap-8"
             : "min-h-screen py-28 md:py-36"
         }`}
       >

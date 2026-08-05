@@ -39,7 +39,7 @@ export default function SectionShell({
       <div
         className={`relative mx-auto max-w-[1400px] w-full px-6 md:px-12 lg:px-20 ${
           presenter
-            ? "min-h-[1080px] flex flex-col justify-center py-10 md:py-14"
+            ? "min-h-full flex flex-col justify-center py-10 md:py-14"
             : "py-28 md:py-36"
         }`}
       >
