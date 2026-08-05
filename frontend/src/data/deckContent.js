@@ -194,10 +194,12 @@ export const audienceDemographics = [
   "Lawyers & Legal Advisors",
   "Finance & Investment Professionals",
   "Entrepreneurs & Business Owners",
+  "Students & Young Professionals",
   "Teachers & Academics",
   "Elite & Retired Sportspeople",
   "Corporate Leaders & C‑Suite",
   "Diplomatic & Expat Community",
+  "Public Figures & Sitting Members of Parliament",
 ];
 
 // One-line reinforcement for cross-club exposure beyond football.
@@ -375,8 +377,20 @@ export const contact = {
   subline:
     "Partner with SCC Football to invest in Singapore's football pathway, our champion teams and a community that has stood together since 1852.",
   people: [
-    { role: "Football Section Chair", name: "SCC Football Section", detail: "Partnerships & Sponsorship" },
-    { role: "Contact", name: "partnerships@sccfootball.com", detail: "For tailored discussions" },
-    { role: "Website", name: "sccfootball.com", detail: "Learn more about the club" },
+    {
+      role: "Convenor, Football Section",
+      name: "Christopher Pereira",
+      detail: "+65 9767 1903",
+    },
+    {
+      role: "Direct Email",
+      name: "Christopher@sccfootball.com",
+      detail: "For personal introductions",
+    },
+    {
+      role: "Partnerships Enquiries",
+      name: "Partnerships@sccfootball.com",
+      detail: "For tailored sponsorship discussions",
+    },
   ],
 };

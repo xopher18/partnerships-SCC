@@ -278,12 +278,12 @@ export function AtAGlance({ presenter }) {
           <div
             key={s.label}
             data-testid={`stat-tile-${i}`}
-            className="bg-black p-8 md:p-10 tile-hover"
+            className="bg-black p-6 md:p-8 tile-hover"
           >
-            <div className="font-display font-semibold text-[var(--scc-yellow)] text-5xl md:text-6xl leading-none">
+            <div className="font-display font-semibold text-[var(--scc-yellow)] text-3xl md:text-4xl leading-none">
               {s.value}
             </div>
-            <div className="mt-4 text-[12px] tracking-[0.22em] uppercase text-white/70 font-display">
+            <div className="mt-3 text-[11px] tracking-[0.22em] uppercase text-white/70 font-display">
               {s.label}
             </div>
           </div>

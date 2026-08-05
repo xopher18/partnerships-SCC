@@ -1,7 +1,7 @@
 import React from "react";
 import SectionShell from "@/components/SectionShell";
 import { scc7s, regionalTournaments, heroImages } from "@/data/deckContent";
-import { Trophy, MapPin, CalendarDays, Radio, Users, Star } from "lucide-react";
+import { Trophy, MapPin, CalendarDays, Radio, Users, Star, Landmark } from "lucide-react";
 
 /* 06 - SCC FOOTBALL 7s (marquee event) */
 export function Scc7s({ presenter }) {
@@ -124,6 +124,27 @@ export function Scc7s({ presenter }) {
               Ex‑professionals join the tournament weekend - appearing at the Gala Dinner
               and playing on the sponsor‑backed all‑star team.
             </p>
+
+            {/* Statesmen & national profile callout */}
+            <div
+              data-testid="scc7s-statesmen"
+              className="mt-6 flex items-start gap-3 border border-[var(--scc-yellow)]/40 bg-[var(--scc-yellow)]/[0.04] p-4"
+            >
+              <Landmark
+                size={18}
+                className="text-[var(--scc-yellow)] shrink-0 mt-0.5"
+              />
+              <div>
+                <div className="font-display uppercase tracking-[0.24em] text-[10px] text-[var(--scc-yellow)]">
+                  Statesmen on the Pitch
+                </div>
+                <p className="mt-1 text-white/80 text-sm leading-snug">
+                  Recent editions have featured a sitting Member of Parliament of
+                  Singapore playing at the 7s - alongside business leaders,
+                  diplomats and national sporting figures.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="lg:col-span-6">
