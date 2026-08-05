@@ -41,7 +41,7 @@ export function Charity({ presenter }) {
               <HandHeart size={14} />
               Flagship Commitment
             </div>
-            <div className="font-display text-[var(--scc-yellow)] text-[72px] leading-none mt-4 tracking-tight">
+            <div className="font-display font-semibold text-[var(--scc-yellow)] text-[72px] leading-none mt-4 tracking-tight">
               {charity.headlineStat.value}
             </div>
             <div className="mt-3 text-white/70">

@@ -79,7 +79,7 @@ export function Cover({ presenter, onJumpNext }) {
           <div className="hidden md:flex items-center gap-10">
             {glanceStats.slice(0, 3).map((s) => (
               <div key={s.label}>
-                <div className="font-display text-[var(--scc-yellow)] text-3xl md:text-4xl leading-none">
+                <div className="font-display font-semibold text-[var(--scc-yellow)] text-3xl md:text-4xl leading-none">
                   {s.value}
                 </div>
                 <div className="mt-2 text-[11px] tracking-[0.22em] uppercase text-white/50 font-display">
@@ -138,7 +138,7 @@ export function WhyNow({ presenter }) {
                 className="bg-black p-6 tile-hover"
                 data-testid={`whynow-tile-${t.k}`}
               >
-                <div className="font-display text-3xl text-[var(--scc-yellow)]">{t.k}</div>
+                <div className="font-display font-semibold text-3xl text-[var(--scc-yellow)]">{t.k}</div>
                 <div className="mt-2 text-sm text-white/60 leading-snug">{t.v}</div>
               </div>
             ))}
@@ -176,7 +176,7 @@ export function Heritage({ presenter }) {
               { n: "Prestige", l: "Standing" },
             ].map((h) => (
               <div key={h.l} className="border-l-2 border-[var(--scc-yellow)] pl-4">
-                <div className="font-display text-2xl md:text-3xl">{h.n}</div>
+                <div className="font-display font-semibold text-2xl md:text-3xl">{h.n}</div>
                 <div className="text-[11px] tracking-[0.22em] uppercase text-white/50 mt-1">
                   {h.l}
                 </div>
@@ -280,7 +280,7 @@ export function AtAGlance({ presenter }) {
             data-testid={`stat-tile-${i}`}
             className="bg-black p-8 md:p-10 tile-hover"
           >
-            <div className="font-display text-[var(--scc-yellow)] text-5xl md:text-6xl leading-none">
+            <div className="font-display font-semibold text-[var(--scc-yellow)] text-5xl md:text-6xl leading-none">
               {s.value}
             </div>
             <div className="mt-4 text-[12px] tracking-[0.22em] uppercase text-white/70 font-display">

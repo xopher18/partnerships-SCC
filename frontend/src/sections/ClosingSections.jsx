@@ -71,7 +71,7 @@ export function WhyItWorks({ presenter }) {
             data-testid={`why-${i}`}
             className="bg-black p-8 md:p-10 flex gap-6 items-start tile-hover"
           >
-            <div className="font-display text-5xl text-[var(--scc-yellow)] leading-none min-w-[70px]">
+            <div className="font-display font-semibold text-5xl text-[var(--scc-yellow)] leading-none min-w-[70px]">
               {String(i + 1).padStart(2, "0")}
             </div>
             <div>

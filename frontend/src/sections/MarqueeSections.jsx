@@ -66,8 +66,8 @@ export function Scc7s({ presenter }) {
                 data-testid="scc7s-hero-stat"
                 className={
                   presenter
-                    ? "font-display text-[var(--scc-yellow)] text-[72px] leading-none mt-3"
-                    : "font-display text-[var(--scc-yellow)] text-[96px] leading-none mt-3"
+                    ? "font-display font-semibold text-[var(--scc-yellow)] text-[72px] leading-none mt-3"
+                    : "font-display font-semibold text-[var(--scc-yellow)] text-[96px] leading-none mt-3"
                 }
               >
                 1M+
@@ -87,7 +87,7 @@ export function Scc7s({ presenter }) {
               data-testid={`scc7s-stat-${i}`}
               className="bg-black/70 backdrop-blur-sm p-6"
             >
-              <div className="font-display text-[var(--scc-yellow)] text-3xl md:text-4xl">
+              <div className="font-display font-semibold text-[var(--scc-yellow)] text-3xl md:text-4xl">
                 {s.value}
               </div>
               <div className="mt-2 text-[11px] tracking-[0.22em] uppercase text-white/60 font-display">

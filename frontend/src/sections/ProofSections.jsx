@@ -233,7 +233,7 @@ export function Alignment({ presenter }) {
             data-testid={`alignment-${i}`}
             className="bg-black p-6 tile-hover min-h-[170px] flex flex-col justify-between"
           >
-            <div className="font-display text-[var(--scc-yellow)] text-2xl">
+            <div className="font-display font-semibold text-[var(--scc-yellow)] text-2xl">
               {String(i + 1).padStart(2, "0")}
             </div>
             <div>

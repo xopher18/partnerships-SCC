@@ -69,6 +69,7 @@
 .font-display {
     font-family: "Space Grotesk", "Cormorant Garamond", serif;
     letter-spacing: 0.01em;
+    font-weight: 500;
     font-feature-settings: "ss01", "tnum";
 }
 .font-body {
