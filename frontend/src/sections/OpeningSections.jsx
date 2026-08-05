@@ -29,7 +29,7 @@ export function Cover({ presenter, onJumpNext }) {
       <div
         className={`relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex flex-col justify-between ${
           presenter
-            ? "min-h-[calc(100vh-4rem)] py-10"
+            ? "min-h-[1080px] py-10"
             : "min-h-screen pt-28 pb-20"
         }`}
       >
