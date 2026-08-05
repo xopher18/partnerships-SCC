@@ -139,9 +139,10 @@ export function Scc7s({ presenter }) {
                   Statesmen on the Pitch
                 </div>
                 <p className="mt-1 text-white/80 text-sm leading-snug">
-                  Recent editions have featured a sitting Member of Parliament of
-                  Singapore playing at the 7s - alongside business leaders,
-                  diplomats and national sporting figures.
+                  Several Members of Parliament of Singapore have taken to the
+                  pitch across recent editions. This year, three sitting
+                  Ministers played together in a showcase celebrity match at
+                  the tournament.
                 </p>
               </div>
             </div>

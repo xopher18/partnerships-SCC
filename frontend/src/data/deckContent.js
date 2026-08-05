@@ -103,7 +103,7 @@ export const scc7s = {
   headline: "SCC Football 7s.",
   italic: "One weekend. A million eyes.",
   intro:
-    "An Asia‑wide 7‑a‑side tournament staged on the Padang - Singapore's most iconic sporting stage. Two days of football, a black‑tie gala and a sponsor showcase that has reached over one million people online.",
+    "An Asia‑wide 7‑a‑side tournament staged on the Padang - Singapore's most iconic sporting stage. Two days of football, a Gala Dinner and a sponsor showcase that has reached over one million people online.",
   bigStats: [
     { value: "1M+", label: "Views & Digital Reach" },
     { value: "82", label: "Teams · Singapore & Asia" },
@@ -116,7 +116,7 @@ export const scc7s = {
     { name: "Patrick Berger", club: "Liverpool · Czech Rep." },
   ],
   sponsorBenefits: [
-    "Reserved seats at the black‑tie Gala Dinner",
+    "Reserved seats at the Gala Dinner",
     "Play in an all‑star team alongside a marquee ex‑pro",
     "Prime on‑pitch and Padang branding across the weekend",
     "Broadcast, digital and social media exposure at scale",
@@ -255,7 +255,7 @@ export const alignmentPillars = [
 
 export const inventory = [
   { title: "SCC Football 7s Title", note: "Naming rights across the marquee tournament" },
-  { title: "Gala Dinner Partner", note: "Black‑tie evening co‑branding & hosting" },
+  { title: "Gala Dinner Partner", note: "Evening co‑branding & hosting" },
   { title: "Marquee Player Team", note: "Play alongside an ex‑pro in the all‑star match" },
   { title: "Headline Football Partner", note: "Section‑wide title association" },
   { title: "Academy Partner", note: "Youth development co‑branding" },
@@ -337,7 +337,7 @@ export const customOptions = [
 
 export const events = [
   { title: "SCC Football 7s (Home)", copy: "Our marquee weekend. 82 teams. 1M+ views. Padang backdrop." },
-  { title: "Gala Dinner", copy: "Black‑tie evening with marquee ex‑pros. Sponsor hosting at scale." },
+  { title: "Gala Dinner", copy: "Evening celebration with marquee ex‑pros. Sponsor hosting at scale." },
   { title: "Regional 7s Circuit", copy: "SCC teams playing HK FC 7s, Royal Selangor 7s and Bangkok 7s." },
   { title: "Academy Programmes", copy: "Weekly youth training and development sessions." },
   { title: "Matchdays", copy: "SFL Division 1 fixtures and community game‑days." },
