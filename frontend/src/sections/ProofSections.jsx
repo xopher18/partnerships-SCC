@@ -59,24 +59,43 @@ export function Ecosystem({ presenter }) {
         })}
       </div>
 
-      {/* Ladies at National Stadium - hero moment for women's football */}
-      <div
-        data-testid="ecosystem-ladies-photo"
-        className="mt-10 relative aspect-[21/9] overflow-hidden border border-white/10"
-      >
-        <img
-          src={heroImages.ladies}
-          alt="SCC Ladies at Singapore National Stadium"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+      {/* Ladies at National Stadium - portrait photo + adjacent caption so the
+          full image is visible (the source is a 3:4 vertical) */}
+      <div className="mt-14 grid lg:grid-cols-12 gap-8 items-stretch">
+        <div
+          data-testid="ecosystem-ladies-photo"
+          className="lg:col-span-5 relative overflow-hidden border border-white/10 bg-black"
+        >
+          <img
+            src={heroImages.ladies}
+            alt="SCC Ladies at Singapore National Stadium"
+            className="w-full h-auto block"
+          />
+        </div>
+        <div className="lg:col-span-7 border border-white/10 bg-black p-8 md:p-10 flex flex-col justify-between">
           <div>
             <div className="font-display text-[10px] tracking-[0.28em] uppercase text-[var(--scc-yellow)]">
               Ladies Team · At the National Stadium
             </div>
-            <div className="font-heritage text-2xl md:text-3xl text-white mt-1 leading-tight">
-              Inclusion, excellence, national‑stage football.
+            <div className="font-heritage text-3xl md:text-5xl text-white mt-4 leading-[1.05] tracking-[-0.01em]">
+              Inclusion, excellence,{" "}
+              <span className="italic text-[var(--scc-yellow)]">
+                national-stage football.
+              </span>
+            </div>
+            <p className="mt-6 text-white/60 leading-relaxed max-w-md">
+              SCC Football fields a full women&rsquo;s team that plays at
+              Singapore&rsquo;s National Stadium - the same turf as the
+              Singapore national side. Sponsoring SCC means sponsoring the
+              growth of women&rsquo;s football in Singapore.
+            </p>
+          </div>
+          <div className="mt-8 flex items-center gap-4 border-t border-white/10 pt-6">
+            <div className="h-10 w-10 border border-[var(--scc-yellow)] text-[var(--scc-yellow)] grid place-items-center">
+              <Heart size={16} />
+            </div>
+            <div className="font-display uppercase tracking-[0.24em] text-[11px] text-white/70">
+              Women&rsquo;s &amp; Girls&rsquo; Pathway
             </div>
           </div>
         </div>
