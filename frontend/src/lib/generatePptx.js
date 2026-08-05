@@ -1,5 +1,5 @@
 /**
- * SCC Football sponsorship deck — .pptx exporter (screenshot-based).
+ * SCC Football sponsorship deck - .pptx exporter (screenshot-based).
  *
  * Instead of rebuilding the deck in PowerPoint's coordinate system (fragile,
  * looks nothing like the web deck), we render each web section into an
@@ -20,7 +20,7 @@ import { sectionsMeta } from "@/data/deckContent";
 const SLIDE_W = 13.333;
 const SLIDE_H = 7.5;
 
-// Capture canvas resolution (16:9 at ~1080p — high quality, still email-friendly)
+// Capture canvas resolution (16:9 at ~1080p - high quality, still email-friendly)
 const CAP_W = 1920;
 const CAP_H = 1080;
 
@@ -63,7 +63,7 @@ function prepareCloneForCapture(root) {
       el.style.maxHeight = "none";
     }
   }
-  // 1. Break out of the max-w-[1400px] scroll cap — a PPT slide has 1920px
+  // 1. Break out of the max-w-[1400px] scroll cap - a PPT slide has 1920px
   //    to fill horizontally; using only 1400 leaves ~13% dead space on each
   //    side and makes the deck look tiny.
   const capped = root.querySelectorAll(
@@ -73,7 +73,7 @@ function prepareCloneForCapture(root) {
     el.style.maxWidth = "1780px";
   });
   // 2. Compress the giant scroll-mode padding AND turn the padded wrapper
-  //    into a flex column that vertically centres its content — unless it
+  //    into a flex column that vertically centres its content - unless it
   //    already opts into a specific justify-* strategy (Cover / Partner
   //    use `justify-between`).
   const padded = root.querySelectorAll(
@@ -116,7 +116,7 @@ async function captureSection(sectionId) {
   const original = document.getElementById(sectionId);
   if (!original) throw new Error(`Section not found: #${sectionId}`);
 
-  // Off-screen capture stage — fixed width, natural (content-driven) height.
+  // Off-screen capture stage - fixed width, natural (content-driven) height.
   const stage = document.createElement("div");
   Object.assign(stage.style, {
     position: "fixed",
@@ -136,7 +136,7 @@ async function captureSection(sectionId) {
     width: `${CAP_W}px`,
     margin: "0",
     position: "relative",
-    // Do NOT force a fixed height — we want the section to lay itself out
+    // Do NOT force a fixed height - we want the section to lay itself out
     // naturally, then we capture at whatever height it needs. This preserves
     // each section's own flex layout (Cover: justify-between, Partner:
     // justify-between, others: SectionShell defaults).
@@ -208,9 +208,9 @@ export async function generateSccPptx(onProgress) {
   }
 
   const pptx = new PptxGenJS();
-  pptx.title = "SCC Football — Sponsorship Opportunities";
+  pptx.title = "SCC Football - Sponsorship Opportunities";
   pptx.subject = "Partnership deck for SCC Football";
-  pptx.company = "Singapore Cricket Club — Football Section";
+  pptx.company = "Singapore Cricket Club - Football Section";
   pptx.author = "SCC Football";
   pptx.layout = "LAYOUT_WIDE"; // 13.333 x 7.5
 
@@ -229,7 +229,7 @@ export async function generateSccPptx(onProgress) {
     const slide = pptx.addSlide();
     slide.background = { color: "050505" };
     // Fit the captured image inside the 16:9 slide while preserving aspect
-    // ratio — letterbox with the black slide background if aspects differ.
+    // ratio - letterbox with the black slide background if aspects differ.
     const imgAR = cap.w / cap.h;
     let iw;
     let ih;

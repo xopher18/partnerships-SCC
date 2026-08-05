@@ -1,29 +1,29 @@
 // Central content for the SCC Football sponsorship deck
-// 16 sections — sponsor-first narrative
+// 16 sections - sponsor-first narrative
 
 export const heroImages = {
-  // COVER — SCC lifting the SFL trophy with champagne spray. The strongest hero we have.
+  // COVER - SCC lifting the SFL trophy with champagne spray. The strongest hero we have.
   cover:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/d3imn60c_WhatsApp%20Image%202026-08-04%20at%208.01.32%20PM.jpeg",
   // SFL CHAMPIONS moment (used for At-a-Glance and Why Now stat callout)
   champions:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/d3imn60c_WhatsApp%20Image%202026-08-04%20at%208.01.32%20PM.jpeg",
-  // OVERSEAS TOURNAMENTS — Men's team at HK 7s in SCC yellow (Helios Fitness sponsor).
+  // OVERSEAS TOURNAMENTS - Men's team at HK 7s in SCC yellow (Helios Fitness sponsor).
   atmosphere:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/x58v8vcv_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM%20%282%29.jpeg",
-  // HERITAGE — the Singapore Cricket Club clubhouse on the Padang. Wikimedia
+  // HERITAGE - the Singapore Cricket Club clubhouse on the Padang. Wikimedia
   // Commons file "Singapore Cricket Club 1 (32126267756).jpg" (CC-BY 2.0),
   // a proper front-facade shot with the SCC flag flying, red-tile roof and
   // colonial arches.
   heritage:
     "https://upload.wikimedia.org/wikipedia/commons/0/0a/Singapore_Cricket_Club_1_%2832126267756%29.jpg",
-  // LADIES at Singapore National Stadium — moved to Ecosystem to headline the Ladies Team.
+  // LADIES at Singapore National Stadium - moved to Ecosystem to headline the Ladies Team.
   ladies:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/y59qu6tl_WhatsApp%20Image%202026-08-03%20at%201.01.24%20PM.jpeg",
-  // INVENTORY — Kit flat-lay with real sponsor branding.
+  // INVENTORY - Kit flat-lay with real sponsor branding.
   kits:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/8bkb0b2l_WhatsApp%20Image%202026-08-04%20at%205.46.41%20PM.jpeg",
-  // REGIONAL CIRCUIT — alt team photo, HK men's team wider shot.
+  // REGIONAL CIRCUIT - alt team photo, HK men's team wider shot.
   regional:
     "https://customer-assets-eiarnc6j.emergentagent.net/job_scc-football-invest/artifacts/88urycvx_WhatsApp%20Image%202026-08-04%20at%205.46.40%20PM.jpeg",
   // RSC KL Girls Champions (used as secondary Regional callout)
@@ -96,14 +96,14 @@ export const ecosystem = [
 ];
 
 // ─────────────────────────────────────────
-// SCC Football 7s — Marquee tournament
+// SCC Football 7s - Marquee tournament
 // ─────────────────────────────────────────
 export const scc7s = {
   eyebrow: "The Marquee Event",
   headline: "SCC Football 7s.",
   italic: "One weekend. A million eyes.",
   intro:
-    "An Asia‑wide 7‑a‑side tournament staged on the Padang — Singapore's most iconic sporting stage. Two days of football, a black‑tie gala and a sponsor showcase that has reached over one million people online.",
+    "An Asia‑wide 7‑a‑side tournament staged on the Padang - Singapore's most iconic sporting stage. Two days of football, a black‑tie gala and a sponsor showcase that has reached over one million people online.",
   bigStats: [
     { value: "1M+", label: "Views & Digital Reach" },
     { value: "82", label: "Teams · Singapore & Asia" },
@@ -137,7 +137,7 @@ export const regionalTournaments = [
     title: "Hong Kong FC 7s",
     place: "Hong Kong Football Club",
     month: "May · Annual",
-    note: "Live broadcast tournament — one of the biggest 7s events in the region.",
+    note: "Live broadcast tournament - one of the biggest 7s events in the region.",
     highlight: "Live TV",
   },
   {
@@ -150,7 +150,7 @@ export const regionalTournaments = [
     title: "Bangkok 7s",
     place: "Royal Bangkok Sports Club",
     month: "Annual",
-    note: "Hosted by RBSC — a prestigious Southeast Asian club tournament.",
+    note: "Hosted by RBSC - a prestigious Southeast Asian club tournament.",
   },
 ];
 
@@ -202,10 +202,10 @@ export const audienceDemographics = [
 
 // One-line reinforcement for cross-club exposure beyond football.
 export const broaderScc =
-  "A sponsorship at SCC Football also puts your brand in front of every other SCC sports section — cricket, rugby, hockey, tennis, netball — and the wider ordinary membership. One partnership. Club‑wide visibility.";
+  "A sponsorship at SCC Football also puts your brand in front of every other SCC sports section - cricket, rugby, hockey, tennis, netball - and the wider ordinary membership. One partnership. Club‑wide visibility.";
 
 // ─────────────────────────────────────────
-// Charity & Community — SCC Football's CSR footprint
+// Charity & Community - SCC Football's CSR footprint
 // ─────────────────────────────────────────
 export const charity = {
   eyebrow: "Charity & Community",
@@ -231,13 +231,13 @@ export const charity = {
       title: "Long‑term Individual Support",
       duration: "From toddler to university",
       copy:
-        "Standing beside a young Singaporean with cerebral palsy since he was a toddler — a two‑decade family‑level partnership now culminating in his move to university.",
+        "Standing beside a young Singaporean with cerebral palsy since he was a toddler - a two‑decade family‑level partnership now culminating in his move to university.",
     },
   ],
   csrFootnote:
     "Plus additional community programmes and one‑off charitable initiatives across the year. Full CSR portfolio available on request.",
   sponsorHook:
-    "Aligning with SCC Football gives your CSR / ESG story genuine, reportable substance — 20+ years of continuous community impact you can co‑brand and share.",
+    "Aligning with SCC Football gives your CSR / ESG story genuine, reportable substance - 20+ years of continuous community impact you can co‑brand and share.",
 };
 
 export const alignmentPillars = [
@@ -245,7 +245,7 @@ export const alignmentPillars = [
   { title: "Youth Development", copy: "Investing in the next generation of Singaporean footballers." },
   { title: "Sporting Excellence", copy: "Backing a champion side competing at the sharp end of the SFL." },
   { title: "Club‑Wide Visibility", copy: "Exposure across all SCC sports sections and ordinary members." },
-  { title: "20‑Year CSR Track Record", copy: "Real charity impact — Phuket youth home, Catch Plus and beyond." },
+  { title: "20‑Year CSR Track Record", copy: "Real charity impact - Phuket youth home, Catch Plus and beyond." },
   { title: "Regional Presence", copy: "Travelling side representing SCC in HK, KL and Bangkok 7s." },
   { title: "Heritage", copy: "Association with a 170+ year Singaporean sporting institution." },
   { title: "Inclusion & Women's Football", copy: "Championing an accessible and diverse football culture." },
@@ -345,7 +345,7 @@ export const events = [
 ];
 
 export const whyItWorks = [
-  { title: "Marquee Reach", copy: "SCC Football 7s alone has attracted 1M+ views — instant brand scale." },
+  { title: "Marquee Reach", copy: "SCC Football 7s alone has attracted 1M+ views - instant brand scale." },
   { title: "Premium Association", copy: "Aligned with one of Singapore's most established sporting institutions." },
   { title: "Club‑Wide Exposure", copy: "Visibility across every SCC sports section and the wider membership." },
   { title: "CSR / ESG Substance", copy: "20+ years of real, reportable charity impact you can co‑brand." },

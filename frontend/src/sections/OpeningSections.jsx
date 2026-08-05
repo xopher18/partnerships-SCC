@@ -4,7 +4,7 @@ import SectionShell from "@/components/SectionShell";
 import { heroImages, glanceStats, sectionsMeta } from "@/data/deckContent";
 import { ArrowDown } from "lucide-react";
 
-/* 01 — COVER */
+/* 01 - COVER */
 export function Cover({ presenter, onJumpNext }) {
   return (
     <section
@@ -38,7 +38,7 @@ export function Cover({ presenter, onJumpNext }) {
             {sectionsMeta.find((s) => s.id === "cover")?.number}
           </span>
           <span className="font-display uppercase tracking-[0.32em] text-[11px] text-white/60">
-            — Sponsorship Opportunities
+            - Sponsorship Opportunities
           </span>
         </div>
 
@@ -49,7 +49,7 @@ export function Cover({ presenter, onJumpNext }) {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="eyebrow mb-6"
           >
-            Est. 1852 — Singapore Cricket Club
+            Est. 1852 - Singapore Cricket Club
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +62,7 @@ export function Cover({ presenter, onJumpNext }) {
             }
           >
             Partner with <br />
-            <span className="italic text-[var(--scc-yellow)]">SCC Football.</span>
+            <span className="italic text-[var(--scc-yellow)]">SCC Football</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -103,7 +103,7 @@ export function Cover({ presenter, onJumpNext }) {
   );
 }
 
-/* 02 — WHY SCC / WHY NOW */
+/* 02 - WHY SCC / WHY NOW */
 export function WhyNow({ presenter }) {
   return (
     <SectionShell
@@ -120,7 +120,7 @@ export function WhyNow({ presenter }) {
             <span className="italic text-[var(--scc-yellow)]">not just a history lesson.</span>
           </h2>
           <p className="mt-8 max-w-2xl text-white/70 text-lg leading-relaxed">
-            SCC Football is entering its strongest era in modern history — a champion side,
+            SCC Football is entering its strongest era in modern history - a champion side,
             a scaling academy and a seven‑day‑a‑week presence at the heart of Singaporean sport.
             The next chapter is being written now. Partners who move first will shape it.
           </p>
@@ -149,7 +149,7 @@ export function WhyNow({ presenter }) {
   );
 }
 
-/* 03 — HERITAGE */
+/* 03 - HERITAGE */
 export function Heritage({ presenter }) {
   return (
     <SectionShell
@@ -166,7 +166,7 @@ export function Heritage({ presenter }) {
           </h2>
           <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
             Founded in 1852, the Singapore Cricket Club has been a fixture of Singaporean sport
-            for over 170 years. Our football section carries that heritage forward &mdash; merging
+            for over 170 years. Our football section carries that heritage forward - merging
             legacy with modern ambition.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-6">
@@ -228,7 +228,7 @@ export function Heritage({ presenter }) {
   );
 }
 
-/* 04 — AT A GLANCE */
+/* 04 - AT A GLANCE */
 export function AtAGlance({ presenter }) {
   return (
     <SectionShell
@@ -242,12 +242,12 @@ export function AtAGlance({ presenter }) {
           The proof, in numbers.
         </h2>
         <p className="mt-6 text-white/60 max-w-2xl">
-          A fast, scannable snapshot of what SCC Football delivers today — the base every
+          A fast, scannable snapshot of what SCC Football delivers today - the base every
           sponsorship conversation should start from.
         </p>
       </div>
 
-      {/* SFL D1 Champions moment — the proof behind the stat */}
+      {/* SFL D1 Champions moment - the proof behind the stat */}
       <div
         data-testid="glance-champions-photo"
         className="mt-12 relative aspect-[21/9] overflow-hidden border border-white/10"

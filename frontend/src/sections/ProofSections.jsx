@@ -21,7 +21,7 @@ import {
 
 const ECO_ICONS = [Baby, Trophy, Users, UserPlus, HomeIcon, Heart];
 
-/* 05 — ECOSYSTEM */
+/* 05 - ECOSYSTEM */
 export function Ecosystem({ presenter }) {
   return (
     <SectionShell
@@ -35,7 +35,7 @@ export function Ecosystem({ presenter }) {
           More than a team. A footballing community.
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          SCC Football operates a full ecosystem — from academy grassroots through to
+          SCC Football operates a full ecosystem - from academy grassroots through to
           senior competition, women&rsquo;s football and lifelong social football.
         </p>
       </div>
@@ -59,7 +59,7 @@ export function Ecosystem({ presenter }) {
         })}
       </div>
 
-      {/* Ladies at National Stadium — hero moment for women's football */}
+      {/* Ladies at National Stadium - hero moment for women's football */}
       <div
         data-testid="ecosystem-ladies-photo"
         className="mt-10 relative aspect-[21/9] overflow-hidden border border-white/10"
@@ -85,7 +85,7 @@ export function Ecosystem({ presenter }) {
   );
 }
 
-/* 08 — PATHWAY */
+/* 08 - PATHWAY */
 export function Pathway({ presenter }) {
   return (
     <SectionShell
@@ -103,7 +103,7 @@ export function Pathway({ presenter }) {
         </h2>
         <p className="lg:col-span-5 text-white/60 leading-relaxed">
           Few clubs in Singapore can offer a complete pathway from a first coaching session
-          to lifelong senior football &mdash; under the same crest. That&rsquo;s the SCC advantage.
+          to lifelong senior football - under the same crest. That&rsquo;s the SCC advantage.
         </p>
       </div>
 
@@ -141,7 +141,7 @@ export function Pathway({ presenter }) {
   );
 }
 
-/* 09 — AUDIENCE */
+/* 09 - AUDIENCE */
 export function Audience({ presenter }) {
   return (
     <SectionShell
@@ -156,7 +156,7 @@ export function Audience({ presenter }) {
             <span className="italic text-[var(--scc-yellow)]">your brand meets.</span>
           </h2>
           <p className="mt-8 text-white/60 leading-relaxed max-w-lg">
-            SCC Football is a network of engaged players, families and members &mdash; and it
+            SCC Football is a network of engaged players, families and members - and it
             sits inside one of Singapore&rsquo;s most respected clubs.
           </p>
           <div className="mt-6 p-5 border-l-2 border-[var(--scc-yellow)] bg-white/[0.02]">
@@ -207,7 +207,7 @@ export function Audience({ presenter }) {
   );
 }
 
-/* 10 — ALIGNMENT */
+/* 10 - ALIGNMENT */
 export function Alignment({ presenter }) {
   return (
     <SectionShell
@@ -221,8 +221,8 @@ export function Alignment({ presenter }) {
           A brand association with substance.
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          Partners align with values that matter to their customers — youth, community,
-          heritage and performance — all lived weekly at SCC Football.
+          Partners align with values that matter to their customers - youth, community,
+          heritage and performance - all lived weekly at SCC Football.
         </p>
       </div>
 

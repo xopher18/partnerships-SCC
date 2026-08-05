@@ -3,7 +3,7 @@ import SectionShell from "@/components/SectionShell";
 import { inventory, packages, customOptions, heroImages } from "@/data/deckContent";
 import { Check, Sparkles } from "lucide-react";
 
-/* 09 — INVENTORY */
+/* 09 - INVENTORY */
 export function Inventory({ presenter }) {
   return (
     <SectionShell
@@ -20,7 +20,7 @@ export function Inventory({ presenter }) {
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
           A clear inventory of what is available across kit, digital, events, matchdays
-          and hospitality — combinable to suit any partner.
+          and hospitality - combinable to suit any partner.
         </p>
       </div>
 
@@ -58,7 +58,7 @@ export function Inventory({ presenter }) {
               Sponsor Visibility · In the Field
             </div>
             <div className="text-white/90 text-sm mt-1">
-              Real SCC kits carrying live sponsor branding — training, matchdays and the regional 7s circuit.
+              Real SCC kits carrying live sponsor branding - training, matchdays and the regional 7s circuit.
             </div>
           </div>
         </div>
@@ -67,11 +67,11 @@ export function Inventory({ presenter }) {
             What your brand looks like on SCC
           </div>
           <h3 className="font-heritage text-3xl leading-tight">
-            Front‑of‑shirt, sleeves, shorts, back panel — a canvas built for partners.
+            Front‑of‑shirt, sleeves, shorts, back panel - a canvas built for partners.
           </h3>
           <p className="text-white/60 text-sm leading-relaxed">
             Multiple print zones across match, training and travel kit. Placement, size and
-            category exclusivity are all negotiable — packages built around your visibility
+            category exclusivity are all negotiable - packages built around your visibility
             objectives and your budget.
           </p>
         </div>
@@ -80,7 +80,7 @@ export function Inventory({ presenter }) {
   );
 }
 
-/* 10 — PACKAGES */
+/* 10 - PACKAGES */
 export function Packages({ presenter }) {
   return (
     <SectionShell
@@ -95,7 +95,7 @@ export function Packages({ presenter }) {
           A ladder built for every ambition.
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          Five tiers — from category exclusivity to community backing. Every conversation
+          Five tiers - from category exclusivity to community backing. Every conversation
           starts from your objectives; we build the package around them.
         </p>
       </div>
@@ -173,7 +173,7 @@ export function Packages({ presenter }) {
   );
 }
 
-/* 11 — CUSTOM */
+/* 11 - CUSTOM */
 export function Custom({ presenter }) {
   return (
     <SectionShell
@@ -187,7 +187,7 @@ export function Custom({ presenter }) {
           Built for brands of every size.
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          The tiers are the starting point — not the ceiling. We tailor packages by
+          The tiers are the starting point - not the ceiling. We tailor packages by
           category, budget and ambition. Cash‑first, in‑kind welcome, always bespoke.
         </p>
       </div>

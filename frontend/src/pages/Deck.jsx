@@ -22,7 +22,7 @@ import {
 } from "@/sections/ClosingSections";
 
 /**
- * Deck — orchestrates scroll narrative and presenter mode.
+ * Deck - orchestrates scroll narrative and presenter mode.
  *  - Scroll: renders all 16 sections stacked.
  *  - Presenter: renders one section at 100vh with keyboard nav.
  */
@@ -144,7 +144,7 @@ export default function Deck() {
           })}
           {/* Footer spacer */}
           <div className="no-print text-center text-[10px] tracking-[0.28em] uppercase text-white/30 py-10 font-display border-t border-white/5">
-            SCC Football — Sponsorship Deck · 2026
+            SCC Football - Sponsorship Deck · 2026
           </div>
         </main>
       )}

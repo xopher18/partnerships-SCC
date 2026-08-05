@@ -4,7 +4,7 @@ import { events, whyItWorks, metrics, needs, contact, heroImages, sectionsMeta }
 import { Mail, Globe, Phone, ArrowUpRight, Download, Printer } from "lucide-react";
 import { generateSccPptx } from "@/lib/generatePptx";
 
-/* 12 — EVENTS & ACTIVATION */
+/* 12 - EVENTS & ACTIVATION */
 export function Events({ presenter }) {
   return (
     <SectionShell
@@ -21,7 +21,7 @@ export function Events({ presenter }) {
           <span className="italic text-[var(--scc-yellow)]">in real moments.</span>
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          Football happens seven days a week at SCC — training, matchdays, tournaments,
+          Football happens seven days a week at SCC - training, matchdays, tournaments,
           camps, community days. Every one of them is an activation opportunity.
         </p>
       </div>
@@ -45,7 +45,7 @@ export function Events({ presenter }) {
   );
 }
 
-/* 13 — WHY IT WORKS FOR SPONSORS */
+/* 13 - WHY IT WORKS FOR SPONSORS */
 export function WhyItWorks({ presenter }) {
   return (
     <SectionShell
@@ -59,7 +59,7 @@ export function WhyItWorks({ presenter }) {
           The commercial case, simply.
         </h2>
         <p className="mt-6 text-white/60 max-w-2xl">
-          Six reasons partners choose SCC Football — each one measurable, storyable and
+          Six reasons partners choose SCC Football - each one measurable, storyable and
           repeatable across a full season.
         </p>
       </div>
@@ -85,7 +85,7 @@ export function WhyItWorks({ presenter }) {
   );
 }
 
-/* 14 — METRICS */
+/* 14 - METRICS */
 export function Metrics({ presenter }) {
   return (
     <SectionShell
@@ -100,7 +100,7 @@ export function Metrics({ presenter }) {
           Success, measured.
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
-          Every partnership comes with a reporting rhythm — so you can show ROI internally
+          Every partnership comes with a reporting rhythm - so you can show ROI internally
           and defend the investment with confidence.
         </p>
       </div>
@@ -124,7 +124,7 @@ export function Metrics({ presenter }) {
   );
 }
 
-/* 15 — CURRENT NEEDS */
+/* 15 - CURRENT NEEDS */
 export function Needs({ presenter }) {
   return (
     <SectionShell
@@ -141,7 +141,7 @@ export function Needs({ presenter }) {
         </h2>
         <p className="lg:col-span-4 text-white/60 leading-relaxed">
           Sponsors know exactly what their support funds. Below are the current priorities
-          for SCC Football — the areas we are actively seeking backing for.
+          for SCC Football - the areas we are actively seeking backing for.
         </p>
       </div>
 
@@ -162,7 +162,7 @@ export function Needs({ presenter }) {
   );
 }
 
-/* 18 — PARTNER WITH US */
+/* 18 - PARTNER WITH US */
 export function Partner({ presenter, setPresenterMode }) {
   const [downloading, setDownloading] = React.useState(false);
   const [progress, setProgress] = React.useState(null);
@@ -176,7 +176,7 @@ export function Partner({ presenter, setPresenterMode }) {
     } catch (e) {
       console.error("PPT generation failed", e);
       if (typeof window !== "undefined") {
-        window.alert(e?.message || "Sorry — the PPT download failed. Please try again.");
+        window.alert(e?.message || "Sorry - the PPT download failed. Please try again.");
       }
     } finally {
       setDownloading(false);
@@ -213,7 +213,7 @@ export function Partner({ presenter, setPresenterMode }) {
             {sectionsMeta.find((s) => s.id === "partner")?.number}
           </span>
           <span className="font-display uppercase tracking-[0.32em] text-[11px] text-black/70">
-            — Partner With Us
+            - Partner With Us
           </span>
         </div>
 

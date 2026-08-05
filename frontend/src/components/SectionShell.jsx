@@ -62,7 +62,7 @@ export default function SectionShell({
                   bg === "yellow" ? "text-black/70" : "text-white/60"
                 }`}
               >
-                — {eyebrow}
+                - {eyebrow}
               </span>
             )}
           </motion.div>

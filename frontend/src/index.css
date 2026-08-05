@@ -67,8 +67,9 @@
     letter-spacing: -0.01em;
 }
 .font-display {
-    font-family: "Oswald", "Cormorant Garamond", serif;
+    font-family: "Space Grotesk", "Cormorant Garamond", serif;
     letter-spacing: 0.01em;
+    font-feature-settings: "ss01", "tnum";
 }
 .font-body {
     font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
@@ -104,7 +105,7 @@
 
 /* Section eyebrow label */
 .eyebrow {
-    font-family: "Oswald", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.28em;
     font-size: 0.72rem;
@@ -118,7 +119,7 @@ body.presenter-lock {
 }
 
 /* ────────────────────────────────────────────────────────────
-   PRINT — Clean, editorial PDF output.
+   PRINT - Clean, editorial PDF output.
    Converts the dark theme into a light editorial style while
    preserving the yellow accent so the printed deck stays on brand.
    ──────────────────────────────────────────────────────────── */
@@ -176,7 +177,7 @@ body.presenter-lock {
         max-width: 100% !important;
     }
 
-    /* Flatten hero image overlays for print — keep image visible */
+    /* Flatten hero image overlays for print - keep image visible */
     section img {
         opacity: 1 !important;
         filter: none !important;
@@ -217,7 +218,7 @@ body.presenter-lock {
         color: #b8860b !important; /* deeper yellow prints cleaner */
     }
 
-    /* Backgrounds — strip dark, keep yellow */
+    /* Backgrounds - strip dark, keep yellow */
     .bg-black,
     .bg-black\/60,
     .bg-black\/70,
@@ -254,7 +255,7 @@ body.presenter-lock {
         border-color: #b8860b !important;
     }
 
-    /* Cover page — force white bg, dark text */
+    /* Cover page - force white bg, dark text */
     #cover {
         color: #050505 !important;
     }

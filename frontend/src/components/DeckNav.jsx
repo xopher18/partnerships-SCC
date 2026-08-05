@@ -30,7 +30,7 @@ export default function DeckNav({ presenterMode, setPresenterMode, onJump }) {
       console.error("PPT generation failed", e);
       // Toast the user with the reason (esp. mobile-width guard)
       if (typeof window !== "undefined") {
-        window.alert(e?.message || "Sorry — the PPT download failed. Please try again.");
+        window.alert(e?.message || "Sorry - the PPT download failed. Please try again.");
       }
     } finally {
       setDownloading(false);

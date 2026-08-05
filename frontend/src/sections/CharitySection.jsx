@@ -5,7 +5,7 @@ import { Heart, GraduationCap, Users, HandHeart } from "lucide-react";
 
 const ICONS = [Heart, Users, GraduationCap];
 
-/* 11 — CHARITY & COMMUNITY */
+/* 11 - CHARITY & COMMUNITY */
 export function Charity({ presenter }) {
   return (
     <SectionShell

@@ -3,7 +3,7 @@ import SectionShell from "@/components/SectionShell";
 import { scc7s, regionalTournaments, heroImages } from "@/data/deckContent";
 import { Trophy, MapPin, CalendarDays, Radio, Users, Star } from "lucide-react";
 
-/* 06 — SCC FOOTBALL 7s (marquee event) */
+/* 06 - SCC FOOTBALL 7s (marquee event) */
 export function Scc7s({ presenter }) {
   return (
     <section
@@ -34,7 +34,7 @@ export function Scc7s({ presenter }) {
         <div className="flex items-center gap-4 mb-10">
           <span className="font-display text-[var(--scc-yellow)] text-xs tracking-[0.4em]">06</span>
           <span className="font-display uppercase tracking-[0.32em] text-[11px] text-white/60">
-            — {scc7s.eyebrow}
+            - {scc7s.eyebrow}
           </span>
         </div>
 
@@ -121,7 +121,7 @@ export function Scc7s({ presenter }) {
               ))}
             </div>
             <p className="mt-5 text-white/55 text-sm leading-relaxed max-w-md">
-              Ex‑professionals join the tournament weekend — appearing at the Gala Dinner
+              Ex‑professionals join the tournament weekend - appearing at the Gala Dinner
               and playing on the sponsor‑backed all‑star team.
             </p>
           </div>
@@ -152,7 +152,7 @@ export function Scc7s({ presenter }) {
   );
 }
 
-/* 07 — REGIONAL CIRCUIT */
+/* 07 - REGIONAL CIRCUIT */
 export function Regional({ presenter }) {
   return (
     <SectionShell
@@ -170,7 +170,7 @@ export function Regional({ presenter }) {
         <div className="lg:col-span-5 space-y-4">
           <p className="text-white/60 leading-relaxed">
             SCC Football doesn&rsquo;t only host. Our teams travel a prestigious regional 7s
-            calendar — carrying sponsor branding across three of Asia&rsquo;s most storied
+            calendar - carrying sponsor branding across three of Asia&rsquo;s most storied
             clubs, plus our own headline event.
           </p>
           <div
