@@ -116,7 +116,15 @@
   .cta .globe { width: 64px; height: 64px; border: 3px solid #fff; border-radius: 50%; display: grid; place-items: center; flex: none; }
   .cta .globe svg { width: 34px; height: 34px; }
   .cta .l1 { font-family: "Mont"; font-weight: 800; font-style: italic; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; }
-  .cta .l2 { font-family: "Anton"; font-size: 46px; line-height: 1.05; letter-spacing: .01em; text-transform: uppercase; }
+  .cta .l2 { font-family: "Anton"; font-size: 42px; line-height: 1.1; letter-spacing: .01em; }
+
+  .qr {
+    right: 44px; top: 800px; width: 214px; background: #fff; border-radius: 12px; padding: 12px 12px 10px;
+    box-shadow: 0 12px 34px rgba(0,0,0,.55); text-align: center; color: var(--ink);
+    border: 4px solid var(--yellow);
+  }
+  .qr img { width: 100%; display: block; image-rendering: pixelated; }
+  .qr div { font-family: "Anton"; font-size: 24px; letter-spacing: .03em; margin-top: 8px; text-transform: uppercase; line-height: 1; }
 
   .foot {
     left: 64px; bottom: 26px; font-weight: 600; font-size: 12px; letter-spacing: .3em; color: #dedede;
@@ -233,14 +241,19 @@
       </g>
     </svg>
     <div class="txt">
-      <div class="globe"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></div>
+      <div class="globe"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3Z"/></svg></div>
       <div>
-        <div class="l1">Register via email</div>
-        <div class="l2">sportsdept@scc.org.sg</div>
+        <div class="l1">Scan the QR or register online</div>
+        <div class="l2">tinyurl.com/registerSCCFootball7s</div>
       </div>
     </div>
   </div>
 
+
+  <div class="abs qr">
+    <img src="assets/register-qr.png" alt="QR code linking to the SCC Football 7s 2027 registration form">
+    <div>Scan to register</div>
+  </div>
 
   <div class="abs foot">CELEBRATING 175 YEARS · 1852–2027</div>
   <div class="abs hash">@sccsoccer7s</div>
