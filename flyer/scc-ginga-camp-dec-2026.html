@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SCC Ginga Soccer Camp</title>
+<style>
+  @font-face { font-family: "Anton"; src: url("assets/fonts/anton-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Marker"; src: url("assets/fonts/permanent-marker-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Mont"; font-weight: 600; src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Mont"; font-weight: 800; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Mont"; font-weight: 900; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); }
+
+  :root {
+    --yellow: #ffd200;
+    --green: #1fa64a;
+    --ink: #0b0b0c;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ink); }
+  .flyer {
+    position: relative; width: 1200px; height: 1800px; overflow: hidden;
+    background: var(--ink); color: var(--white); font-family: "Mont", sans-serif;
+  }
+  .abs { position: absolute; }
+
+  /* Photo band */
+  .photo {
+    position: absolute; left: 0; right: 0; top: 470px; height: 720px;
+    background: url("assets/padang-youth.jpg") 50% 70% / 118% auto no-repeat;
+    filter: saturate(1.1) contrast(1.05);
+  }
+  .photo-shade {
+    position: absolute; left: 0; right: 0; top: 470px; height: 720px;
+    background:
+      linear-gradient(180deg, var(--ink) 0%, rgba(11,11,12,.55) 18%, rgba(11,11,12,0) 36%, rgba(11,11,12,0) 66%, rgba(11,11,12,.85) 88%, var(--ink) 100%);
+  }
+
+  .stripes { right: -80px; top: 380px; width: 620px; height: 240px; }
+
+  /* Header */
+  .crest { right: 54px; top: 46px; height: 190px; }
+  .eyebrow {
+    left: 70px; top: 64px; font-weight: 800; font-size: 26px; letter-spacing: .32em; color: var(--yellow);
+  }
+  .eyebrow span { color: #fff; }
+  .marker {
+    left: 72px; top: 112px; font-family: "Marker"; font-size: 54px; color: #fff;
+    transform: rotate(-4deg); transform-origin: left center; text-shadow: 0 4px 0 rgba(0,0,0,.6);
+  }
+  .ginga {
+    left: 58px; top: 196px; font-family: "Anton"; font-size: 270px; line-height: .86; color: var(--yellow);
+    letter-spacing: .005em; text-shadow: 8px 8px 0 var(--green);
+  }
+  .camp {
+    left: 66px; top: 440px; font-family: "Anton"; font-size: 104px; line-height: 1; color: #fff;
+    letter-spacing: .01em; text-shadow: 0 6px 0 rgba(0,0,0,.6);
+  }
+
+  /* Brush band */
+  .brush { position: absolute; }
+  .brush > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .brush .txt { position: relative; z-index: 1; }
+
+  .tagband { left: -20px; top: 1046px; width: 900px; height: 92px; transform: rotate(-3deg); }
+  .tagband .txt {
+    font-family: "Anton"; font-size: 50px; line-height: 92px; color: var(--ink); padding-left: 88px;
+    letter-spacing: .03em; text-transform: uppercase;
+  }
+  .tagband .txt i { font-style: normal; color: var(--green); margin: 0 14px; }
+
+  /* Info */
+  .info { left: 70px; top: 1176px; width: 530px; }
+  .row { display: flex; align-items: center; gap: 20px; padding: 12px 0; border-bottom: 2px solid rgba(255,255,255,.14); }
+  .row:last-child { border-bottom: 0; }
+  .ic {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--yellow); flex: none;
+    display: grid; place-items: center;
+  }
+  .ic svg { width: 32px; height: 32px; }
+  .row .k { font-weight: 800; font-size: 16px; letter-spacing: .26em; color: var(--yellow); text-transform: uppercase; }
+  .row .v { font-family: "Anton"; font-size: 40px; line-height: 1.05; text-transform: uppercase; }
+  .row .v small { font-family: "Mont"; font-weight: 600; font-size: 20px; letter-spacing: .08em; color: #cfcfcf; margin-left: 8px; }
+
+  .list { left: 640px; top: 1192px; width: 500px; }
+  .list h3 {
+    font-weight: 800; font-size: 16px; letter-spacing: .26em; color: var(--yellow); text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .list li {
+    list-style: none; display: flex; align-items: center; gap: 16px; font-family: "Anton"; font-size: 32px;
+    line-height: 1.15; text-transform: uppercase; padding: 9px 0;
+  }
+  .list li::before {
+    content: ""; width: 34px; height: 34px; flex: none; border-radius: 50%;
+    background: var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0b0c' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 22px no-repeat;
+  }
+  .list li em { font-style: normal; color: var(--yellow); }
+
+  /* CTA */
+  .cta { left: -30px; top: 1534px; width: 920px; height: 140px; }
+  .cta .txt { padding: 20px 0 0 100px; color: var(--ink); }
+  .cta .l1 { font-weight: 900; font-size: 22px; letter-spacing: .2em; text-transform: uppercase; }
+  .cta .l2 { font-family: "Anton"; font-size: 76px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+  .cta .l2 .arrow { display: inline-block; margin-left: 18px; }
+
+  .qr {
+    right: 60px; top: 1462px; width: 226px; background: #fff; border-radius: 16px; padding: 18px 18px 14px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.6); text-align: center; color: var(--ink); border: 5px solid var(--yellow);
+  }
+  .qr img { width: 100%; display: block; image-rendering: pixelated; }
+  .qr div { font-family: "Anton"; font-size: 25px; letter-spacing: .02em; margin-top: 10px; text-transform: uppercase; line-height: 1.05; }
+
+  .values {
+    left: 70px; width: 790px; bottom: 40px; display: flex; justify-content: space-between;
+    font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #d8d8d8;
+  }
+  .values span::before { content: "●"; color: var(--yellow); margin-right: 10px; font-size: 11px; vertical-align: 2px; }
+</style>
+</head>
+<body>
+<div class="flyer" id="flyer">
+  <div class="photo"></div>
+  <div class="photo-shade"></div>
+
+  <svg class="abs stripes" viewBox="0 0 620 240" aria-hidden="true">
+    <defs>
+      <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035 0.9" numOctaves="2" seed="4"/>
+        <feDisplacementMap in="SourceGraphic" scale="18"/>
+      </filter>
+    </defs>
+    <g filter="url(#rough)" transform="rotate(-24 310 120)">
+      <rect x="40" y="60" width="700" height="34" fill="#ffd200"/>
+      <rect x="120" y="112" width="640" height="16" fill="#ffd200" opacity=".85"/>
+      <rect x="0" y="146" width="760" height="46" fill="#ffd200"/>
+    </g>
+  </svg>
+
+  <img class="abs crest" src="assets/scc-175-crest-gold.png" alt="Singapore Cricket Club, celebrating 175 years, 1852 to 2027">
+
+  <div class="abs eyebrow">SCC <span>FOOTBALL ACADEMY</span></div>
+  <div class="abs marker">December holiday</div>
+  <div class="abs ginga">GINGA</div>
+  <div class="abs camp">SOCCER CAMP</div>
+
+  <div class="brush tagband">
+    <svg viewBox="0 0 900 92" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="brushA" x="-5%" y="-20%" width="110%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02 0.25" numOctaves="3" seed="9"/>
+          <feDisplacementMap in="SourceGraphic" scale="20"/>
+        </filter>
+      </defs>
+      <path filter="url(#brushA)" d="M0 8 L888 2 L896 84 L0 90 Z" fill="#ffd200"/>
+    </svg>
+    <div class="txt">Train<i>•</i>Play<i>•</i>Improve<i>•</i>Have fun!</div>
+  </div>
+
+  <div class="abs info">
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+      <div><div class="k">3-day camp · Tue – Thu</div><div class="v">22 – 24 Dec 2026</div></div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></div>
+      <div><div class="k">Daily</div><div class="v">8:30am – 12:30pm</div></div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+      <div><div class="k">Location</div><div class="v">The Padang, SCC</div></div>
+    </div>
+  </div>
+
+  <ul class="abs list">
+    <h3>At camp</h3>
+    <li>Technical training</li>
+    <li>Small-sided games</li>
+    <li><span>Brazilian style of play <em>(Ginga)</em></span></li>
+    <li>Fun, development-first coaching</li>
+  </ul>
+
+
+  <div class="brush cta">
+    <svg viewBox="0 0 940 150" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <filter id="brushC" x="-5%" y="-20%" width="110%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.018 0.22" numOctaves="3" seed="11"/>
+          <feDisplacementMap in="SourceGraphic" scale="24"/>
+        </filter>
+      </defs>
+      <path filter="url(#brushC)" d="M0 10 L928 2 L936 140 L0 148 Z" fill="#ffd200"/>
+    </svg>
+    <div class="txt">
+      <div class="l1">Scan to view &amp; register</div>
+      <div class="l2">Join us now!<span class="arrow">→</span></div>
+    </div>
+  </div>
+
+  <div class="abs qr">
+    <img src="assets/camp-qr.png" alt="QR code linking to SCC football camp registration">
+    <div>Scan to register</div>
+  </div>
+
+  <div class="abs values"><span>Quality coaching</span><span>Player development</span><span>Teamwork &amp; respect</span><span>Fun &amp; positive</span></div>
+</div>
+</body>
+</html>
